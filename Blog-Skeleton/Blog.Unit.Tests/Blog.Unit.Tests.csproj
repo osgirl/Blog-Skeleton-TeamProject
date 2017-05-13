@@ -52,5 +52,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Tests\Tests-DT\" />
+    <Folder Include="Tests\Tests-GD\" />
+    <Folder Include="Tests\Tests-GK\" />
+    <Folder Include="Tests\Tests-NI\" />
+    <Folder Include="Tests\Tests-PN\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

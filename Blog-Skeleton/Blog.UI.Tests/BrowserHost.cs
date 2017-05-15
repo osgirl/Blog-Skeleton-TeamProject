@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OpenQA.Selenium.Chrome;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,8 @@ namespace Blog.UI.Tests
         {
             //Use different port for instance from localhost, because there is a discrepancy using TeamCity
 
-            Instance.Run("Blog", 60639, w => w.WithRemoteWebDriver(BrowserFactory.Chrome));
+            //Instance.Run("Blog", 60639, w => w.WithRemoteWebDriver(BrowserFactory.Chrome));
+            Instance.Run("Blog", 60639, w => w.WithRemoteWebDriver(() => new ChromeDriver()));
 
             //Instance.Run("Blog", 60639);
             // For Chrome: Instance.Run("Blog", 60634, w => w.WithRemoteWebDriver(BrowserFactory.Chrome));

@@ -14,7 +14,9 @@ namespace Blog.UI.Tests
 
         static BrowserHost()
         {
-            Instance.Run("Blog", 60634, w => w.WithRemoteWebDriver(BrowserFactory.Chrome));
+            //Use different port for instance from localhost, because there is a discrepancy using TeamCity
+
+            Instance.Run("Blog", 60639, w => w.WithRemoteWebDriver(BrowserFactory.Chrome));
 
             //Instance.Run("Blog", 60639);
             // For Chrome: Instance.Run("Blog", 60634, w => w.WithRemoteWebDriver(BrowserFactory.Chrome));

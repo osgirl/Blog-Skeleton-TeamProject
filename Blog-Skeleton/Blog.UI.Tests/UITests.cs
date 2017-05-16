@@ -14,17 +14,28 @@ namespace Blog.UI.Tests
     [TestFixture]
     public class UITests
     {
+        IWebDriver driver;
+        WebDriverWait wait;
+
+        [SetUp]
+        public void Init()
+        {
+            this.driver = new ChromeDriver();
+            this.wait = new WebDriverWait(driver, TimeSpan.FromSeconds(300));
+        }
+
+        [TearDown]
+        public void CleanUp()
+        {
+            this.driver.Quit();
+        }
+
         [Test]
         public void CheckSiteLoad()
         {
-            IWebDriver driver = new ChromeDriver();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(300));
+            this.driver.Navigate().GoToUrl(@"http://localhost:60634/Article/List");
 
-
-
-            driver.Navigate().GoToUrl(@"http://localhost:60634/Article/List");
-
-            var logo = wait.Until(w => w.FindElement(By.XPath("/html/body/div[1]/div/div[1]/a")));
+            var logo = this.wait.Until(w => w.FindElement(By.XPath("/html/body/div[1]/div/div[1]/a")));
 
             Assert.AreEqual("SOFTUNI BLOG", logo.Text);
         }

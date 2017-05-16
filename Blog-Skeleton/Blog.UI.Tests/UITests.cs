@@ -18,7 +18,7 @@ namespace Blog.UI.Tests
         public void CheckSiteLoad()
         {
             IWebDriver driver = new ChromeDriver();
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(300));
 
 
 

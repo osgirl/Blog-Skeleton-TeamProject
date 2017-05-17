@@ -21,7 +21,7 @@ namespace Blog.UI.Tests
         public void Init()
         {
             this.driver = new ChromeDriver();
-            this.wait = new WebDriverWait(driver, TimeSpan.FromSeconds(300));
+            this.wait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(300));
         }
 
         [TearDown]

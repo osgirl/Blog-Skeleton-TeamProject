@@ -24,7 +24,7 @@ namespace Blog.UI.Tests
             // For Chrome: Instance.Run("Blog", 60634, w => w.WithRemoteWebDriver(BrowserFactory.Chrome));
             // or Instance.Run("Blog", 60634, w => w.WithRemoteWebDriver(() => new ChromeDriver()));
 
-            RootUrl = Instance.Application.Browser.Url;
+            //RootUrl = Instance.Application.Browser.Url;
         }
     }
 }

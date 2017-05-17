@@ -1,1 +1,1 @@
-taskkill /FI "IMAGENAME eq chromedriver.exe"
+taskkill /F "IMAGENAME eq chromedriver.exe"

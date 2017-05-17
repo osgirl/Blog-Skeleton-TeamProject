@@ -17,7 +17,7 @@ namespace Blog.UI.Tests.Pages.HomePage
         public HomePage(IWebDriver driver)
         {
             this.driver = driver;
-            this.wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+            this.wait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(60));
         }
 
         public IWebDriver Driver

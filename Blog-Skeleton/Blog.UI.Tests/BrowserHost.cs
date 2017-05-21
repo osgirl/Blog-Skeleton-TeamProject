@@ -18,7 +18,7 @@ namespace Blog.UI.Tests
             //Use different port for instance from localhost, because there is a discrepancy using TeamCity
 
            // Instance.Run("Blog", 60634, w => w.WithRemoteWebDriver(BrowserFactory.Chrome));
-             Instance.Run("Blog", 60634, w => w.WithRemoteWebDriver(() => new ChromeDriver()));
+             Instance.Run("Blog", 60634, w => w.WithRemoteWebDriver(() => new ChromeDriver("..\\packages\\Selenium.WebDriver.ChromeDriver.2.29.0\\driver\\win32\\chromedriver.exe")));
             
            // Instance.Run("Blog", 60634);
             // For Chrome: Instance.Run("Blog", 60634, w => w.WithRemoteWebDriver(BrowserFactory.Chrome));

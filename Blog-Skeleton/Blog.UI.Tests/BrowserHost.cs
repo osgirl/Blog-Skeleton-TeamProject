@@ -18,7 +18,8 @@ namespace Blog.UI.Tests
         {
             DesiredCapabilities capabilities = DesiredCapabilities.Chrome();
             ChromeOptions options = new ChromeOptions();
-            options.BinaryLocation = @"..\\packages\\Selenium.WebDriver.ChromeDriver.2.29.0\\driver\\win32\\chromedriver.exe";
+			options.BinaryLocation = @"C:\Users\Petya\AppData\Local\Google\Chrome\Application\chrome.exe"
+            //options.BinaryLocation = @"..\\packages\\Selenium.WebDriver.ChromeDriver.2.29.0\\driver\\win32\\chromedriver.exe";
             //options.AddArguments(@"--incognito");
             capabilities.SetCapability(ChromeOptions.Capability, options);
             

@@ -30,7 +30,7 @@ namespace Blog.UI.Tests
            // Instance.Run("Blog", 60634, w => w.WithRemoteWebDriver(BrowserFactory.Chrome));
 
             //Instance.Run("Blog", 60638, w => w.WithRemoteWebDriver(BrowserFactory.Chrome));
-            Instance.Run("Blog", 60638, w => w.WithRemoteWebDriver(() => new ChromeDriver()));
+            Instance.Run("Blog", 60638, w => w.WithRemoteWebDriver(() => new ChromeDriver(options)));
             
           // Instance.Run("Blog", 60638);
             // For Chrome: Instance.Run("Blog", 60634, w => w.WithRemoteWebDriver(BrowserFactory.Chrome));

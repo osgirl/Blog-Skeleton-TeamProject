@@ -8,6 +8,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Blog.UI.Tests.Pages.HomePage;
+using OpenQA.Selenium.Remote;
+using OpenQA.Selenium.Support.PageObjects;
 
 namespace Blog.UI.Tests
 {
@@ -19,7 +21,7 @@ namespace Blog.UI.Tests
 
         [SetUp]
         public void Init()
-        {
+        {            
             this.driver = new ChromeDriver();
             this.wait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(300));
         }
@@ -34,7 +36,7 @@ namespace Blog.UI.Tests
         public void CheckSiteLoad()
         {
             this.driver.Navigate().GoToUrl(@"http://localhost:60634/Article/List");
-
+            
             var logo = this.wait.Until(w => w.FindElement(By.XPath("/html/body/div[1]/div/div[1]/a")));
 
             Assert.AreEqual("SOFTUNI BLOG", logo.Text);
@@ -44,6 +46,8 @@ namespace Blog.UI.Tests
         public void BlogLogoDisplayedRightMessage()
         {
             var homePage = new HomePage(BrowserHost.Instance.Application.Browser);
+
+            PageFactory.InitElements(BrowserHost.Instance.Application.Browser, homePage);
 
             homePage.NavigateTo();
 

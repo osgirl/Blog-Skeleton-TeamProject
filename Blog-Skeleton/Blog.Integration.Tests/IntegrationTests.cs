@@ -16,6 +16,5 @@ namespace Blog.Integration.Tests
             // TODO: Add your test code here
             Assert.Pass("Your first passing test");
         }
-        //Test repository
     }
 }

@@ -14,7 +14,7 @@ namespace Blog.UI.Tests.Tests.Tests_PN
         public ArticlesDashboard(IWebDriver driver): base(driver)
         {
         }
-
+        /*
         public void NavigateToArticle(string title)
         {
             for(int i;i<Count;i++)
@@ -22,7 +22,7 @@ namespace Blog.UI.Tests.Tests.Tests_PN
 
             this.Driver.Navigate().GoToUrl(this.url);
         }
-
+        */
         // No Articles
 
         // One Article

@@ -16,12 +16,12 @@ namespace Blog.UI.Tests
 
         static BrowserHost()
         {
-            DesiredCapabilities capabilities = DesiredCapabilities.Chrome();
+           // DesiredCapabilities capabilities = DesiredCapabilities.Chrome();
             ChromeOptions options = new ChromeOptions();
-			options.BinaryLocation = @"C:\Users\Petya\AppData\Local\Google\Chrome\Application\chrome.exe"
+            options.BinaryLocation = @"C:\Users\Petya\AppData\Local\Google\Chrome\Application\chrome.exe";
             //options.BinaryLocation = @"..\\packages\\Selenium.WebDriver.ChromeDriver.2.29.0\\driver\\win32\\chromedriver.exe";
             //options.AddArguments(@"--incognito");
-            capabilities.SetCapability(ChromeOptions.Capability, options);
+           // capabilities.SetCapability(ChromeOptions.Capability, options);
             
           //  System.Environment.SetEnvironmentVariable("webdriver.chrome.‌​driver", @"..\\packages\\Selenium.WebDriver.ChromeDriver.2.29.0\\driver\\win32\\chromedriver.exe");
 

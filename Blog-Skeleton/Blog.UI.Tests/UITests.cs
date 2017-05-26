@@ -21,9 +21,10 @@ namespace Blog.UI.Tests
 
         [SetUp]
         public void Init()
-        {            
-            this.driver = new ChromeDriver();
-            this.wait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(300));
+        {
+            // this.driver = new ChromeDriver();
+            this.driver = BrowserHost.Instance.Application.Browser;
+            this.wait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(300));            
         }
 
         [TearDown]
@@ -34,7 +35,10 @@ namespace Blog.UI.Tests
 
         [Test]
         public void CheckSiteLoad()
-        {
+        {/*
+            IWebDriver driver = BrowserHost.Instance.Application.Browser;
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(300));
+            */
             this.driver.Navigate().GoToUrl(@"http://localhost:60634/Article/List");
             
             var logo = this.wait.Until(w => w.FindElement(By.XPath("/html/body/div[1]/div/div[1]/a")));
@@ -45,9 +49,9 @@ namespace Blog.UI.Tests
         [Test]
         public void BlogLogoDisplayedRightMessage()
         {
-            var homePage = new HomePage(BrowserHost.Instance.Application.Browser);
+            var homePage = new HomePage(this.driver);
 
-            PageFactory.InitElements(BrowserHost.Instance.Application.Browser, homePage);
+            PageFactory.InitElements(this.driver, homePage);
 
             homePage.NavigateTo();
 

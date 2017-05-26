@@ -85,6 +85,9 @@
     <Compile Include="Pages\HomePage\HomePageAsserter.cs" />
     <Compile Include="Pages\HomePage\HomePageMap.cs" />
     <Compile Include="Pages\HomePage\HomePage.cs" />
+    <Compile Include="Tests\Tests-PN\ArticlesDashboardMap.cs" />
+    <Compile Include="Tests\Tests-PN\ArticlesDashboardAsserter.cs" />
+    <Compile Include="Tests\Tests-PN\ArticlesDashboard.cs" />
     <Compile Include="UITests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -97,7 +100,6 @@
     <Folder Include="Tests\Tests-GD\" />
     <Folder Include="Tests\Tests-GK\" />
     <Folder Include="Tests\Tests-NI\" />
-    <Folder Include="Tests\Tests-PN\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

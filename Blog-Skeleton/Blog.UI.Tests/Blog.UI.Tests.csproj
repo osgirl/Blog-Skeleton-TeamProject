@@ -35,6 +35,9 @@
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
@@ -83,7 +86,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasePage.cs" />
     <Compile Include="BrowserHost.cs" />
+    <Compile Include="Pages\ArticlesDashboard\ArticlesDashboardAsserter.cs" />
+    <Compile Include="Pages\ArticlesDashboard\ArticlesDashboard.cs" />
+    <Compile Include="Pages\ArticlesDashboard\ArticlesDashboardMap.cs" />
+    <Compile Include="Pages\CreateArticle\CreateArticleAsserter.cs" />
+    <Compile Include="Pages\CreateArticle\CreateArticleMap.cs" />
+    <Compile Include="Pages\CreateArticle\CreateArticle.cs" />
+    <Compile Include="Pages\Login\LoginAsserter.cs" />
+    <Compile Include="Pages\Login\LoginMap.cs" />
+    <Compile Include="Pages\Login\Login.cs" />
     <Compile Include="UITests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -95,6 +108,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Pages\EditArticle\" />
+    <Folder Include="Tests\ArticlesDashboard\" />
+    <Folder Include="Tests\Articles\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.2.29.0\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.2.29.0\build\Selenium.WebDriver.ChromeDriver.targets')" />

@@ -75,7 +75,6 @@ namespace Blog.UI.Tests
             if (scroll == ScrollBars.None)
             {
                 dash.log.Info("No scroll bars are shown.");
-                Assert.Fail();
             }                
             else if (scroll == ScrollBars.Both)
             {

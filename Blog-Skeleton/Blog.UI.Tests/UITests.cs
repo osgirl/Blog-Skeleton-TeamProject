@@ -72,33 +72,27 @@ namespace Blog.UI.Tests
             dash.AssertNewArticle("qwertyQWERTYqwertyQWERTYqwertyQWERTYqwertyQWERTY");
             ScrollableControl ctl = new ScrollableControl();            
             ScrollBars scroll = dash.GetVisibleScrollbars(ctl);
-            if (ctl.AutoScroll)
-            {
-                dash.log.Info("No scroll bars are shown.");
-                Assert.Fail();
-            }
-                
-            /*
-            if (scroll.Equals(0))
+            
+            if (scroll.Equals(ScrollBars.None))
             {
                 dash.log.Info("No scroll bars are shown.");
                 Assert.Fail();
             }                
-            else if (scroll.Equals(3))
+            else if (scroll.Equals(ScrollBars.Both))
             {
                 dash.log.Info("Both horizontal and vertical scroll bars are shown.");
                 Assert.Pass();
             }
-            else if (scroll.Equals(1))
+            else if (scroll.Equals(ScrollBars.Horizontal))
             {
                 dash.log.Info("Only horizontal scroll bars are shown.");
                 Assert.Fail();
             }
-            else if (scroll.Equals(2))
+            else if (scroll.Equals(ScrollBars.Vertical))
             {
                 dash.log.Info("Only vertical scroll bars are shown.");
                 Assert.Fail();
-            }      */
+            }      
         }
     }
 }

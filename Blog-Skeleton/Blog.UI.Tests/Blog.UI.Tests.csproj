@@ -107,6 +107,7 @@
     <None Include="Documentation\SoftwareRequirementsSpecification%28SRS%29\Templates\Example-STS.pdf" />
     <None Include="Documentation\SoftwareRequirementsSpecification%28SRS%29\Templates\IEEE Standard SRS Template.doc" />
     <None Include="Documentation\SoftwareRequirementsSpecification%28SRS%29\Templates\srs_template-ieee.doc" />
+    <None Include="Documentation\SoftwareRequirementsSpecification%28SRS%29\t\Example-STS.pdf" />
     <None Include="Documentation\SoftwareTestDesignSpecification%28STD%29\Templates\Example-software-test-design-specification.docx" />
     <None Include="Documentation\SoftwareTestDesignSpecification%28STD%29\Templates\Template-test-design.doc" />
     <None Include="Documentation\SoftwareTestDesignSpecification%28STD%29\Templates\test-design-specification-template.doc" />

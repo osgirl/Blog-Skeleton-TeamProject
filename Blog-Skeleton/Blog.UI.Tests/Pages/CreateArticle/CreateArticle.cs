@@ -18,14 +18,14 @@ namespace Blog.UI.Tests.Pages.CreateArticle
             }
         }
 
-        public void NavigateTo()
+        public void ArticleNavigateTo()
         {
             this.Driver.Navigate().GoToUrl(this.URL);
         }
 
         public void ArticleCreate(string title, string content)
         {
-            this.NavigateTo();
+            this.ArticleNavigateTo();
             this.Title.Click();
             this.Title.SendKeys(title);
             this.Content.Click();

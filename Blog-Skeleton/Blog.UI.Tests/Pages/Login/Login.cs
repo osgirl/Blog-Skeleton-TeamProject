@@ -47,7 +47,7 @@ namespace Blog.UI.Tests.Pages.Login
             }
         }
 
-        public void NavigateTo()
+        public void LoginNavigateTo()
         {
             this.Driver.Navigate().GoToUrl(this.URL);
         }
@@ -56,7 +56,7 @@ namespace Blog.UI.Tests.Pages.Login
         {
             this.EMAIL = loginEmail;
             this.PASSWORD = loginPassword;
-            this.NavigateTo();
+            this.LoginNavigateTo();
             this.Email.Click();
             this.Email.SendKeys(this.EMAIL);
             this.Password.Click();

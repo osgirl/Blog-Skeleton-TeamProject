@@ -104,38 +104,22 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Documentation\SoftwareRequirementsSpecification%28SRS%29\Example-STS.pdf" />
-    <None Include="Documentation\SoftwareRequirementsSpecification%28SRS%29\IEEE Standard SRS Template.doc" />
-    <None Include="Documentation\SoftwareRequirementsSpecification%28SRS%29\srs_template-ieee.doc" />
     <None Include="Documentation\SoftwareRequirementsSpecification%28SRS%29\Templates\Example-STS.pdf" />
     <None Include="Documentation\SoftwareRequirementsSpecification%28SRS%29\Templates\IEEE Standard SRS Template.doc" />
     <None Include="Documentation\SoftwareRequirementsSpecification%28SRS%29\Templates\srs_template-ieee.doc" />
-    <None Include="Documentation\SoftwareTestDesignSpecification%28STD%29\Example-software-test-design-specification.docx" />
-    <None Include="Documentation\SoftwareTestDesignSpecification%28STD%29\Template-test-design.doc" />
     <None Include="Documentation\SoftwareTestDesignSpecification%28STD%29\Templates\Example-software-test-design-specification.docx" />
     <None Include="Documentation\SoftwareTestDesignSpecification%28STD%29\Templates\Template-test-design.doc" />
     <None Include="Documentation\SoftwareTestDesignSpecification%28STD%29\Templates\test-design-specification-template.doc" />
-    <None Include="Documentation\SoftwareTestDesignSpecification%28STD%29\test-design-specification-template.doc" />
-    <None Include="Documentation\SoftwareTestPlan%28STP%29\Example-perftestplanresultstemplate.docx" />
-    <None Include="Documentation\SoftwareTestPlan%28STP%29\Example-quality-assurance-checklist.doc" />
-    <None Include="Documentation\SoftwareTestPlan%28STP%29\sample-test-plan-template.rtf" />
     <None Include="Documentation\SoftwareTestPlan%28STP%29\Templates\Example-perftestplanresultstemplate.docx" />
     <None Include="Documentation\SoftwareTestPlan%28STP%29\Templates\Example-quality-assurance-checklist.doc" />
     <None Include="Documentation\SoftwareTestPlan%28STP%29\Templates\sample-test-plan-template.rtf" />
     <None Include="Documentation\SoftwareTestPlan%28STP%29\Templates\unit-and-integration-plan-checklist.doc" />
-    <None Include="Documentation\SoftwareTestPlan%28STP%29\unit-and-integration-plan-checklist.doc" />
-    <None Include="Documentation\TestReports\eplc_test_reports_template.doc" />
     <None Include="Documentation\TestReports\Templates\eplc_test_reports_template.doc" />
-    <None Include="Documentation\TestScenariosAndTestCases\Template-system-integration-test-scenario.xls" />
-    <None Include="Documentation\TestScenariosAndTestCases\template-test-scenario.doc" />
     <None Include="Documentation\TestScenariosAndTestCases\Templates\Template-system-integration-test-scenario.xls" />
     <None Include="Documentation\TestScenariosAndTestCases\Templates\template-test-scenario.doc" />
     <None Include="Documentation\TestScenariosAndTestCases\Templates\Test-case-example-doc.doc" />
     <None Include="Documentation\TestScenariosAndTestCases\Templates\Test-case-template-xls.xls" />
     <None Include="Documentation\TestScenariosAndTestCases\Templates\use-case-template.doc" />
-    <None Include="Documentation\TestScenariosAndTestCases\Test-case-example-doc.doc" />
-    <None Include="Documentation\TestScenariosAndTestCases\Test-case-template-xls.xls" />
-    <None Include="Documentation\TestScenariosAndTestCases\use-case-template.doc" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

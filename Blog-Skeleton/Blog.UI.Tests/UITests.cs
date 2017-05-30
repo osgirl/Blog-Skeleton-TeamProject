@@ -70,23 +70,24 @@ namespace Blog.UI.Tests
             ArticlesDashboard dash = new ArticlesDashboard(driver);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
             dash.AssertNewArticle("qwertyQWERTYqwertyQWERTYqwertyQWERTYqwertyQWERTY");
-            ScrollableControl ctl = new ScrollableControl();
+            ScrollableControl ctl = new ScrollableControl();            
             ScrollBars scroll = dash.GetVisibleScrollbars(ctl);
-            if (scroll == ScrollBars.None)
+            if (scroll.Equals(0))
             {
                 dash.log.Info("No scroll bars are shown.");
+                Assert.Fail();
             }                
-            else if (scroll == ScrollBars.Both)
+            else if (scroll.Equals(3))
             {
                 dash.log.Info("Both horizontal and vertical scroll bars are shown.");
-                Assert.Fail();
-            }
-            else if (scroll == ScrollBars.Horizontal)
-            {
-                dash.log.Info("Only horizontal scroll bars are shown.");
                 Assert.Pass();
             }
-            else if (scroll == ScrollBars.Vertical)
+            else if (scroll.Equals(1))
+            {
+                dash.log.Info("Only horizontal scroll bars are shown.");
+                Assert.Fail();
+            }
+            else if (scroll.Equals(2))
             {
                 dash.log.Info("Only vertical scroll bars are shown.");
                 Assert.Fail();

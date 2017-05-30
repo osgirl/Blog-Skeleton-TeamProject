@@ -73,13 +73,25 @@ namespace Blog.UI.Tests
             ScrollableControl ctl = new ScrollableControl();
             ScrollBars scroll = dash.GetVisibleScrollbars(ctl);
             if (scroll == ScrollBars.None)
-                Assert.Pass("No scroll bars are shown.");
+            {
+                dash.log.Info("No scroll bars are shown.");
+                Assert.Pass();
+            }                
             else if (scroll == ScrollBars.Both)
-                Assert.Pass("Both horizontal and vertical scroll bars are shown.");
+            {
+                dash.log.Info("Both horizontal and vertical scroll bars are shown.");
+                Assert.Pass();
+            }
             else if (scroll == ScrollBars.Horizontal)
-                Assert.Pass("Only horizontal scroll bars are shown.");
+            {
+                dash.log.Info("Only horizontal scroll bars are shown.");
+                Assert.Pass();
+            }
             else if (scroll == ScrollBars.Vertical)
-                Assert.Pass("Only vertical scroll bars are shown.");            
+            {
+                dash.log.Info("Only vertical scroll bars are shown.");
+                Assert.Pass();
+            }        
         }
     }
 }

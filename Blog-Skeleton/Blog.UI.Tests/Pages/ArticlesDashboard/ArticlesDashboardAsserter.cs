@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
+using System.Windows.Forms;
 
 namespace Blog.UI.Tests.Pages.ArticlesDashboard
 {
@@ -12,12 +13,9 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
         }
 
         public static void AssertNewArticle(this ArticlesDashboard dash, string title)
-        {            
-            //int articlesCount= dash.ContainerDashboard.FindElements(By.CssSelector("body > div.container.body-content > div > div > div")).Count;
+        {   
             IWebElement element = dash.ContainerDashboard.FindElement(By.XPath($".//a[text()='{title}']"));
-
-           // for (int i=1;i< articlesCount;i++)
-             //   Assert.AreEqual(title, element.Text);
+            
             try
             {
                 Assert.AreEqual(title, element.Text);
@@ -27,6 +25,14 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
                 dash.log.Error("EXCEPTION LOGGING", e);
                 throw new AssertionException($"Article is not found");
             }
+        }
+
+        public static ScrollBars GetVisibleScrollbars(this ArticlesDashboard dash, ScrollableControl ctl)
+        {
+            if (ctl.HorizontalScroll.Visible)
+                return ctl.VerticalScroll.Visible ? ScrollBars.Both : ScrollBars.Horizontal;
+            else
+                return ctl.VerticalScroll.Visible ? ScrollBars.Vertical : ScrollBars.None;
         }        
     }
 }

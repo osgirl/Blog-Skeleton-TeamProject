@@ -45,5 +45,22 @@ namespace Blog.UI.Tests
             ArticlesDashboard dash = new ArticlesDashboard(driver);
             dash.AssertNewArticle("qwerty");
         }
+
+        [Test]
+        public void ScrollBarDashboard()
+        {
+            IWebDriver driver = BrowserHost.Instance.Application.Browser;
+            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
+
+            driver.Navigate().GoToUrl(BrowserHost.RootUrl);
+            Login loginuser = new Login(driver);
+            loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
+            CreateArticle newArticle = new CreateArticle(driver);
+            newArticle.NavigateTo();
+            newArticle.ArticleCreate("qwertyQWERTYqwertyQWERTYqwertyQWERTYqwertyQWERTYqwertyQWERTY", "browserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSER");
+            ArticlesDashboard dash = new ArticlesDashboard(driver);
+            dash.AssertNewArticle("qwertyQWERTYqwertyQWERTYqwertyQWERTYqwertyQWERTYqwertyQWERTY");
+           // dash.GetVisibleScrollbars(dash.ContainerDashboard);
+        }
     }
 }

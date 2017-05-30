@@ -75,12 +75,12 @@ namespace Blog.UI.Tests
             if (scroll == ScrollBars.None)
             {
                 dash.log.Info("No scroll bars are shown.");
-                Assert.Pass();
+                Assert.Fail();
             }                
             else if (scroll == ScrollBars.Both)
             {
                 dash.log.Info("Both horizontal and vertical scroll bars are shown.");
-                Assert.Pass();
+                Assert.Fail();
             }
             else if (scroll == ScrollBars.Horizontal)
             {
@@ -90,7 +90,7 @@ namespace Blog.UI.Tests
             else if (scroll == ScrollBars.Vertical)
             {
                 dash.log.Info("Only vertical scroll bars are shown.");
-                Assert.Pass();
+                Assert.Fail();
             }        
         }
     }

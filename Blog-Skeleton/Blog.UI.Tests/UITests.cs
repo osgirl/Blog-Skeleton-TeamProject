@@ -1,6 +1,7 @@
 ﻿using Blog.UI.Tests.Pages.ArticlesDashboard;
 using Blog.UI.Tests.Pages.CreateArticle;
 using Blog.UI.Tests.Pages.Login;
+using Blog.UI.Tests.Pages.RegisterUser;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -23,7 +24,7 @@ namespace Blog.UI.Tests
             IWebDriver driver = BrowserHost.Instance.Application.Browser;
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(300));
 
-
+            driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl(BrowserHost.RootUrl);
 
             var logo = wait.Until(w => w.FindElement(By.XPath("/html/body/div[1]/div/div[1]/a")));
@@ -36,10 +37,11 @@ namespace Blog.UI.Tests
         {
             IWebDriver driver = BrowserHost.Instance.Application.Browser;
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-            
+            driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl(BrowserHost.RootUrl);
             Login loginuser=new Login(driver);
             loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
             CreateArticle newArticle = new CreateArticle(driver);
             newArticle.ArticleNavigateTo();
             newArticle.ArticleCreate("qwerty", "browser");
@@ -52,18 +54,32 @@ namespace Blog.UI.Tests
         {
             IWebDriver driver = BrowserHost.Instance.Application.Browser;
             WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-
+            driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl(BrowserHost.RootUrl);
-            
+            /*
+            RegisterUser newUser = new RegisterUser(driver);
+            newUser.RegisterUserNavigateTo();
+            newUser.RegisterationOfUser("nikolova.petq@gmail.com", "Petya Nikolova", "P@ssw@rd");            
+            newUser.AssertNewUser("nikolova.petq@gmail.com");
+            */
             Login loginuser = new Login(driver);
-            loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
+            loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");           
             CreateArticle newArticle = new CreateArticle(driver);
             newArticle.ArticleNavigateTo();
-            newArticle.ArticleCreate("qwertyQWERTYqwertyQWERTYqwertyQWERTYqwertyQWERTYqwertyQWERTY", "browserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSER");
+            newArticle.ArticleCreate("qwertyQWERTYqwertyQWERTYqwertyQWERTYqwertyQWERTY", "browserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSER");
             ArticlesDashboard dash = new ArticlesDashboard(driver);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
             dash.AssertNewArticle("qwertyQWERTYqwertyQWERTYqwertyQWERTYqwertyQWERTYqwertyQWERTY");
             ScrollableControl ctl = new ScrollableControl();
-            dash.GetVisibleScrollbars(ctl);
+            ScrollBars scroll = dash.GetVisibleScrollbars(ctl);
+            if (scroll == ScrollBars.None)
+                Assert.Pass("No scroll bars are shown.");
+            else if (scroll == ScrollBars.Both)
+                Assert.Pass("Both horizontal and vertical scroll bars are shown.");
+            else if (scroll == ScrollBars.Horizontal)
+                Assert.Pass("Only horizontal scroll bars are shown.");
+            else if (scroll == ScrollBars.Vertical)
+                Assert.Pass("Only vertical scroll bars are shown.");            
         }
     }
 }

@@ -99,6 +99,9 @@
     <Compile Include="Pages\Login\LoginAsserter.cs" />
     <Compile Include="Pages\Login\LoginMap.cs" />
     <Compile Include="Pages\Login\Login.cs" />
+    <Compile Include="Pages\RegisterUser\RegisterUser.cs" />
+    <Compile Include="Pages\RegisterUser\RegisterUserAsserter.cs" />
+    <Compile Include="Pages\RegisterUser\RegisterUserMap.cs" />
     <Compile Include="UITests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

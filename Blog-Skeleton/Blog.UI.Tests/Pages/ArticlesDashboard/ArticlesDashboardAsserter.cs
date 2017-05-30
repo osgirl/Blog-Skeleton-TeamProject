@@ -14,10 +14,11 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
 
         public static void AssertNewArticle(this ArticlesDashboard dash, string title)
         {   
-            IWebElement element = dash.ContainerDashboard.FindElement(By.XPath($".//a[text()='{title}']"));
+            IWebElement element;
             
             try
             {
+                element = dash.Wait.Until(w => dash.ContainerDashboard.FindElement(By.XPath($".//a[text()='{title}']")));
                 Assert.AreEqual(title, element.Text);
             }
             catch (Exception e)

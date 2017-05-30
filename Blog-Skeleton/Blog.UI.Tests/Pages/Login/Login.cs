@@ -62,8 +62,7 @@ namespace Blog.UI.Tests.Pages.Login
             this.Password.Click();
             this.Password.SendKeys(this.PASSWORD);
             this.Remember.Click();
-            this.LoginButton.Click();
-            this.Driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
+            this.LoginButton.Click();            
             this.AssertLoginUser();
         }
     }

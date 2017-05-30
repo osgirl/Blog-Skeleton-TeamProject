@@ -69,7 +69,7 @@ namespace Blog.UI.Tests
             newArticle.ArticleCreate("qwertyQWERTYqwertyQWERTYqwertyQWERTYqwertyQWERTY", "browserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSER");
             ArticlesDashboard dash = new ArticlesDashboard(driver);
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
-            dash.AssertNewArticle("qwertyQWERTYqwertyQWERTYqwertyQWERTYqwertyQWERTYqwertyQWERTY");
+            dash.AssertNewArticle("qwertyQWERTYqwertyQWERTYqwertyQWERTYqwertyQWERTY");
             ScrollableControl ctl = new ScrollableControl();
             ScrollBars scroll = dash.GetVisibleScrollbars(ctl);
             if (scroll == ScrollBars.None)

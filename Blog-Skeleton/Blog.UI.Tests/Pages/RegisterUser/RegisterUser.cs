@@ -4,7 +4,7 @@ namespace Blog.UI.Tests.Pages.RegisterUser
 {
     public partial class RegisterUser: BasePage
     {
-        private string url = @"http://localhost:60638/Account/Register";
+        private string url = @"http://localhost:60639/Account/Register";
 
         public RegisterUser(IWebDriver driver): base(driver)
         {            
@@ -23,7 +23,7 @@ namespace Blog.UI.Tests.Pages.RegisterUser
             this.Driver.Navigate().GoToUrl(this.URL);
         }
 
-        public void RegisterationOfUser(string email, string fullName,string password)
+        public void RegisterationOfUser(string email, string fullName,string password,string confirmPassword)
         {
             this.RegisterUserNavigateTo();
             this.Email.Click();

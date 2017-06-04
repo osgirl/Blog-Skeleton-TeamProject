@@ -5,7 +5,7 @@ namespace Blog.UI.Tests.Pages.Login
 {
     public partial class Login: BasePage
     {
-        private string url = @"http://localhost:60638/Account/Login";
+        private string url = @"http://localhost:60639/Account/Login";
         private string email;
         private string password;
 

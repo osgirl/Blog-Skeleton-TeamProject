@@ -23,7 +23,7 @@ namespace Blog.UI.Tests.Pages.RegisterUser
             this.Driver.Navigate().GoToUrl(this.URL);
         }
 
-        public void RegisterationOfUser(string email, string fullName,string password,string confirmPassword)
+        public void RegisterationOfUser(string email, string fullName,string password)
         {
             this.RegisterUserNavigateTo();
             this.Email.Click();

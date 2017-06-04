@@ -24,12 +24,7 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
                         if (dash.ContainerDashboard[i].Text.Equals(title))
                             foundArticle[i] = dash.ContainerDashboard[i];
                     }
-
-                for (int i = 0; i < foundArticle.Count; i++)
-                {
-                    if (dash.ContainerDashboard[i].Text.Equals(title))
-                        foundArticle[i] = dash.ContainerDashboard[i];
-                }*/
+                    */
                 Assert.AreEqual(title, dash.ContainerDashboard[dash.ContainerDashboard.Count-1].Text);                
             }
             catch (Exception e)
@@ -58,6 +53,14 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
                 return ctl.VerticalScroll.Visible ? ScrollBars.Both : ScrollBars.Horizontal;
             else
                 return ctl.VerticalScroll.Visible ? ScrollBars.Vertical : ScrollBars.None;
-        }        
+        }
+
+        public static void AssertAuthorSign(this ArticlesDashboard dash, ScrollableControl ctl)
+        {
+            if (ctl.HorizontalScroll.Visible)
+                return ctl.VerticalScroll.Visible ? ScrollBars.Both : ScrollBars.Horizontal;
+            else
+                return ctl.VerticalScroll.Visible ? ScrollBars.Vertical : ScrollBars.None;
+        }
     }
 }

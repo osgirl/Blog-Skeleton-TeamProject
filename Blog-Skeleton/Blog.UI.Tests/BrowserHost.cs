@@ -13,8 +13,7 @@ namespace Blog.UI.Tests
     {
         public static readonly SelenoHost Instance = new SelenoHost();
         public static readonly string RootUrl = @"http://localhost:60638/Article/List";
-        //public static readonly string RootUrl;
-
+        
         static BrowserHost()
         {
           // Instance.Run("Blog", 60638);

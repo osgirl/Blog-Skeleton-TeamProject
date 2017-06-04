@@ -47,6 +47,7 @@ namespace Blog.UI.Tests
             newArticle.ArticleCreate("qwerty", "browser");
             ArticlesDashboard dash = new ArticlesDashboard(driver);
             dash.AssertNewArticle("qwerty");
+            dash.AssertCancelArticle("qwerty1");
         }
 
         [Test]

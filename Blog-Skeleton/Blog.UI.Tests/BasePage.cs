@@ -8,7 +8,7 @@ namespace Blog.UI.Tests
     {
         private IWebDriver driver;
         private WebDriverWait wait;
-        private string url = @"http://localhost:60634/Article/List";
+        private string url = @"http://localhost:60638/Article/List";
         public readonly log4net.ILog log =
            log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 

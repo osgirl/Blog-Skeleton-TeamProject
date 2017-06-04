@@ -1,22 +1,19 @@
 ﻿using OpenQA.Selenium;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Blog.UI.Tests.Pages.ArticlesDashboard
 {
     public partial class ArticlesDashboard
     {
-        public IWebElement Title3
+        public List<IWebElement> ContainerDashboard
         {
             get
             {
-                return this.Wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body-content > div > div > div:nth-child(3) > article > header > h2 > a")));
-            }
-        }
+                var reminder = this.Wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body-content > div")));
+                List<IWebElement> list = reminder.FindElements(By.TagName("a")).ToList();
+                return list;
 
-        public IWebElement Content3
-        {
-            get
-            {
-                return this.Wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body-content > div > div > div:nth-child(3) > article > p")));
             }
         }
 
@@ -42,14 +39,6 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
             {
                 return this.Wait.Until(w => w.FindElement(By.CssSelector("# logoutForm > ul > li:nth-child(2) > a")));
             }
-        }
-
-        public IWebElement ContainerDashboard
-        {
-            get
-            {
-                return this.Wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body-content > div")));
-            }
-        }
+        }        
     }
 }

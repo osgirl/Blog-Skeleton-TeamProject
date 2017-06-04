@@ -4,7 +4,7 @@ namespace Blog.UI.Tests.Pages.RegisterUser
 {
     public partial class RegisterUser: BasePage
     {
-        private string url = @"http://localhost:60638/Account/Register";
+        private string url = @"http://localhost:60639/Account/Register";
 
         public RegisterUser(IWebDriver driver): base(driver)
         {            

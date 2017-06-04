@@ -4,7 +4,7 @@ namespace Blog.UI.Tests.Pages.CreateArticle
 {
     public partial class CreateArticle: BasePage
     {
-        private string url = @"http://localhost:60638/Article/Create";
+        private string url = @"http://localhost:60639/Article/Create";
 
         public CreateArticle(IWebDriver driver): base(driver)
         {            

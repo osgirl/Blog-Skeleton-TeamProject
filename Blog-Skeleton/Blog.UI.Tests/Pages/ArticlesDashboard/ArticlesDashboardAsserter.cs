@@ -54,13 +54,13 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
             else
                 return ctl.VerticalScroll.Visible ? ScrollBars.Vertical : ScrollBars.None;
         }
-
+        /*
         public static void AssertAuthorSign(this ArticlesDashboard dash, ScrollableControl ctl)
         {
             if (ctl.HorizontalScroll.Visible)
-                return ctl.VerticalScroll.Visible ? ScrollBars.Both : ScrollBars.Horizontal;
+                 ctl.VerticalScroll.Visible ? ScrollBars.Both : ScrollBars.Horizontal;
             else
-                return ctl.VerticalScroll.Visible ? ScrollBars.Vertical : ScrollBars.None;
-        }
+                 ctl.VerticalScroll.Visible ? ScrollBars.Vertical : ScrollBars.None;
+        }*/
     }
 }

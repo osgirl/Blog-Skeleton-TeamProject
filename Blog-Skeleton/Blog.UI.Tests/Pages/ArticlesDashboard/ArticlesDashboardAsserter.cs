@@ -37,7 +37,8 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
         {
             try
             {
-                Assert.AreNotEqual(title, dash.ContainerDashboard[dash.ContainerDashboard.Count - 1].Text);
+                var art = dash.ContainerDashboard.Count;
+                Assert.AreNotEqual(title, dash.ContainerDashboard[art - 1].Text);
             }
             catch (Exception e)
             {

@@ -182,28 +182,28 @@ namespace Blog.UI.Tests
             newArticle.AssertContentErrorMessage("The Content field is required.");
         }
 
-        [Test, Property("Priority", 1)] //is not working
+    [Test, Property("Priority", 1)] //!!!!!!!
         [Author("Nury")]
         public void CreateArticleWithoutSubmit()
         {
             this.driver.Manage().Window.Maximize();
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
 
-            Login loginuser = new Login(driver);
+            Login loginuser = new Login(this.driver);
             loginuser.LoginUser("londa101@abv.bg", "londa101");
 
-            CreateArticle newArticle = new CreateArticle(driver);
+            CreateArticle newArticle = new CreateArticle(this.driver);
             newArticle.ArticleNavigateTo();
             newArticle.AssertCancelButtonDesplayed();
             newArticle.ArticleCreateWithoutSubmit("Title CancelButton", "Content CancelButton");
-            //това не работи
-            //ArticlesDashboard dash = new ArticlesDashboard(driver);
-            //dash.AssertNewArticle("Title CancelButton");
+           
+            ArticlesDashboard dash = new ArticlesDashboard(this.driver);
+            dash.AssertCancelArticle("Article Test Nury");
 
 
         }
 
-        [Test, Property("Priority", 1)] //is not working
+        [Test, Property("Priority", 1)] //!!!asserter is not added
         [Author("Nury")]
         public void EditOwnArticleFromList()
         {
@@ -216,11 +216,11 @@ namespace Blog.UI.Tests
             ArticlesDashboard dash = new ArticlesDashboard(driver);
             EditArticle newEditArticle = new EditArticle(driver);
 
-            newEditArticle.ArticleEdit("Article Test Nury", "Thisi is the text of article Nury");
+            newEditArticle.ArticleEdit("Article Test Nury3", "Thisi is the text of article Nury3");
         }
 
 
-        [Test, Property("Priority", 1)] //asserter added
+        [Test, Property("Priority", 1)] //!!!!! asserter not added
         [Author("Nury")]
 
         public void EditArticleFromListWhitoutLogin()
@@ -235,7 +235,7 @@ namespace Blog.UI.Tests
         }
 
 
-        [Test, Property("Priority", 1)] //asserter added
+        [Test, Property("Priority", 1)] ////!!!!! asserter not added
         [Author("Nury")]
         public void DeleteOwnArticleFromList()
         {

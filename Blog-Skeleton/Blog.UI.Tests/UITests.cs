@@ -133,10 +133,8 @@ namespace Blog.UI.Tests
         [Author("Nury")]
         public void CreateArticleWithoutTittle()
         {
-            IWebDriver driver = BrowserHost.Instance.Application.Browser;
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(120));
-            driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl(BrowserHost.RootUrl);
+            this.driver.Manage().Window.Maximize();
+            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
 
             Login loginuser = new Login(driver);
             loginuser.LoginUser("londa101@abv.bg", "londa101");
@@ -151,10 +149,8 @@ namespace Blog.UI.Tests
         [Author("Nury")]
         public void CreateArticleWithLongTittle()
         {
-            IWebDriver driver = BrowserHost.Instance.Application.Browser;
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(120));
-            driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl(BrowserHost.RootUrl);
+            this.driver.Manage().Window.Maximize();
+            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
 
             Login loginuser = new Login(driver);
             loginuser.LoginUser("londa101@abv.bg", "londa101");
@@ -169,10 +165,8 @@ namespace Blog.UI.Tests
         [Author("Nury")]
         public void CreateArticleWithoutContent()
         {
-            IWebDriver driver = BrowserHost.Instance.Application.Browser;
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(120));
-            driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl(BrowserHost.RootUrl);
+            this.driver.Manage().Window.Maximize();
+            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
 
             Login loginuser = new Login(driver);
             loginuser.LoginUser("londa101@abv.bg", "londa101");
@@ -187,10 +181,8 @@ namespace Blog.UI.Tests
         [Author("Nury")]
         public void CreateArticleWithoutSubmit()
         {
-            IWebDriver driver = BrowserHost.Instance.Application.Browser;
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(120));
-            driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl(BrowserHost.RootUrl);
+            this.driver.Manage().Window.Maximize();
+            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
 
             Login loginuser = new Login(driver);
             loginuser.LoginUser("londa101@abv.bg", "londa101");
@@ -210,10 +202,8 @@ namespace Blog.UI.Tests
         [Author("Nury")]
         public void EditOwnArticleFromList()
         {
-            IWebDriver driver = BrowserHost.Instance.Application.Browser;
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(120));
-            driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl(BrowserHost.RootUrl);
+            this.driver.Manage().Window.Maximize();
+            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
 
             Login loginuser = new Login(driver);
             loginuser.LoginUser("londa101@abv.bg", "londa101");
@@ -230,10 +220,8 @@ namespace Blog.UI.Tests
 
         public void EditArticleFromListWhitoutLogin()
         {
-            IWebDriver driver = BrowserHost.Instance.Application.Browser;
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(120));
-            driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl(BrowserHost.RootUrl);
+            this.driver.Manage().Window.Maximize();
+            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
 
             EditArticle newEditArticle = new EditArticle(driver);
             newEditArticle.AssertEditButtonDesplayed();
@@ -246,10 +234,8 @@ namespace Blog.UI.Tests
         [Author("Nury")]
         public void DeleteOwnArticleFromList()
         {
-            IWebDriver driver = BrowserHost.Instance.Application.Browser;
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(120));
-            driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl(BrowserHost.RootUrl);
+            this.driver.Manage().Window.Maximize();
+            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
 
             Login loginuser = new Login(driver);
             loginuser.LoginUser("londa101@abv.bg", "londa101");
@@ -263,11 +249,9 @@ namespace Blog.UI.Tests
         [Author("Nury")]
         public void DeleteArticleFromListWhitoutLogin()
         {
-            IWebDriver driver = BrowserHost.Instance.Application.Browser;
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(120));
-            driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl(BrowserHost.RootUrl);
-           
+            this.driver.Manage().Window.Maximize();
+            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
+
             DeleteArticle newDeleteArticle = new DeleteArticle(driver);
             newDeleteArticle.AssertDeleteButtonDesplayed();
             newDeleteArticle.AssertDeleteInsiteButtonDesplayed();

@@ -20,16 +20,17 @@ namespace Blog.UI.Tests.Pages.Article.DeleteArticle
             }
         }
         public void ArticleDeletefromList(string title)
-        {          
+        {
+            this.title = title;
             this.TitleLinkText.Click();
-            this.DeleteButton.Click();
-            this.DeleteInsiteButton.Click();
+            this.AssertDeleteButtonDisplayed();
+            this.DeleteButton.Click();            
         }
 
         public void ArticleDeleteButton()
         {
-            this.TitleLinkText.Click();
-            this.DeleteButton.Click();
+            this.AssertDeleteInsiteButtonDisplayed();
+            this.DeleteInsiteButton.Click();
             
         }
     }

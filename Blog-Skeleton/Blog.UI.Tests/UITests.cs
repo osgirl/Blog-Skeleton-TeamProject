@@ -22,6 +22,9 @@ namespace Blog.UI.Tests
         WebDriverWait wait = new WebDriverWait(BrowserHost.Instance.Application.Browser, TimeSpan.FromSeconds(300));
 
         [Test]
+        [Author("Petya")]
+        [TestOf("Navigation")]
+
         public void CheckSiteLoad()
         {
             this.driver.Manage().Window.Maximize();
@@ -33,6 +36,9 @@ namespace Blog.UI.Tests
         }
 
         [Test]
+        [Author("Petya")]
+        [TestOf("Articles' Dashboard")]
+
         public void FindArticleInDashboard()
         {
             this.driver.Manage().Window.Maximize();
@@ -48,6 +54,9 @@ namespace Blog.UI.Tests
         }
 
         [Test]
+        [Author("Petya")]
+        [TestOf("Articles' Dashboard")]
+
         public void AvailableScrollBarDashboard()
         {
             this.driver.Manage().Window.Maximize();
@@ -67,70 +76,72 @@ namespace Blog.UI.Tests
             newArticle.ArticleCreate("qwertyQWERTYqwertyQWERTYqwertyQWERTYqwertyQWERTY", "browserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSER");
             ArticlesDashboard dash = new ArticlesDashboard(this.driver);
             dash.AssertNewArticle("qwertyQWERTYqwertyQWERTYqwertyQWERTYqwertyQWERTY");
-            ScrollableControl ctl = new ScrollableControl();
-            ScrollBars scroll = dash.GetVisibleScrollbars(ctl);
 
-            Actions actions = new Actions(this.driver);
-            //Assert.IsTrue(actions.Equals(scroll));
+            IJavaScriptExecutor javascript = (IJavaScriptExecutor)this.driver;
+            Boolean horzscrollStatus = (Boolean)javascript.ExecuteScript("return document.documentElement.scrollWidth>document.documentElement.clientWidth;");
+            Boolean VertscrollStatus = (Boolean)javascript.ExecuteScript("return document.documentElement.scrollHeight>document.documentElement.clientHeight;");
 
-            if (actions.Equals(scroll))
+            if (VertscrollStatus & horzscrollStatus)
             {
-                dash.log.Info("Scroll bars are shown.");
-                Assert.Pass("Scroll bars are shown.");
+                dash.log.Info("Both Scroll bars are shown.");
+                Assert.Pass("Both Scroll bars are shown.");
             }
-            else 
-            {                
+            else if (horzscrollStatus)
+            {
+                dash.log.Info("Horizontal Scroll bars are shown.");
+                Assert.Pass("HorizontalScroll bars are shown.");
+            }
+            else if(VertscrollStatus)
+            {
+                dash.log.Info("Vertical scroll bars are shown.");
+                Assert.Fail("Vertical scroll bars are shown.");
+            }
+            else
+            {
                 dash.log.Info("No scroll bars are shown.");
                 Assert.Fail("No scroll bars are shown.");
-            }
-            /*
-            else if (scroll.Equals(ScrollBars.Horizontal))
-            {
-                dash.log.Info("Only horizontal scroll bars are shown.");
-                Assert.Fail();
-            }
-            else if (scroll.Equals(ScrollBars.Vertical))
-            {
-                dash.log.Info("Only vertical scroll bars are shown.");
-                Assert.Fail();
-            }*/
+            }            
         }
 
 
         [Test]
+        [Author("Petya")]
+        [TestOf("Articles' Dashboard")]
+
         public void AvailableButtonsInDashboard()
-        {
-            IWebDriver driver = BrowserHost.Instance.Application.Browser;
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-            driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl(BrowserHost.RootUrl);
-            Login loginuser = new Login(driver);
+        {           
+            this.driver.Manage().Window.Maximize();
+            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
+            Login loginuser = new Login(this.driver);
             loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
-            loginuser.AssertLoginUser();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
-            CreateArticle newArticle = new CreateArticle(driver);
+            loginuser.AssertLoginUser();            
+            CreateArticle newArticle = new CreateArticle(this.driver);
             newArticle.ArticleNavigateTo();
             newArticle.ArticleCreate("qwerty", "browser");
-            ArticlesDashboard dash = new ArticlesDashboard(driver);
-            dash.AssertNewArticle("qwerty");
+            ArticlesDashboard dash = new ArticlesDashboard(this.driver);
+            dash.AssertPageUrl();
+            dash.AssertAvailableCreateButton();
+            dash.AssertAvailableLogOutButton();
+            dash.AssertAvailableManageUserButton();
         }
 
         [Test]
+        [Author("Petya")]
+        [TestOf("Articles' Dashboard")]
+
         public void SignAuthorInDashboard()
-        {
-            IWebDriver driver = BrowserHost.Instance.Application.Browser;
-            WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(60));
-            driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl(BrowserHost.RootUrl);
-            Login loginuser = new Login(driver);
+        {            
+            this.driver.Manage().Window.Maximize();
+            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
+            Login loginuser = new Login(this.driver);
             loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
             loginuser.AssertLoginUser();
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
-            CreateArticle newArticle = new CreateArticle(driver);
+            this.driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
+            CreateArticle newArticle = new CreateArticle(this.driver);
             newArticle.ArticleNavigateTo();
             newArticle.ArticleCreate("qwerty", "browser");
-            ArticlesDashboard dash = new ArticlesDashboard(driver);
-            dash.AssertNewArticle("qwerty");
+            ArticlesDashboard dash = new ArticlesDashboard(this.driver);
+            dash.AssertAuthorSign();
         }
 
 
@@ -141,12 +152,12 @@ namespace Blog.UI.Tests
             this.driver.Manage().Window.Maximize();
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
 
-            Login loginuser = new Login(driver);
+            Login loginuser = new Login(this.driver);
             loginuser.LoginUser("londa101@abv.bg", "londa101");
 
-            CreateArticle newArticle = new CreateArticle(driver);
+            CreateArticle newArticle = new CreateArticle(this.driver);
             newArticle.ArticleNavigateTo();
-            newArticle.ArticleCreate("", "Thisi is the text of article THREE");
+            newArticle.ArticleCreate("", "This is the text of article THREE");
             newArticle.AssertTitleErrorMessage("The Title field is required.");
         }
 
@@ -157,10 +168,10 @@ namespace Blog.UI.Tests
             this.driver.Manage().Window.Maximize();
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
 
-            Login loginuser = new Login(driver);
+            Login loginuser = new Login(this.driver);
             loginuser.LoginUser("londa101@abv.bg", "londa101");
 
-            CreateArticle newArticle = new CreateArticle(driver);
+            CreateArticle newArticle = new CreateArticle(this.driver);
             newArticle.ArticleNavigateTo();
             newArticle.ArticleCreate("Article Test more than 50. Article Test more than 50.", "Thisi is the text of article test");
             newArticle.AssertTitleErrorMessage("The field Title must be a string with a maximum length of 50.");
@@ -173,10 +184,10 @@ namespace Blog.UI.Tests
             this.driver.Manage().Window.Maximize();
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
 
-            Login loginuser = new Login(driver);
+            Login loginuser = new Login(this.driver);
             loginuser.LoginUser("londa101@abv.bg", "londa101");
 
-            CreateArticle newArticle = new CreateArticle(driver);
+            CreateArticle newArticle = new CreateArticle(this.driver);
             newArticle.ArticleNavigateTo();
             newArticle.ArticleCreate("Article Test THREE", "");
             newArticle.AssertContentErrorMessage("The Content field is required.");
@@ -210,11 +221,11 @@ namespace Blog.UI.Tests
             this.driver.Manage().Window.Maximize();
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
 
-            Login loginuser = new Login(driver);
+            Login loginuser = new Login(this.driver);
             loginuser.LoginUser("londa101@abv.bg", "londa101");
 
-            ArticlesDashboard dash = new ArticlesDashboard(driver);
-            EditArticle newEditArticle = new EditArticle(driver);
+            ArticlesDashboard dash = new ArticlesDashboard(this.driver);
+            EditArticle newEditArticle = new EditArticle(this.driver);
 
             newEditArticle.ArticleEdit("Article Test Nury3", "Thisi is the text of article Nury3");
         }
@@ -228,10 +239,10 @@ namespace Blog.UI.Tests
             this.driver.Manage().Window.Maximize();
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
 
-            EditArticle newEditArticle = new EditArticle(driver);
+            EditArticle newEditArticle = new EditArticle(this.driver);
             newEditArticle.AssertEditButtonDesplayed();
             newEditArticle.ArticleEditButton();
-            Login loginuser = new Login(driver);
+            Login loginuser = new Login(this.driver);
         }
 
 
@@ -242,27 +253,27 @@ namespace Blog.UI.Tests
             this.driver.Manage().Window.Maximize();
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
 
-            Login loginuser = new Login(driver);
+            Login loginuser = new Login(this.driver);
             loginuser.LoginUser("londa101@abv.bg", "londa101");
 
-            DeleteArticle newDeleteArticle = new DeleteArticle(driver);
-            newDeleteArticle.AssertDeleteButtonDesplayed();
+            DeleteArticle newDeleteArticle = new DeleteArticle(this.driver);
+            newDeleteArticle.AssertDeleteButtonDisplayed();
             newDeleteArticle.ArticleDeletefromList("Article Test THREE");
         }
 
         [Test, Property("Priority", 1)] //asserter added
         [Author("Nury")]
-        public void DeleteArticleFromListWhitoutLogin()
+        public void DeleteArticleFromListWithoutLogin()
         {
             this.driver.Manage().Window.Maximize();
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
 
-            DeleteArticle newDeleteArticle = new DeleteArticle(driver);
-            newDeleteArticle.AssertDeleteButtonDesplayed();
-            newDeleteArticle.AssertDeleteInsiteButtonDesplayed();
+            DeleteArticle newDeleteArticle = new DeleteArticle(this.driver);
+            newDeleteArticle.ArticleDeletefromList("qwerty"); 
             newDeleteArticle.ArticleDeleteButton();
-
-            Login loginuser = new Login(driver);
+            Thread.Sleep(10000);
+            Login loginuser = new Login(this.driver);
+            loginuser.AssertPageUrl();
         }
     }
 }

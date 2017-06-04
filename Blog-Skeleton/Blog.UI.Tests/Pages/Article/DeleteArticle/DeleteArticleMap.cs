@@ -26,7 +26,7 @@ namespace Blog.UI.Tests.Pages.Article.DeleteArticle
         {
             get
             {
-                return this.Driver.FindElement(By.CssSelector("body > div.container.body-content > div > article > footer > a.btn.btn-danger.btn-xs"));
+                return this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/article/footer/a[2]")));
             }
         }
 
@@ -34,7 +34,7 @@ namespace Blog.UI.Tests.Pages.Article.DeleteArticle
         {
             get
             {
-                return this.Driver.FindElement(By.CssSelector("body > div.container.body-content > div > article > footer > a.btn.btn-default.btn-xs"));
+                return this.Wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body-content > div > article > footer > a.btn.btn-default.btn-xs")));
 
             }
         }
@@ -43,24 +43,16 @@ namespace Blog.UI.Tests.Pages.Article.DeleteArticle
         {
             get
             {
-                return this.Driver.FindElement(By.CssSelector("body > div.container.body-content > div > div > form > div:nth-child(4) > div > input"));
+                return this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[3]/div/input")));
             }
-        }
-
-        public IWebElement ContainerDashboard
-        {
-            get
-            {
-                return this.Wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body-content > div")));
-            }
-        }
+        }        
 
         public IWebElement TitleLinkText
         {
             get
             {
-                //return this.Wait.Until(w => w.FindElement(By.LinkText("Article Test THREE")));
-                return this.Driver.FindElement(By.PartialLinkText("Article Test"));
+                //return this.Wait.Until(w => w.FindElement(By.LinkText(this.TITLE)));
+                return this.Wait.Until(w => w.FindElement(By.PartialLinkText(this.TITLE)));
             }
         }
 

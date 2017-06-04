@@ -6,7 +6,7 @@ namespace Blog.UI.Tests.Pages.Login
     {
         public static void AssertPageUrl(this Login loginUser)
         {
-            Assert.AreEqual("http://localhost:60639/Article/List", loginUser.URL);
+            Assert.AreEqual("http://localhost:60639/Article/Login%", loginUser.URL);
         }
 
         public static void AssertLoginUser(this Login loginUser)

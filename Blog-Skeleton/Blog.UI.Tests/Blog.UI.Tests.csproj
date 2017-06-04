@@ -106,22 +106,30 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="Documentation\SoftwareRequirementsSpecification%28SRS%29\SRS-PetyaNikolova.doc" />
     <None Include="Documentation\SoftwareRequirementsSpecification%28SRS%29\Templates\Example-STS.pdf" />
     <None Include="Documentation\SoftwareRequirementsSpecification%28SRS%29\Templates\IEEE Standard SRS Template.doc" />
     <None Include="Documentation\SoftwareRequirementsSpecification%28SRS%29\Templates\srs_template-ieee.doc" />
+    <None Include="Documentation\SoftwareTestDesignSpecification%28STD%29\STD-PetyaNikolova.doc" />
     <None Include="Documentation\SoftwareTestDesignSpecification%28STD%29\Templates\Example-software-test-design-specification.docx" />
     <None Include="Documentation\SoftwareTestDesignSpecification%28STD%29\Templates\Template-test-design.doc" />
     <None Include="Documentation\SoftwareTestDesignSpecification%28STD%29\Templates\test-design-specification-template.doc" />
+    <None Include="Documentation\SoftwareTestPlan%28STP%29\STP-PetyaNikolova.rtf" />
     <None Include="Documentation\SoftwareTestPlan%28STP%29\Templates\Example-perftestplanresultstemplate.docx" />
     <None Include="Documentation\SoftwareTestPlan%28STP%29\Templates\Example-quality-assurance-checklist.doc" />
     <None Include="Documentation\SoftwareTestPlan%28STP%29\Templates\sample-test-plan-template.rtf" />
     <None Include="Documentation\SoftwareTestPlan%28STP%29\Templates\unit-and-integration-plan-checklist.doc" />
     <None Include="Documentation\TestReports\Templates\eplc_test_reports_template.doc" />
+    <None Include="Documentation\TestReports\TestReport-PetyaNikolova.doc" />
+    <None Include="Documentation\TestScenariosAndTestCases\HighLevelDesign%28UseCases%29-PetyaNikolova.doc" />
     <None Include="Documentation\TestScenariosAndTestCases\Templates\Template-system-integration-test-scenario.xls" />
     <None Include="Documentation\TestScenariosAndTestCases\Templates\template-test-scenario.doc" />
     <None Include="Documentation\TestScenariosAndTestCases\Templates\Test-case-example-doc.doc" />
     <None Include="Documentation\TestScenariosAndTestCases\Templates\Test-case-template-xls.xls" />
     <None Include="Documentation\TestScenariosAndTestCases\Templates\use-case-template.doc" />
+    <None Include="Documentation\TestScenariosAndTestCases\TestCases-PetyaNikolova.doc" />
+    <None Include="Documentation\TestScenariosAndTestCases\TestScenario-PetyaNikolova.doc" />
+    <None Include="Documentation\TestScenariosAndTestCases\TestScenario-PetyaNikolova.xls" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>

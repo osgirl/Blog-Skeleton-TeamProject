@@ -39,6 +39,7 @@ namespace Blog.UI.Tests
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
             Login loginuser = new Login(this.driver);
             loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
+            loginuser.AssertLoginUser();
             CreateArticle newArticle = new CreateArticle(this.driver);
             newArticle.ArticleNavigateTo();
             newArticle.ArticleCreate("qwerty", "browser");
@@ -52,14 +53,15 @@ namespace Blog.UI.Tests
             this.driver.Manage().Window.Maximize();
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
             Thread.Sleep(10000);
-
+            /*
             RegisterUser newUser = new RegisterUser(this.driver);
             newUser.RegisterUserNavigateTo();
             newUser.RegisterationOfUser("nikolova.petq@gmail.com", "Petya Nikolova", "P@ssw@rd");            
             newUser.AssertNewUser("nikolova.petq@gmail.com");
-            
+            */
             Login loginuser = new Login(this.driver);
             loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
+            loginuser.AssertLoginUser();
             CreateArticle newArticle = new CreateArticle(this.driver);
             newArticle.ArticleNavigateTo();
             newArticle.ArticleCreate("qwertyQWERTYqwertyQWERTYqwertyQWERTYqwertyQWERTY", "browserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSER");
@@ -69,18 +71,19 @@ namespace Blog.UI.Tests
             ScrollBars scroll = dash.GetVisibleScrollbars(ctl);
 
             Actions actions = new Actions(this.driver);
-            Assert.IsTrue(actions.Equals(scroll));
+            //Assert.IsTrue(actions.Equals(scroll));
 
-            if (scroll.Equals(ScrollBars.None))
+            if (actions.Equals(scroll))
             {
+                dash.log.Info("Scroll bars are shown.");
+                Assert.Pass("Scroll bars are shown.");
+            }
+            else 
+            {                
                 dash.log.Info("No scroll bars are shown.");
-                Assert.Fail();
+                Assert.Fail("No scroll bars are shown.");
             }
-            else if (scroll.Equals(ScrollBars.Both))
-            {
-                dash.log.Info("Both horizontal and vertical scroll bars are shown.");
-                Assert.Pass();
-            }
+            /*
             else if (scroll.Equals(ScrollBars.Horizontal))
             {
                 dash.log.Info("Only horizontal scroll bars are shown.");
@@ -90,7 +93,7 @@ namespace Blog.UI.Tests
             {
                 dash.log.Info("Only vertical scroll bars are shown.");
                 Assert.Fail();
-            }
+            }*/
         }
 
 
@@ -103,6 +106,7 @@ namespace Blog.UI.Tests
             driver.Navigate().GoToUrl(BrowserHost.RootUrl);
             Login loginuser = new Login(driver);
             loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
+            loginuser.AssertLoginUser();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
             CreateArticle newArticle = new CreateArticle(driver);
             newArticle.ArticleNavigateTo();
@@ -120,6 +124,7 @@ namespace Blog.UI.Tests
             driver.Navigate().GoToUrl(BrowserHost.RootUrl);
             Login loginuser = new Login(driver);
             loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
+            loginuser.AssertLoginUser();
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
             CreateArticle newArticle = new CreateArticle(driver);
             newArticle.ArticleNavigateTo();
@@ -143,7 +148,7 @@ namespace Blog.UI.Tests
             newArticle.ArticleNavigateTo();
             newArticle.ArticleCreate("", "Thisi is the text of article THREE");
             newArticle.AssertTitleErrorMessage("The Title field is required.");
-         }
+        }
 
         [Test, Property("Priority", 1)]  //asserter added
         [Author("Nury")]
@@ -195,9 +200,9 @@ namespace Blog.UI.Tests
             //ArticlesDashboard dash = new ArticlesDashboard(driver);
             //dash.AssertNewArticle("Title CancelButton");
 
-            
+
         }
-        
+
         [Test, Property("Priority", 1)] //is not working
         [Author("Nury")]
         public void EditOwnArticleFromList()
@@ -239,7 +244,7 @@ namespace Blog.UI.Tests
 
             Login loginuser = new Login(driver);
             loginuser.LoginUser("londa101@abv.bg", "londa101");
-          
+
             DeleteArticle newDeleteArticle = new DeleteArticle(driver);
             newDeleteArticle.AssertDeleteButtonDesplayed();
             newDeleteArticle.ArticleDeletefromList("Article Test THREE");
@@ -259,7 +264,5 @@ namespace Blog.UI.Tests
 
             Login loginuser = new Login(driver);
         }
-
-
     }
 }

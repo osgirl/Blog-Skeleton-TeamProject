@@ -13,18 +13,36 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
         }
 
         public static void AssertNewArticle(this ArticlesDashboard dash, string title)
-        {   
-            IWebElement element;
-            
+        {
             try
-            {
-                element = dash.Wait.Until(w => dash.ContainerDashboard.FindElement(By.XPath($".//a[text()='{title}']")));
-                Assert.AreEqual(title, element.Text);
+            {/*
+                List<IWebElement> foundArticle = new List<IWebElement>();
+
+                for (int i = 0; i < dash.ContainerDashboard.Count; i++)                    
+                    {
+                        if (dash.ContainerDashboard[i].Text.Equals(title))
+                            foundArticle[i] = dash.ContainerDashboard[i];
+                    }
+                    */
+                Assert.AreEqual(title, dash.ContainerDashboard[dash.ContainerDashboard.Count - 1].Text);
             }
             catch (Exception e)
             {
                 dash.log.Error("EXCEPTION LOGGING", e);
                 throw new AssertionException($"Article is not found");
+            }
+        }
+
+        public static void AssertCancelArticle(this ArticlesDashboard dash, string title)
+        {
+            try
+            {
+                Assert.AreNotEqual(title, dash.ContainerDashboard[dash.ContainerDashboard.Count - 1].Text);
+            }
+            catch (Exception e)
+            {
+                dash.log.Error("EXCEPTION LOGGING", e);
+                throw new AssertionException($"Article is found");
             }
         }
 

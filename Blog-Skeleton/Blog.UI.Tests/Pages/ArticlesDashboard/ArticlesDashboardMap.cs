@@ -1,25 +1,11 @@
 ﻿using OpenQA.Selenium;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Blog.UI.Tests.Pages.ArticlesDashboard
 {
     public partial class ArticlesDashboard
     {
-        public IWebElement Title3
-        {
-            get
-            {
-                return this.Wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body-content > div > div > div:nth-child(3) > article > header > h2 > a")));
-            }
-        }
-
-        public IWebElement Content3
-        {
-            get
-            {
-                return this.Wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body-content > div > div > div:nth-child(3) > article > p")));
-            }
-        }
-
         public IWebElement CreateButton
         {
             get
@@ -44,11 +30,14 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
             }
         }
 
-        public IWebElement ContainerDashboard
+        public List<IWebElement> ContainerDashboard
         {
             get
             {
-                return this.Wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body-content > div")));
+                var reminder = this.Wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body-content > div")));
+                List<IWebElement> list = reminder.FindElements(By.TagName("a")).ToList();
+                return list;
+
             }
         }
 

@@ -380,5 +380,96 @@ namespace Blog.UI.Tests
             Login loginuser = new Login(this.driver);
             loginuser.AssertPageUrl();
         }
+		
+		[Test]
+        [Author("Daniela Stefanova")]
+		[TestOf("Login")]
+        public void SuccessfulLoginTest()
+        {
+            var logPage = new LoginPage(this.driver);
+            logPage.NavigateTo();
+            logPage.LoginButtonClick();
+
+            LoginUser logUser = new LoginUser("daniela_popovo@abv.bg", "123456");
+            logPage.FillLoginForm(logUser);
+
+            logPage.SuccessfulLogin("Create\r\nHello daniela_popovo@abv.bg!\r\nLog off");
+        }
+
+        [Test]
+        [Author("Daniela Stefanova")]
+		[TestOf("Login")]
+        public void LoginWithoutEmail()
+        {
+            var logPage = new LoginPage(this.driver);
+            logPage.NavigateTo();
+            logPage.LoginButtonClick();
+
+            LoginUser logUser = new LoginUser("", "123456");
+            logPage.FillLoginForm(logUser);
+
+            logPage.AssertLoginFormEmailError("The Email field is required.");
+        }
+
+        [Test]
+        [Author("Daniela Stefanova")]
+		[TestOf("Login")]
+        public void LoginWithoutPassword()
+        {
+            var logPage = new LoginPage(this.driver);
+            logPage.NavigateTo();
+            logPage.LoginButtonClick();
+
+            LoginUser logUser = new LoginUser("daniela_popovo@abv.bg", "");
+            logPage.FillLoginForm(logUser);
+
+            logPage.AssertLoginFormPasswordError("The Password field is required.");
+        }
+
+        [Test]
+        [Author("Daniela Stefanova")]
+		[TestOf("Login")]
+        public void LoginWithoutEmailAndPassword()
+        {
+            var logPage = new LoginPage(this.driver);
+            logPage.NavigateTo();
+            logPage.LoginButtonClick();
+
+            LoginUser logUser = new LoginUser("", "");
+            logPage.FillLoginForm(logUser);
+
+            logPage.AssertLoginFormEmailError("The Email field is required.");
+            logPage.AssertLoginFormPasswordError("The Password field is required.");
+        }
+
+        [Test]
+        [Author("Daniela Stefanova")]
+		[TestOf("Login")]
+        public void LoginWithInvalidPassword()
+        {
+            var logPage = new LoginPage(this.driver);
+            logPage.NavigateTo();
+            logPage.LoginButtonClick();
+
+            LoginUser logUser = new LoginUser("daniela_popovo@abv.bg", "daniela123456");
+            logPage.FillLoginForm(logUser);
+
+            logPage.AssertInvalidPasswordError("Invalid login attempt.");
+        }
+
+        [Test]
+        [Author("Daniela Stefanova")]
+		[TestOf("Login")]
+        public void LoginWithInvalidEmail()
+        {
+            var logPage = new LoginPage(this.driver);
+            logPage.NavigateTo();
+            logPage.LoginButtonClick();
+
+            LoginUser logUser = new LoginUser("daniela.daniela@google.tc", "123456");
+            logPage.FillLoginForm(logUser);
+
+            logPage.AssertInvalidEmailError("Invalid login attempt.");
+        }
     }
 }

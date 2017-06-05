@@ -12,8 +12,8 @@ namespace Blog.UI.Tests.Pages.Article.EditArticle
                
            public void ArticleEdit(string title, string content)
         {
-            this.TitleLinkText.Click();
-            this.EditButton.Click();
+           // this.TitleLinkText.Click();
+           // this.EditButton.Click();
             this.Title.Click();
             this.Title.Clear();
             this.Title.SendKeys(title);

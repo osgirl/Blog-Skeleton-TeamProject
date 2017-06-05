@@ -21,6 +21,29 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
             }
         }
 
+        public static void AssertFunctionalMenuButtons(this ArticlesDashboard dash)
+        {
+            try
+            {
+                dash.CreateButton.Click();
+                Assert.AreEqual("http://localhost:60639/Article/Create", dash.Driver.Url);
+                dash.Driver.Navigate().Back();
+                dash.ManageUser.Click();
+                Assert.AreEqual("http://localhost:60639/Manage", dash.Driver.Url);
+                dash.Driver.Navigate().Back();
+                dash.LogOut.Click();
+                Assert.AreEqual("http://localhost:60639/Article/List", dash.Driver.Url);
+                Assert.IsTrue(dash.Login.Displayed);
+                Assert.IsTrue(dash.Login.Enabled);
+            }
+            catch (Exception e)
+            {
+                dash.log.Error("EXCEPTION LOGGING", e);
+                throw new AssertionException($"Create button is missing");
+            }
+        }
+
+
         public static void AssertAvailableCreateButton(this ArticlesDashboard dash)
         {
             try
@@ -63,7 +86,7 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
             }
         }
 
-        public static void AssertArticleDetails(this ArticlesDashboard dash, int ArticleId, string title, string content, string author)
+        public static void AssertArticleDetailsView(this ArticlesDashboard dash, int ArticleId, string title, string content, string author)
         {
             try
             {
@@ -101,13 +124,33 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
             }
         }
 
-        public static void AssertNewArticle(this ArticlesDashboard dash, string title)
+
+        public static void AssertArticleDetailsDashboard(this ArticlesDashboard dash, int ArticleId, string title, string content, string author)
         {
             try
             {
-                IWebElement foundArticle = dash.ContainerDashboard[dash.ContainerDashboard.Count - 1];
-              
-                Assert.AreEqual(title, foundArticle.Text);
+                IWebElement foundArticleTitle = dash.ContainerDashboardTitle[ArticleId - 1];
+                IWebElement foundArticleContent = dash.ContainerDashboardContent[ArticleId - 1];
+                IWebElement foundArticleAuthorSign = dash.AuthorSign[ArticleId - 1];
+                Assert.AreEqual(title, foundArticleTitle.Text);
+                Assert.AreEqual(content, foundArticleContent.Text);
+                Assert.AreEqual(author, foundArticleAuthorSign.Text);
+            }
+            catch (Exception e)
+            {
+                dash.log.Error("EXCEPTION LOGGING", e);
+                throw new AssertionException($"Article is not found");
+            }
+        }
+
+        public static void AssertNewArticle(this ArticlesDashboard dash, string title, string content)
+        {
+            try
+            {
+                IWebElement foundArticleTitle = dash.ContainerDashboardTitle[dash.ContainerDashboardTitle.Count - 1];
+                IWebElement foundArticleContent = dash.ContainerDashboardContent[dash.ContainerDashboardContent.Count - 1];
+                Assert.AreEqual(title, foundArticleTitle.Text);
+                Assert.AreEqual(content, foundArticleContent.Text);
             }
             catch (Exception e)
             {
@@ -120,7 +163,7 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
         {
             try
             {
-                IWebElement foundArticle = dash.ContainerDashboard[dash.ContainerDashboard.Count - 1];
+                IWebElement foundArticle = dash.ContainerDashboardTitle[dash.ContainerDashboardTitle.Count - 1];
 
                 Assert.AreNotEqual(title, foundArticle.Text);
 

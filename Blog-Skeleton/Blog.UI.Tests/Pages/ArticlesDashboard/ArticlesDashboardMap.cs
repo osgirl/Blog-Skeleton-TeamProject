@@ -13,6 +13,14 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
                 return this.Wait.Until(w => w.FindElement(By.CssSelector("#logoutForm > ul > li:nth-child(1) > a")));
             }
         }
+        
+        public IWebElement Login
+        {
+            get
+            {
+                return this.Wait.Until(w => w.FindElement(By.CssSelector("#loginLink")));
+            }
+        }
 
         public IWebElement LogOut
         {
@@ -30,13 +38,25 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
             }
         }
 
-        public List<IWebElement> ContainerDashboard
+        public List<IWebElement> ContainerDashboardTitle
         {
             get
             {
                 var reminder = this.Wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body-content > div > div")));
                 
                 List<IWebElement> list = reminder.FindElements(By.TagName("a")).ToList();
+                return list;
+
+            }
+        }
+
+        public List<IWebElement> ContainerDashboardContent
+        {
+            get
+            {
+                var reminder = this.Wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body-content > div > div")));
+
+                List<IWebElement> list = reminder.FindElements(By.TagName("p")).ToList();
                 return list;
 
             }

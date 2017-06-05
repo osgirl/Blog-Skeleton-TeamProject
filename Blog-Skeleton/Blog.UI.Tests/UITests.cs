@@ -52,7 +52,8 @@ namespace Blog.UI.Tests
             newArticle.ArticleNavigateTo();
             newArticle.ArticleCreate("qwerty", "browser");
             ArticlesDashboard dash = new ArticlesDashboard(this.driver);
-            dash.AssertNewArticle("qwerty");
+            dash.AssertNewArticle("qwerty", "browser");
+            dash.AssertAuthorSign("--author");
         }
 
         [Test]
@@ -77,7 +78,7 @@ namespace Blog.UI.Tests
             newArticle.ArticleNavigateTo();
             newArticle.ArticleCreate("qwertyQWERTYqwertyQWERTYqwertyQWERTYqwertyQWERTY", "browserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSER");
             ArticlesDashboard dash = new ArticlesDashboard(this.driver);
-            dash.AssertNewArticle("qwertyQWERTYqwertyQWERTYqwertyQWERTYqwertyQWERTY");
+            dash.AssertNewArticle("qwertyQWERTYqwertyQWERTYqwertyQWERTYqwertyQWERTY", "browserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSERbrowserBROWSER");
 
             IJavaScriptExecutor javascript = (IJavaScriptExecutor)this.driver;
             Boolean horzscrollStatus = (Boolean)javascript.ExecuteScript("return document.documentElement.scrollWidth>document.documentElement.clientWidth;");
@@ -116,15 +117,13 @@ namespace Blog.UI.Tests
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
             Login loginuser = new Login(this.driver);
             loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
-            loginuser.AssertLoginUser();            
-            CreateArticle newArticle = new CreateArticle(this.driver);
-            newArticle.ArticleNavigateTo();
-            newArticle.ArticleCreate("qwerty", "browser");
+            loginuser.AssertLoginUser();                        
             ArticlesDashboard dash = new ArticlesDashboard(this.driver);
             dash.AssertPageUrl();
             dash.AssertAvailableCreateButton();
             dash.AssertAvailableLogOutButton();
             dash.AssertAvailableManageUserButton();
+            dash.AssertFunctionalMenuButtons();
         }
 
         [Test]
@@ -169,9 +168,88 @@ namespace Blog.UI.Tests
             IWebElement foundArticle = list[list.Count - 1];
             foundArticle.Click();
             
-            dash.AssertArticleDetails(ArticleId, "qwerty", "browser", "--author");            
+            dash.AssertArticleDetailsView(ArticleId, "qwerty", "browser", "--author");            
         }
         
+        [Test]
+        [Author("Petya")]
+        [TestOf("Articles' Dashboard")]
+
+        public void ArticleViewEditButtonDashboard()
+        {
+            this.driver.Manage().Window.Maximize();
+            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
+            Login loginuser = new Login(this.driver);
+            loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
+            loginuser.AssertLoginUser();
+
+            CreateArticle newArticle = new CreateArticle(this.driver);
+            newArticle.ArticleNavigateTo();
+            newArticle.ArticleCreate("qwerty", "browser");
+            ArticlesDashboard dash = new ArticlesDashboard(this.driver);
+
+            var reminder = this.wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body-content > div > div")));
+            List<IWebElement> list = reminder.FindElements(By.TagName("a")).ToList();
+            int ArticleId = list.Count;
+            IWebElement foundArticle = list[list.Count - 1];
+            foundArticle.Click();
+            dash.EditButton.Click();
+            EditArticle editArticle = new EditArticle(this.driver);
+            editArticle.ArticleEdit("qwerty Update", "browser Update");
+            dash.AssertArticleDetailsDashboard(ArticleId,"qwerty Update", "browser Update","--author");           
+        }
+        
+        [Test]
+        [Author("Petya")]
+        [TestOf("Articles' Dashboard")]
+
+        public void ArticleViewDeleteButtonDashboard()
+        {
+            this.driver.Manage().Window.Maximize();
+            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
+            Login loginuser = new Login(this.driver);
+            loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
+            loginuser.AssertLoginUser();
+
+            CreateArticle newArticle = new CreateArticle(this.driver);
+            newArticle.ArticleNavigateTo();
+            newArticle.ArticleCreate("qwertyPetya", "browserPetya");
+            ArticlesDashboard dash = new ArticlesDashboard(this.driver);
+
+            var reminder = this.wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body-content > div > div")));
+            List<IWebElement> list = reminder.FindElements(By.TagName("a")).ToList();
+            
+            IWebElement foundArticle = list[list.Count - 1];
+            foundArticle.Click();            
+            DeleteArticle deleteArticle = new DeleteArticle(this.driver);
+            deleteArticle.ArticleDeletefromList("qwertyPetya");
+            dash.AssertCancelArticle("qwertyPetya");
+
+        }
+        
+        [Test]
+        [Author("Petya")]
+        [TestOf("Articles' Dashboard")]
+
+        public void ArticleViewBackButtonDashboard()
+        {
+            this.driver.Manage().Window.Maximize();
+            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
+            Login loginuser = new Login(this.driver);
+            loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
+            loginuser.AssertLoginUser();
+            
+            ArticlesDashboard dash = new ArticlesDashboard(this.driver);
+
+            var reminder = this.wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body-content > div > div")));
+            List<IWebElement> list = reminder.FindElements(By.TagName("a")).ToList();
+
+            IWebElement foundArticle = list[list.Count - 1];
+            foundArticle.Click();
+            dash.BackButton.Click();
+            dash.AssertPageUrl();
+        }
+
         [Test, Property("Priority", 1)] //asserter added
         [Author("Nury")]
         public void CreateArticleWithoutTittle()
@@ -297,8 +375,7 @@ namespace Blog.UI.Tests
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
 
             DeleteArticle newDeleteArticle = new DeleteArticle(this.driver);
-            newDeleteArticle.ArticleDeletefromList("qwerty"); 
-            newDeleteArticle.ArticleDeleteButton();
+            newDeleteArticle.ArticleDeletefromList("qwerty");             
             Thread.Sleep(10000);
             Login loginuser = new Login(this.driver);
             loginuser.AssertPageUrl();

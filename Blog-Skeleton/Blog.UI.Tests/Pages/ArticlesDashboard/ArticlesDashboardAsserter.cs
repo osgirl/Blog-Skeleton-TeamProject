@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
+using System.Web;
 using System.Windows.Forms;
 
 namespace Blog.UI.Tests.Pages.ArticlesDashboard
@@ -48,17 +49,41 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
             }
         }
 
-        public static void AssertAuthorSign(this ArticlesDashboard dash)
+        public static void AssertAuthorSign(this ArticlesDashboard dash, string author)
         {
             try
-            {    
-                IWebElement foundArticle = dash.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[" + (dash.AuthorSign.Count - 1) + "]/article/footer/small"));
-                Assert.AreEqual("--author", foundArticle.Text);
+            {
+                IWebElement foundArticle = dash.AuthorSign[dash.AuthorSign.Count - 1];
+                Assert.AreEqual(author, foundArticle.Text);
             }
             catch (Exception e)
             {
                 dash.log.Error("EXCEPTION LOGGING", e);
                 throw new AssertionException($"Author Sign is missing");
+            }
+        }
+
+        public static void AssertArticleDetails(this ArticlesDashboard dash, int ArticleId, string title, string content, string author)
+        {
+            try
+            {
+                string a = $"http://localhost:60639/Article/Details/{ArticleId}";
+                Assert.AreEqual($"http://localhost:60639/Article/Details/{ArticleId}", dash.Driver.Url);
+                Assert.AreEqual(dash.Title.Text, title);
+                Assert.AreEqual(dash.Content.Text, content);
+                Assert.AreEqual(dash.Author.Text, author);
+
+                Assert.IsTrue(dash.EditButton.Displayed);
+                Assert.IsTrue(dash.EditButton.Enabled);
+                Assert.IsTrue(dash.DeleteButton.Displayed);
+                Assert.IsTrue(dash.DeleteButton.Enabled);
+                Assert.IsTrue(dash.BackButton.Displayed);
+                Assert.IsTrue(dash.BackButton.Enabled);
+            }
+            catch (Exception e)
+            {
+                dash.log.Error("EXCEPTION LOGGING", e);
+                throw new AssertionException($"Some Articles details are missing");
             }
         }
 

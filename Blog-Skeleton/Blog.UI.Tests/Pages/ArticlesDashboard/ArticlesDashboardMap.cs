@@ -61,6 +61,55 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
                 //return this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/div/div[1]/article/footer/small")));
                 return this.Wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body - content > div > div > div:nth - child(1) > article > footer > small")));
             }
-        }  
+        } 
+        
+        public IWebElement EditButton
+        {
+            get
+            {
+
+                return this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/article/footer/a[1]")));
+            }
+        }
+
+        public IWebElement DeleteButton
+        {
+            get
+            {
+                return this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/article/footer/a[2]")));
+            }
+        }
+
+        public IWebElement BackButton
+        {
+            get
+            {
+                return this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/article/footer/a[3]")));
+            }
+        }
+
+        public IWebElement Title
+        {
+            get
+            {
+                return this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/article/header/h2")));
+            }
+        }
+
+        public IWebElement Content
+        { 
+            get
+            {
+                return this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/article/p")));
+            }
+        }
+
+        public IWebElement Author
+        {
+            get
+            {
+                return this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/article/small")));
+            }
+        }
     }
 }

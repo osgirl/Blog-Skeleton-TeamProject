@@ -12,6 +12,8 @@ using System;
 using System.Windows.Forms;
 using OpenQA.Selenium.Interactions;
 using System.Threading;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Blog.UI.Tests
 {
@@ -136,15 +138,40 @@ namespace Blog.UI.Tests
             Login loginuser = new Login(this.driver);
             loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
             loginuser.AssertLoginUser();
-            this.driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(60);
+           
             CreateArticle newArticle = new CreateArticle(this.driver);
             newArticle.ArticleNavigateTo();
             newArticle.ArticleCreate("qwerty", "browser");
             ArticlesDashboard dash = new ArticlesDashboard(this.driver);
-            dash.AssertAuthorSign();
+            dash.AssertAuthorSign("--author");
         }
 
+        [Test]
+        [Author("Petya")]
+        [TestOf("Articles' Dashboard")]
 
+        public void ArticleDetailsDashboard()
+        {
+            this.driver.Manage().Window.Maximize();
+            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
+            Login loginuser = new Login(this.driver);
+            loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
+            loginuser.AssertLoginUser();
+
+            CreateArticle newArticle = new CreateArticle(this.driver);
+            newArticle.ArticleNavigateTo();
+            newArticle.ArticleCreate("qwerty", "browser");
+            ArticlesDashboard dash = new ArticlesDashboard(this.driver);
+
+            var reminder = this.wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body-content > div > div")));
+            List<IWebElement> list = reminder.FindElements(By.TagName("a")).ToList();
+            int ArticleId = list.Count;
+            IWebElement foundArticle = list[list.Count - 1];
+            foundArticle.Click();
+            
+            dash.AssertArticleDetails(ArticleId, "qwerty", "browser", "--author");            
+        }
+        
         [Test, Property("Priority", 1)] //asserter added
         [Author("Nury")]
         public void CreateArticleWithoutTittle()

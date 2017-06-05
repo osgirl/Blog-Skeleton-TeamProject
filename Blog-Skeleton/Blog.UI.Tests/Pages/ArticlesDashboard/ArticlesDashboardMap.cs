@@ -26,7 +26,7 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
         {
             get
             {
-                return this.Wait.Until(w => w.FindElement(By.CssSelector("# logoutForm > ul > li:nth-child(2) > a")));
+                return this.Wait.Until(w => w.FindElement(By.XPath("//*[@id=\"logoutForm\"]/ul/li[2]/a")));
             }
         }
 
@@ -35,7 +35,8 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
             get
             {
                 var reminder = this.Wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body-content > div > div")));
-                List<IWebElement> list = reminder.FindElements(By.TagName("div")).ToList();
+                
+                List<IWebElement> list = reminder.FindElements(By.TagName("a")).ToList();
                 return list;
 
             }
@@ -46,7 +47,7 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
             get
             {
                 var reminder = this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/div")));
-                List<IWebElement> list = reminder.FindElements(By.TagName("div")).ToList();
+                List<IWebElement> list = reminder.FindElements(By.TagName("small")).ToList();
                 return list;
 
             }

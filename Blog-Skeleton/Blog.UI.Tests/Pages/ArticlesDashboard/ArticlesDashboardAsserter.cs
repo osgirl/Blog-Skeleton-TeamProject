@@ -80,8 +80,8 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
         {
             try
             {
-                IWebElement foundArticle = dash.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[" + (dash.ContainerDashboard.Count - 1) + "]/article/header/h2/a"));
-                
+                IWebElement foundArticle = dash.ContainerDashboard[dash.ContainerDashboard.Count - 1];
+              
                 Assert.AreEqual(title, foundArticle.Text);
             }
             catch (Exception e)
@@ -95,8 +95,8 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
         {
             try
             {
-                IWebElement foundArticle = dash.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/div[" + (dash.ContainerDashboard.Count - 1) + "]/article/header/h2/a"));
-              
+                IWebElement foundArticle = dash.ContainerDashboard[dash.ContainerDashboard.Count - 1];
+
                 Assert.AreNotEqual(title, foundArticle.Text);
 
             }

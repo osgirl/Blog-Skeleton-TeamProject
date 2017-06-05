@@ -270,6 +270,7 @@ namespace Blog.UI.Tests
             newEditArticle.AssertEditButtonDesplayed();
             newEditArticle.ArticleEditButton();
             Login loginuser = new Login(this.driver);
+            loginuser.AssertPageUrl();
         }
 
 

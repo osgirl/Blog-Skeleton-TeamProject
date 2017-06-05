@@ -16,9 +16,9 @@ namespace Blog.UI.Tests.Pages.LoginPage
         }
 
 
-        public void NavigateTo()
+        public new void NavigateTo()
         {
-            this.Driver.Navigate().GoToUrl("http://localhost:60634/Article/List");
+            this.Driver.Navigate().GoToUrl("http://localhost:60639/Article/List");
             LoginButton.Click();
         }
 

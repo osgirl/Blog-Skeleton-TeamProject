@@ -35,6 +35,10 @@
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.Core.4.0.0\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Dapper, Version=1.50.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.1.50.2\lib\net45\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
     </Reference>
@@ -46,6 +50,7 @@
       <HintPath>..\packages\NUnit.3.7.0\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -73,6 +78,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="TestStack.Seleno, Version=0.9.61.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\TestStack.Seleno.0.9.61\lib\NET40\TestStack.Seleno.dll</HintPath>
       <Private>True</Private>
@@ -89,6 +96,8 @@
   <ItemGroup>
     <Compile Include="BasePage.cs" />
     <Compile Include="BrowserHost.cs" />
+    <Compile Include="Models\AccessExcelData.cs" />
+    <Compile Include="Models\RegistrationUser.cs" />
     <Compile Include="Pages\ArticlesDashboard\ArticlesDashboardAsserter.cs" />
     <Compile Include="Pages\ArticlesDashboard\ArticlesDashboard.cs" />
     <Compile Include="Pages\ArticlesDashboard\ArticlesDashboardMap.cs" />
@@ -101,17 +110,23 @@
     <Compile Include="Pages\Article\EditArticle\EditArticle.cs" />
     <Compile Include="Pages\Article\EditArticle\EditArticleAsserter.cs" />
     <Compile Include="Pages\Article\EditArticle\EditArticleMap.cs" />
+    <Compile Include="Pages\Attributes\LogResultToFileAttribute.cs" />
+    <Compile Include="Pages\LoginPage\LoginPage.cs" />
+    <Compile Include="Pages\LoginPage\LoginPageAsserter.cs" />
+    <Compile Include="Pages\LoginPage\LoginPageMap.cs" />
+    <Compile Include="Pages\LoginPage\LoginUser.cs" />
     <Compile Include="Pages\Login\LoginAsserter.cs" />
     <Compile Include="Pages\Login\LoginMap.cs" />
     <Compile Include="Pages\Login\Login.cs" />
-    <Compile Include="Pages\RegisterUser\RegisterUser.cs" />
-    <Compile Include="Pages\RegisterUser\RegisterUserAsserter.cs" />
-    <Compile Include="Pages\RegisterUser\RegisterUserMap.cs" />
+    <Compile Include="Pages\RegistrationPage\RegistrationPage.cs" />
+    <Compile Include="Pages\RegistrationPage\RegistrationPageAsserter.cs" />
+    <Compile Include="Pages\RegistrationPage\RegistrationPageMap.cs" />
     <Compile Include="UITests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="DataDrivenTests\RegistrationData.xlsx" />
     <None Include="Documentation\SoftwareRequirementsSpecification%28SRS%29\SRS-PetyaNikolova.doc" />
     <None Include="Documentation\SoftwareRequirementsSpecification%28SRS%29\Templates\Example-STS.pdf" />
     <None Include="Documentation\SoftwareRequirementsSpecification%28SRS%29\Templates\IEEE Standard SRS Template.doc" />
@@ -142,6 +157,10 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Logs\Logs - Registration With Invalid Email.txt" />
+    <Content Include="Logs\Logs - Registration Without Password.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\Selenium.WebDriver.ChromeDriver.2.29.0\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\packages\Selenium.WebDriver.ChromeDriver.2.29.0\build\Selenium.WebDriver.ChromeDriver.targets')" />

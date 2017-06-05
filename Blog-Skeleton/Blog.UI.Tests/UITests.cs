@@ -3,7 +3,7 @@ using Blog.UI.Tests.Pages.Article.DeleteArticle;
 using Blog.UI.Tests.Pages.Article.EditArticle;
 using Blog.UI.Tests.Pages.Article.CreateArticle;
 using Blog.UI.Tests.Pages.Login;
-using Blog.UI.Tests.Pages.RegisterUser;
+using Blog.UI.Tests.Pages.RegistrationPage;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
@@ -14,14 +14,114 @@ using OpenQA.Selenium.Interactions;
 using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
+using Blog.UI.Tests.Pages.Attributes;
+using Blog.UI.Tests.Pages.LoginPage;
 
 namespace Blog.UI.Tests
 {
-    [TestFixture]
+		[TestFixture]
     public class UITests
     {
-        IWebDriver driver = BrowserHost.Instance.Application.Browser;
-        WebDriverWait wait = new WebDriverWait(BrowserHost.Instance.Application.Browser, TimeSpan.FromSeconds(300));
+
+		IWebDriver driver;
+		WebDriverWait wait = new WebDriverWait(BrowserHost.Instance.Application.Browser, TimeSpan.FromSeconds(300));
+	
+        [SetUp]
+        public void Init()
+        {
+            this.driver = BrowserHost.Instance.Application.Browser;
+        }
+
+      // [TearDown]
+      // public void CleanUp()
+      // {
+      //     this.driver.Quit();
+      // }
+
+        //Registration method
+        public void RegistrationWithNegativeData(string testName, params string[] assert)
+
+        {
+
+            var regPage = new RegistrationPage(driver);
+            var user = AccessExcelData.GetRegistrationTestData(testName);
+
+            regPage.NavigateTo();
+            regPage.FillRegistrationForm(user);
+
+            var asserter = typeof(RegistrationPageAsserter).GetMethod(user.Asserter);
+
+            int assertLenght = assert.Length;
+            if (assertLenght == 1)
+            {
+                var assertString = String.Concat(assert);
+
+                asserter.Invoke(null, new object[] { regPage, assertString });
+
+            }
+            else
+            {
+                var str = assert;
+                asserter.Invoke(null, new object[] { regPage, str });
+            }
+        }
+
+        //Registration Tests
+		[LogResultToFileAttribute]
+        [Test, Property("Registration", 1)]
+		[Author("Georgi")]
+        [TestOf("Registration")]
+		
+        public void RegistrationWithEmptyFields()
+        {
+
+            RegistrationWithNegativeData(TestContext.CurrentContext.Test.MethodName, "The Email field is required.", "The Full Name field is required.", "The Password field is required.");
+        }
+        
+		[LogResultToFileAttribute]
+		[Test, Property("Registration", 1)]
+		[Author("Georgi")]
+        [TestOf("Registration")]
+        public void RegistrationWithInvalidEmail()
+        {
+            RegistrationWithNegativeData(TestContext.CurrentContext.Test.MethodName, "The Email field is not a valid e-mail address.");
+
+
+        }
+		
+        [LogResultToFileAttribute]
+        [Test, Property("Registration", 1)]
+		[Author("Georgi")]
+        [TestOf("Registration")]
+        public void RegistrationWithoutPassword()
+        {
+
+            RegistrationWithNegativeData(TestContext.CurrentContext.Test.MethodName, "The Password field is required.");
+
+        }
+
+		[LogResultToFileAttribute]
+        [Test, Property("Registration", 1)]
+		[Author("Georgi")]
+        [TestOf("Registration")]
+        public void RegistrationWithoutConfirmPassword()
+        {
+            RegistrationWithNegativeData(TestContext.CurrentContext.Test.MethodName, "The password and confirmation password do not match.");
+
+        }
+
+		[LogResultToFileAttribute]
+        [Test, Property("Registration", 1)]
+		[Author("Georgi")]
+        [TestOf("Registration")]
+        public void RegistrationWithoutEmail()
+        {
+            RegistrationWithNegativeData(TestContext.CurrentContext.Test.MethodName, "The Email field is required.");
+
+        }
+
+
+        
 
         [Test]
         [Author("Petya")]

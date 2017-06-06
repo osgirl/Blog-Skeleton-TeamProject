@@ -27,6 +27,7 @@ namespace Blog.UI.Tests
 		IWebDriver driver;
         WebDriverWait wait;
 
+        
         [SetUp]
         public void Init()
         {
@@ -39,7 +40,7 @@ namespace Blog.UI.Tests
         // {
         //     this.driver.Quit();
         // }
-
+        /*
         [Test]
         [Author("A-Petya")]
         public void RegistrationTestUsers()
@@ -60,7 +61,7 @@ namespace Blog.UI.Tests
             newUser3.AssertNewUser("daniela_popovo@abv.bg");
            
         }
-
+        */
         //Registration method
         [Author("Georgi")]
         public void RegistrationWithNegativeData(string testName, params string[] assert)

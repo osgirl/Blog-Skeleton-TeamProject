@@ -159,7 +159,10 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Logs\Logs - Registration With Empty Fields.txt" />
     <Content Include="Logs\Logs - Registration With Invalid Email.txt" />
+    <Content Include="Logs\Logs - Registration Without Confirm Password.txt" />
+    <Content Include="Logs\Logs - Registration Without Email.txt" />
     <Content Include="Logs\Logs - Registration Without Password.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -21,7 +21,7 @@ public class AccessExcelData
     public static string TestDataFileConnection()
     {
         // var path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "..\\..\\DataDrivenTests\\");
-        var path = @"C:\Users\Djordjiii\Desktop\Нова папка (7)\Blog_Gecko_Team-master\Blog-Skeleton\Blog.UI.Tests\DataDrivenTests\";
+        var path = @"C:\Users\Petya\Documents\Visual Studio 2017\Projects\Blog\Blog-Skeleton-TeamProject\Blog-Skeleton\Blog.UI.Tests\DataDrivenTests\";
         //    var path = ConfigurationManager.AppSettings["TestDataSheetPath"];
 
         var con = string.Format(@"Provider=Microsoft.ACE.OLEDB.12.0;

@@ -114,10 +114,10 @@
     <Compile Include="Pages\LoginPage\LoginPage.cs" />
     <Compile Include="Pages\LoginPage\LoginPageAsserter.cs" />
     <Compile Include="Pages\LoginPage\LoginPageMap.cs" />
-    <Compile Include="Pages\LoginPage\LoginUser.cs" />
-    <Compile Include="Pages\Login\LoginAsserter.cs" />
-    <Compile Include="Pages\Login\LoginMap.cs" />
-    <Compile Include="Pages\Login\Login.cs" />
+    <Compile Include="Models\LoginUser.cs" />
+    <Compile Include="Pages\RegisterUser\RegisterUser.cs" />
+    <Compile Include="Pages\RegisterUser\RegisterUserAsserter.cs" />
+    <Compile Include="Pages\RegisterUser\RegisterUserMap.cs" />
     <Compile Include="Pages\RegistrationPage\RegistrationPage.cs" />
     <Compile Include="Pages\RegistrationPage\RegistrationPageAsserter.cs" />
     <Compile Include="Pages\RegistrationPage\RegistrationPageMap.cs" />

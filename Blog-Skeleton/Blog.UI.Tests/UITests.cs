@@ -2,7 +2,7 @@
 using Blog.UI.Tests.Pages.Article.DeleteArticle;
 using Blog.UI.Tests.Pages.Article.EditArticle;
 using Blog.UI.Tests.Pages.Article.CreateArticle;
-using Blog.UI.Tests.Pages.Login;
+using Blog.UI.Tests.Pages.LoginPage;
 using Blog.UI.Tests.Pages.RegistrationPage;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -15,35 +15,57 @@ using System.Threading;
 using System.Collections.Generic;
 using System.Linq;
 using Blog.UI.Tests.Pages.Attributes;
-using Blog.UI.Tests.Pages.LoginPage;
+using Blog.UI.Tests.Models;
+using Blog.UI.Tests.Pages.RegisterUser;
 
 namespace Blog.UI.Tests
 {
-		[TestFixture]
+	[TestFixture]
     public class UITests
     {
 
 		IWebDriver driver;
-		WebDriverWait wait = new WebDriverWait(BrowserHost.Instance.Application.Browser, TimeSpan.FromSeconds(300));
-	
+        WebDriverWait wait;
+
         [SetUp]
         public void Init()
         {
             this.driver = BrowserHost.Instance.Application.Browser;
+            this.wait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(60));   
         }
 
-      // [TearDown]
-      // public void CleanUp()
-      // {
-      //     this.driver.Quit();
-      // }
+        // [TearDown]
+        // public void CleanUp()
+        // {
+        //     this.driver.Quit();
+        // }
+
+        [Test]
+        [Author("A-Petya")]
+        public void RegistrationTestUsers()
+        {
+            RegisterUser newUser1 = new RegisterUser(this.driver);
+            newUser1.RegisterUserNavigateTo();
+            newUser1.RegisterationOfUser("nikolova.petq@gmail.com", "Petya Nikolova", "P@ssw@rd");
+            newUser1.AssertNewUser("nikolova.petq@gmail.com");
+            
+            RegisterUser newUser2 = new RegisterUser(this.driver);
+            newUser2.RegisterUserNavigateTo();
+            newUser2.RegisterationOfUser("londa101@abv.bg", "londa101", "londa101");
+            newUser2.AssertNewUser("londa101@abv.bg");
+
+            RegisterUser newUser3 = new RegisterUser(this.driver);
+            newUser3.RegisterUserNavigateTo();
+            newUser3.RegisterationOfUser("daniela_popovo@abv.bg", "Daniela", "123456");
+            newUser3.AssertNewUser("daniela_popovo@abv.bg");
+           
+        }
 
         //Registration method
+        [Author("Georgi")]
         public void RegistrationWithNegativeData(string testName, params string[] assert)
-
         {
-
-            var regPage = new RegistrationPage(driver);
+            var regPage = new RegistrationPage(this.driver);
             var user = AccessExcelData.GetRegistrationTestData(testName);
 
             regPage.NavigateTo();
@@ -74,7 +96,6 @@ namespace Blog.UI.Tests
 		
         public void RegistrationWithEmptyFields()
         {
-
             RegistrationWithNegativeData(TestContext.CurrentContext.Test.MethodName, "The Email field is required.", "The Full Name field is required.", "The Password field is required.");
         }
         
@@ -82,46 +103,41 @@ namespace Blog.UI.Tests
 		[Test, Property("Registration", 1)]
 		[Author("Georgi")]
         [TestOf("Registration")]
+
         public void RegistrationWithInvalidEmail()
         {
-            RegistrationWithNegativeData(TestContext.CurrentContext.Test.MethodName, "The Email field is not a valid e-mail address.");
-
-
+            RegistrationWithNegativeData(TestContext.CurrentContext.Test.MethodName, "The Email field is not a valid e-mail address.");            
         }
 		
         [LogResultToFileAttribute]
         [Test, Property("Registration", 1)]
 		[Author("Georgi")]
         [TestOf("Registration")]
+
         public void RegistrationWithoutPassword()
         {
-
             RegistrationWithNegativeData(TestContext.CurrentContext.Test.MethodName, "The Password field is required.");
-
         }
 
 		[LogResultToFileAttribute]
         [Test, Property("Registration", 1)]
 		[Author("Georgi")]
         [TestOf("Registration")]
+
         public void RegistrationWithoutConfirmPassword()
         {
             RegistrationWithNegativeData(TestContext.CurrentContext.Test.MethodName, "The password and confirmation password do not match.");
-
         }
 
 		[LogResultToFileAttribute]
         [Test, Property("Registration", 1)]
 		[Author("Georgi")]
         [TestOf("Registration")]
+
         public void RegistrationWithoutEmail()
         {
             RegistrationWithNegativeData(TestContext.CurrentContext.Test.MethodName, "The Email field is required.");
-
-        }
-
-
-        
+        }        
 
         [Test]
         [Author("Petya")]
@@ -145,7 +161,7 @@ namespace Blog.UI.Tests
         {
             this.driver.Manage().Window.Maximize();
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
-            Login loginuser = new Login(this.driver);
+            LoginPage loginuser = new LoginPage(this.driver);
             loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
             loginuser.AssertLoginUser();
             CreateArticle newArticle = new CreateArticle(this.driver);
@@ -165,13 +181,7 @@ namespace Blog.UI.Tests
             this.driver.Manage().Window.Maximize();
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
             Thread.Sleep(10000);
-            /*
-            RegisterUser newUser = new RegisterUser(this.driver);
-            newUser.RegisterUserNavigateTo();
-            newUser.RegisterationOfUser("nikolova.petq@gmail.com", "Petya Nikolova", "P@ssw@rd");            
-            newUser.AssertNewUser("nikolova.petq@gmail.com");
-            */
-            Login loginuser = new Login(this.driver);
+            LoginPage loginuser = new LoginPage(this.driver);
             loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
             loginuser.AssertLoginUser();
             CreateArticle newArticle = new CreateArticle(this.driver);
@@ -215,7 +225,7 @@ namespace Blog.UI.Tests
         {           
             this.driver.Manage().Window.Maximize();
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
-            Login loginuser = new Login(this.driver);
+            LoginPage loginuser = new LoginPage(this.driver);
             loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
             loginuser.AssertLoginUser();                        
             ArticlesDashboard dash = new ArticlesDashboard(this.driver);
@@ -234,7 +244,7 @@ namespace Blog.UI.Tests
         {            
             this.driver.Manage().Window.Maximize();
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
-            Login loginuser = new Login(this.driver);
+            LoginPage loginuser = new LoginPage(this.driver);
             loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
             loginuser.AssertLoginUser();
            
@@ -253,7 +263,7 @@ namespace Blog.UI.Tests
         {
             this.driver.Manage().Window.Maximize();
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
-            Login loginuser = new Login(this.driver);
+            LoginPage loginuser = new LoginPage(this.driver);
             loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
             loginuser.AssertLoginUser();
 
@@ -279,7 +289,7 @@ namespace Blog.UI.Tests
         {
             this.driver.Manage().Window.Maximize();
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
-            Login loginuser = new Login(this.driver);
+            LoginPage loginuser = new LoginPage(this.driver);
             loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
             loginuser.AssertLoginUser();
 
@@ -307,7 +317,7 @@ namespace Blog.UI.Tests
         {
             this.driver.Manage().Window.Maximize();
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
-            Login loginuser = new Login(this.driver);
+            LoginPage loginuser = new LoginPage(this.driver);
             loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
             loginuser.AssertLoginUser();
 
@@ -335,7 +345,7 @@ namespace Blog.UI.Tests
         {
             this.driver.Manage().Window.Maximize();
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
-            Login loginuser = new Login(this.driver);
+            LoginPage loginuser = new LoginPage(this.driver);
             loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
             loginuser.AssertLoginUser();
             
@@ -357,7 +367,7 @@ namespace Blog.UI.Tests
             this.driver.Manage().Window.Maximize();
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
 
-            Login loginuser = new Login(this.driver);
+            LoginPage loginuser = new LoginPage(this.driver);
             loginuser.LoginUser("londa101@abv.bg", "londa101");
 
             CreateArticle newArticle = new CreateArticle(this.driver);
@@ -373,7 +383,7 @@ namespace Blog.UI.Tests
             this.driver.Manage().Window.Maximize();
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
 
-            Login loginuser = new Login(this.driver);
+            LoginPage loginuser = new LoginPage(this.driver);
             loginuser.LoginUser("londa101@abv.bg", "londa101");
 
             CreateArticle newArticle = new CreateArticle(this.driver);
@@ -389,7 +399,7 @@ namespace Blog.UI.Tests
             this.driver.Manage().Window.Maximize();
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
 
-            Login loginuser = new Login(this.driver);
+            LoginPage loginuser = new LoginPage(this.driver);
             loginuser.LoginUser("londa101@abv.bg", "londa101");
 
             CreateArticle newArticle = new CreateArticle(this.driver);
@@ -405,7 +415,7 @@ namespace Blog.UI.Tests
             this.driver.Manage().Window.Maximize();
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
 
-            Login loginuser = new Login(this.driver);
+            LoginPage loginuser = new LoginPage(this.driver);
             loginuser.LoginUser("londa101@abv.bg", "londa101");
 
             CreateArticle newArticle = new CreateArticle(this.driver);
@@ -426,7 +436,7 @@ namespace Blog.UI.Tests
             this.driver.Manage().Window.Maximize();
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
 
-            Login loginuser = new Login(this.driver);
+            LoginPage loginuser = new LoginPage(this.driver);
             loginuser.LoginUser("londa101@abv.bg", "londa101");
 
             ArticlesDashboard dash = new ArticlesDashboard(this.driver);
@@ -447,7 +457,7 @@ namespace Blog.UI.Tests
             EditArticle newEditArticle = new EditArticle(this.driver);
             newEditArticle.AssertEditButtonDesplayed();
             newEditArticle.ArticleEditButton();
-            Login loginuser = new Login(this.driver);
+            LoginPage loginuser = new LoginPage(this.driver);
             loginuser.AssertPageUrl();
         }
 
@@ -459,7 +469,7 @@ namespace Blog.UI.Tests
             this.driver.Manage().Window.Maximize();
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
 
-            Login loginuser = new Login(this.driver);
+            LoginPage loginuser = new LoginPage(this.driver);
             loginuser.LoginUser("londa101@abv.bg", "londa101");
 
             DeleteArticle newDeleteArticle = new DeleteArticle(this.driver);
@@ -477,7 +487,7 @@ namespace Blog.UI.Tests
             DeleteArticle newDeleteArticle = new DeleteArticle(this.driver);
             newDeleteArticle.ArticleDeletefromList("qwerty");             
             Thread.Sleep(10000);
-            Login loginuser = new Login(this.driver);
+            LoginPage loginuser = new LoginPage(this.driver);
             loginuser.AssertPageUrl();
         }
 		

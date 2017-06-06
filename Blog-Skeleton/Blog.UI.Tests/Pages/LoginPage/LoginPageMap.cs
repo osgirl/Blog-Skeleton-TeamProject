@@ -14,7 +14,7 @@ namespace Blog.UI.Tests.Pages.LoginPage
         {
             get
             {
-                return this.Driver.FindElement(By.Id("loginLink"));
+                return this.Wait.Until(w => w.FindElement(By.Id("loginLink")));
             }
         }
 
@@ -22,24 +22,26 @@ namespace Blog.UI.Tests.Pages.LoginPage
         {
             get
             {
-                return this.Driver.FindElement(By.Id("RememberMe"));
+                return this.Wait.Until(w => w.FindElement(By.Id("RememberMe")));
             }
         }
-        
+
         public IWebElement EmailField
         {
             get
             {
-                return this.Driver.FindElement(By.XPath("//*[@id=\"Email\"]"));
+                return this.Wait.Until(w => w.FindElement(By.CssSelector("#Email")));
             }
         }
+
         public IWebElement PasswordField
         {
             get
             {
-                return this.Driver.FindElement(By.XPath("//*[@id=\"Password\"]"));
+                return this.Wait.Until(w => w.FindElement(By.CssSelector("#Password")));
             }
         }
+
         public IWebElement LogInSubmit
         {
             get
@@ -92,6 +94,14 @@ namespace Blog.UI.Tests.Pages.LoginPage
             get
             {
                 return this.Driver.FindElement(By.Id("logoutForm"));
+            }
+        }
+
+        public IWebElement ManageUser
+        {
+            get
+            {
+                return this.Wait.Until(w => w.FindElement(By.XPath("//*[@id=\"logoutForm\"]/ul/li[2]/a")));
             }
         }
     }

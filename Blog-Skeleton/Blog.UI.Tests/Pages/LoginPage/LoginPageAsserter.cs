@@ -44,6 +44,14 @@ namespace Blog.UI.Tests.Pages.LoginPage
             Assert.AreEqual(text, page.LogOffButton.Text);
         }
 
+        public static void AssertPageUrl(this LoginPage loginUser)
+        {
+            Assert.AreEqual("http://localhost:60639/Article/Login", loginUser.URL);
+        }
 
+        public static void AssertLoginUser(this LoginPage loginUser)
+        {
+            Assert.AreEqual($"Hello {loginUser.EMAIL}!", loginUser.ManageUser.Text);
+        }
     }
 }

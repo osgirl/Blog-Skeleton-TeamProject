@@ -40,7 +40,7 @@ namespace Blog.UI.Tests
         // {
         //     this.driver.Quit();
         // }
-        /*
+       /*
         [Test]
         [Author("A-Petya")]
         public void RegistrationTestUsers()
@@ -273,12 +273,9 @@ namespace Blog.UI.Tests
             newArticle.ArticleCreate("qwerty", "browser");
             ArticlesDashboard dash = new ArticlesDashboard(this.driver);
 
-            var reminder = this.wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body-content > div > div")));
-            List<IWebElement> list = reminder.FindElements(By.TagName("a")).ToList();
-            int ArticleId = list.Count;
-            IWebElement foundArticle = list[list.Count - 1];
-            foundArticle.Click();
-            
+            int ArticleId = dash.FindArticleIdByTitle("qwerty");
+            dash.FindArticleByTitle("qwerty");           
+
             dash.AssertArticleDetailsView(ArticleId, "qwerty", "browser", "--author");            
         }
         
@@ -299,13 +296,9 @@ namespace Blog.UI.Tests
             newArticle.ArticleCreate("qwerty", "browser");
             ArticlesDashboard dash = new ArticlesDashboard(this.driver);
 
-            var reminder = this.wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body-content > div > div")));
-            List<IWebElement> list = reminder.FindElements(By.TagName("a")).ToList();
-            int ArticleId = list.Count;
-            IWebElement foundArticle = list[list.Count - 1];
-            foundArticle.Click();
-            dash.EditButton.Click();
             EditArticle editArticle = new EditArticle(this.driver);
+            editArticle.FindArticleByTitle("qwerty");
+            int ArticleId = editArticle.FindArticleIdByTitle("qwerty");
             editArticle.ArticleEdit("qwerty Update", "browser Update");
             dash.AssertArticleDetailsDashboard(ArticleId,"qwerty Update", "browser Update","--author");           
         }
@@ -326,12 +319,7 @@ namespace Blog.UI.Tests
             newArticle.ArticleNavigateTo();
             newArticle.ArticleCreate("qwertyPetya", "browserPetya");
             ArticlesDashboard dash = new ArticlesDashboard(this.driver);
-
-            var reminder = this.wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body-content > div > div")));
-            List<IWebElement> list = reminder.FindElements(By.TagName("a")).ToList();
-            
-            IWebElement foundArticle = list[list.Count - 1];
-            foundArticle.Click();            
+          
             DeleteArticle deleteArticle = new DeleteArticle(this.driver);
             deleteArticle.ArticleDeletefromList("qwertyPetya");
             dash.AssertCancelArticle("qwertyPetya");
@@ -438,11 +426,13 @@ namespace Blog.UI.Tests
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
 
             LoginPage loginuser = new LoginPage(this.driver);
-            loginuser.LoginUser("londa101@abv.bg", "londa101");
+            // loginuser.LoginUser("londa101@abv.bg", "londa101");
+            loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
 
             ArticlesDashboard dash = new ArticlesDashboard(this.driver);
             EditArticle newEditArticle = new EditArticle(this.driver);
-
+            newEditArticle.FindArticleByTitle("qwerty");
+            newEditArticle.EditButton.Click();
             newEditArticle.ArticleEdit("Article Test Nury3", "Thisi is the text of article Nury3");
         }
 
@@ -456,7 +446,7 @@ namespace Blog.UI.Tests
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
 
             EditArticle newEditArticle = new EditArticle(this.driver);
-            newEditArticle.AssertEditButtonDesplayed();
+            newEditArticle.AssertEditButtonDisplayed();
             newEditArticle.ArticleEditButton();
             LoginPage loginuser = new LoginPage(this.driver);
             loginuser.AssertPageUrl();
@@ -471,11 +461,12 @@ namespace Blog.UI.Tests
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
 
             LoginPage loginuser = new LoginPage(this.driver);
-            loginuser.LoginUser("londa101@abv.bg", "londa101");
+            //loginuser.LoginUser("londa101@abv.bg", "londa101");
+            loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
 
             DeleteArticle newDeleteArticle = new DeleteArticle(this.driver);
-            newDeleteArticle.AssertDeleteButtonDisplayed();
-            newDeleteArticle.ArticleDeletefromList("Article Test THREE");
+          //  newDeleteArticle.AssertDeleteButtonDisplayed();
+            newDeleteArticle.ArticleDeletefromList("qwerty");
         }
 
         [Test, Property("Priority", 1)] //asserter added

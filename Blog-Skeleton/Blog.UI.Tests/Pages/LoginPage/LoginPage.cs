@@ -11,7 +11,7 @@ namespace Blog.UI.Tests.Pages.LoginPage
 {
     public partial class LoginPage : BasePage
     {
-        private string url = @"http://localhost:60639/Account/Login";
+        private string urL = @"http://localhost:60639/Account/Login";
         private string email;
         private string password;
 
@@ -50,7 +50,7 @@ namespace Blog.UI.Tests.Pages.LoginPage
         {
             get
             {
-                return this.url;
+                return this.urL;
             }
         }
 

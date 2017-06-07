@@ -1,6 +1,8 @@
 ﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Web;
 using System.Windows.Forms;
 
@@ -172,6 +174,34 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
                 dash.log.Error("EXCEPTION LOGGING", e);
                 throw new AssertionException($"Article is found");
             }
-        }             
+        }
+        
+        public static void AssertDeleteArticleDisplayed(this ArticlesDashboard dash, string title)
+        {            
+                var reminder = dash.Wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body-content > div > div")));
+                List<IWebElement> list = reminder.FindElements(By.TagName("a")).ToList();
+                IWebElement foundArticle = null;
+                for (int i = 0; i < list.Count; i++)
+                    if (list[i].Text.Equals(title))
+                        foundArticle = list[i];
+                if (foundArticle == null)
+                    Assert.Pass("Not found Deleted Article in Dashboard");
+                else
+                    Assert.Fail("Found Deleted Article in Dashboard");            
+        }
+
+
+        public static void AssertFindArticleDashboard(this ArticlesDashboard dash, string title)
+        {            
+                var reminder = dash.Wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body-content > div > div")));
+                List<IWebElement> list = reminder.FindElements(By.TagName("a")).ToList();
+                IWebElement foundArticle = null;
+                for (int i = 0; i < list.Count; i++)
+                    if (list[i].Text.Equals(title))
+                        foundArticle = list[i];
+                Assert.Pass("Article is displayed in Dashboard");
+                if (foundArticle == null)
+                    Assert.Fail("Not found Article in Dashboard");            
+        }
     }
 }

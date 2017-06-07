@@ -24,7 +24,7 @@ namespace Blog.UI.Tests.Pages.Article.DeleteArticle
         public void ArticleDeletefromList(string title)
         {
             this.title = title;                      
-            FindArticleByTitle(title);
+            this.FindArticleByTitle(title);
             this.AssertDeleteButtonDisplayed();
             this.DeleteButton.Click();
             this.AssertDeleteInsiteButtonDisplayed();
@@ -34,7 +34,7 @@ namespace Blog.UI.Tests.Pages.Article.DeleteArticle
         public void ArticleDeleteButton(string title)
         {
             this.title = title;
-            FindArticleByTitle(title);
+            this.FindArticleByTitle(title);
             this.AssertDeleteButtonDisplayed();
             this.DeleteButton.Click();
 

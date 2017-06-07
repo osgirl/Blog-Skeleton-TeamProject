@@ -1,1 +1,1 @@
-[2017-06-07T12:58:07] [Passed] RegistrationWithoutEmail
+[2017-06-07T18:12:19] [Passed] RegistrationWithoutEmail

@@ -53,5 +53,20 @@ namespace Blog.UI.Tests.Pages.LoginPage
         {
             Assert.AreEqual($"Hello {loginUser.EMAIL}!", loginUser.ManageUser.Text);
         }
+
+        public static void AssertAccountLogin(this LoginPage loginUser)
+        {
+            try
+            {
+                string mainURL = loginUser.Driver.Url;               
+                Assert.IsTrue(mainURL.Contains("http://localhost:60639/Account/Login"));
+            }
+            
+             catch (Exception e)
+            {
+                loginUser.log.Error("EXCEPTION LOGGING", e);
+                throw new AssertionException($"Wrong URL {loginUser.Driver.Url}");
+            }
+        }
     }
 }

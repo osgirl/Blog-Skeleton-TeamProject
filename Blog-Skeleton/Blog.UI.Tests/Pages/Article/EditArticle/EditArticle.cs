@@ -26,8 +26,7 @@ namespace Blog.UI.Tests.Pages.Article.EditArticle
         }
     
         public void ArticleEditButton()
-        {
-            //this.TitleLinkText.Click();
+        {            
             this.EditButton.Click();
            
         }

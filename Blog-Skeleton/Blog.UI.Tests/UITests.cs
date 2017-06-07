@@ -36,12 +36,13 @@ namespace Blog.UI.Tests
             this.driver.Manage().Window.Maximize();
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
         }
-
-        // [TearDown]
-        // public void CleanUp()
-        // {
-        //     this.driver.Quit();
-        // }
+        /*
+        [TearDown]
+        public void CleanUp()
+        {
+            this.driver.Quit();
+        }
+        */
        /*
         [Test]
         [Author("A-Petya")]
@@ -64,6 +65,7 @@ namespace Blog.UI.Tests
            
         }
         */
+
         //Registration method
         [Author("Georgi")]
         public void RegistrationWithNegativeData(string testName, params string[] assert)
@@ -307,7 +309,6 @@ namespace Blog.UI.Tests
             DeleteArticle deleteArticle = new DeleteArticle(this.driver);
             deleteArticle.ArticleDeletefromList("qwertyPetya");
             dash.AssertCancelArticle("qwertyPetya");
-
         }
         
         [Test]
@@ -331,8 +332,9 @@ namespace Blog.UI.Tests
             dash.AssertPageUrl();
         }
 
-        [Test, Property("Priority", 1)] //asserter added
+        [Test, Property("Priority", 1)] 
         [Author("Nury")]
+
         public void CreateArticleWithoutTittle()
         {
             LoginPage loginuser = new LoginPage(this.driver);
@@ -344,8 +346,9 @@ namespace Blog.UI.Tests
             newArticle.AssertTitleErrorMessage("The Title field is required.");
         }
 
-        [Test, Property("Priority", 1)]  //asserter added
+        [Test, Property("Priority", 1)]  
         [Author("Nury")]
+
         public void CreateArticleWithLongTittle()
         {
             LoginPage loginuser = new LoginPage(this.driver);
@@ -357,8 +360,9 @@ namespace Blog.UI.Tests
             newArticle.AssertTitleErrorMessage("The field Title must be a string with a maximum length of 50.");
         }
 
-        [Test, Property("Priority", 1)] //asserter added
+        [Test, Property("Priority", 1)] 
         [Author("Nury")]
+
         public void CreateArticleWithoutContent()
         {
             LoginPage loginuser = new LoginPage(this.driver);
@@ -370,8 +374,9 @@ namespace Blog.UI.Tests
             newArticle.AssertContentErrorMessage("The Content field is required.");
         }
 
-    [Test, Property("Priority", 1)] //!!!!!!!
+        [Test, Property("Priority", 1)] 
         [Author("Nury")]
+
         public void CreateArticleWithoutSubmit()
         {
             LoginPage loginuser = new LoginPage(this.driver);
@@ -386,8 +391,9 @@ namespace Blog.UI.Tests
             dash.AssertCancelArticle("Article Test Nury");
         }
 
-        [Test, Property("Priority", 1)] //!!!asserter is not added
+        [Test, Property("Priority", 1)] 
         [Author("Nury")]
+
         public void EditOwnArticleFromList()
         {
             LoginPage loginuser = new LoginPage(this.driver);
@@ -397,14 +403,14 @@ namespace Blog.UI.Tests
             newArticle.ArticleNavigateTo();
             newArticle.ArticleCreate("Article Test THREE", "Content Nury Test");
 
+            ArticlesDashboard dash = new ArticlesDashboard(this.driver);
             EditArticle newEditArticle = new EditArticle(this.driver);
             newEditArticle.FindArticleByTitle("Article Test THREE");           
             newEditArticle.ArticleEdit("Article Test Nury3", "This is the text of article Nury3");
-            //Assert
+            dash.AssertFindArticleDashboard("Article Test Nury3");
         }
-
-
-        [Test, Property("Priority", 1)] //!!!!! asserter not added
+        
+        [Test, Property("Priority", 1)] 
         [Author("Nury")]
 
         public void EditArticleFromListWithoutLogin()
@@ -414,11 +420,12 @@ namespace Blog.UI.Tests
             newEditArticle.AssertEditButtonDisplayed();
             newEditArticle.ArticleEditButton();
             LoginPage loginuser = new LoginPage(this.driver);
-          //  loginuser.AssertAccountLogin();
+            loginuser.AssertAccountLogin();
         }
         
-        [Test, Property("Priority", 1)] ////!!!!! asserter not added
+        [Test, Property("Priority", 1)] 
         [Author("Nury")]
+
         public void DeleteOwnArticleFromList()
         {
             LoginPage loginuser = new LoginPage(this.driver);
@@ -426,27 +433,30 @@ namespace Blog.UI.Tests
 
             CreateArticle newArticle = new CreateArticle(this.driver);
             newArticle.ArticleNavigateTo();
-            newArticle.ArticleCreate("Article Test THREE", "Content Nury Test");
+            newArticle.ArticleCreate("Created Article Test THREE", "Content Nury Test");
 
             DeleteArticle newDeleteArticle = new DeleteArticle(this.driver);          
-            newDeleteArticle.ArticleDeletefromList("Article Test THREE");
-            //Assert
+            newDeleteArticle.ArticleDeletefromList("Created Article Test THREE");
+            ArticlesDashboard dash = new ArticlesDashboard(this.driver);
+            dash.AssertDeleteArticleDisplayed("Created Article Test THREE");
         }
 
-        [Test, Property("Priority", 1)] //asserter added
+        [Test, Property("Priority", 1)] 
         [Author("Nury")]
+
         public void DeleteArticleFromListWithoutLogin()
-        {
+        {           
             DeleteArticle newDeleteArticle = new DeleteArticle(this.driver);
             newDeleteArticle.ArticleDeleteButton("Article Test THREE");             
             Thread.Sleep(10000);
             LoginPage loginuser = new LoginPage(this.driver);
-           // loginuser.AssertAccountLogin();
+            loginuser.AssertAccountLogin();
         }
 		
 		[Test]
         [Author("Daniela Stefanova")]
 		[TestOf("Login")]
+
         public void SuccessfulLoginTest()
         {
             var logPage = new LoginPage(this.driver);
@@ -455,13 +465,13 @@ namespace Blog.UI.Tests
 
             LoginUser logUser = new LoginUser("daniela_popovo@abv.bg", "123456");
             logPage.FillLoginForm(logUser);
-
             logPage.SuccessfulLogin("Create\r\nHello daniela_popovo@abv.bg!\r\nLog off");
         }
 
         [Test]
         [Author("Daniela Stefanova")]
 		[TestOf("Login")]
+
         public void LoginWithoutEmail()
         {
             var logPage = new LoginPage(this.driver);
@@ -477,6 +487,7 @@ namespace Blog.UI.Tests
         [Test]
         [Author("Daniela Stefanova")]
 		[TestOf("Login")]
+
         public void LoginWithoutPassword()
         {
             var logPage = new LoginPage(this.driver);
@@ -492,6 +503,7 @@ namespace Blog.UI.Tests
         [Test]
         [Author("Daniela Stefanova")]
 		[TestOf("Login")]
+
         public void LoginWithoutEmailAndPassword()
         {
             var logPage = new LoginPage(this.driver);
@@ -508,6 +520,7 @@ namespace Blog.UI.Tests
         [Test]
         [Author("Daniela Stefanova")]
 		[TestOf("Login")]
+
         public void LoginWithInvalidPassword()
         {
             var logPage = new LoginPage(this.driver);
@@ -523,6 +536,7 @@ namespace Blog.UI.Tests
         [Test]
         [Author("Daniela Stefanova")]
 		[TestOf("Login")]
+
         public void LoginWithInvalidEmail()
         {
             var logPage = new LoginPage(this.driver);

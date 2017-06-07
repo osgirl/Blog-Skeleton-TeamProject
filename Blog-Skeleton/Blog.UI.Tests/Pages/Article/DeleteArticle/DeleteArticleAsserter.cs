@@ -13,8 +13,7 @@ namespace Blog.UI.Tests.Pages.Article.DeleteArticle
         public static void AssertDeleteInsiteButtonDisplayed(this DeleteArticle page)
         {
             Assert.IsTrue(page.DeleteInsiteButton.Displayed);
-        }
-
+        }        
     }
 }
     

@@ -27,7 +27,7 @@ namespace Blog.UI.Tests.Pages.Article.CreateArticle
             StringAssert.Contains(text, page.ErrorMessageTitle.Text);
         }
 
-        public static void AssertCancelButtonDesplayed(this CreateArticle page)
+        public static void AssertCancelButtonDisplayed(this CreateArticle page)
         {
             Assert.IsTrue(page.CancelButton.Displayed);
         }      

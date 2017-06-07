@@ -362,7 +362,7 @@ namespace Blog.UI.Tests
 
             CreateArticle newArticle = new CreateArticle(this.driver);
             newArticle.ArticleNavigateTo();
-            newArticle.ArticleCreate("Article Test more than 50. Article Test more than 50.", "Thisi is the text of article test");
+            newArticle.ArticleCreate("Article Test more than 50. Article Test more than 50.", "This is the text of article test");
             newArticle.AssertTitleErrorMessage("The field Title must be a string with a maximum length of 50.");
         }
 
@@ -390,7 +390,7 @@ namespace Blog.UI.Tests
 
             CreateArticle newArticle = new CreateArticle(this.driver);
             newArticle.ArticleNavigateTo();
-            newArticle.AssertCancelButtonDesplayed();
+            newArticle.AssertCancelButtonDisplayed();
             newArticle.ArticleCreateWithoutSubmit("Title CancelButton", "Content CancelButton");
            
             ArticlesDashboard dash = new ArticlesDashboard(this.driver);

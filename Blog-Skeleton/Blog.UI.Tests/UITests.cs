@@ -421,11 +421,20 @@ namespace Blog.UI.Tests
 
         public void EditArticleFromListWithoutLogin()
         {
+            LoginPage loginuser = new LoginPage(this.driver);
+            loginuser.LoginUser("londa101@abv.bg", "londa101");
+
+            CreateArticle newArticle = new CreateArticle(this.driver);
+            newArticle.ArticleNavigateTo();
+            newArticle.ArticleCreate("Edited Article Test THREE", "Content Nury Test");
+            ArticlesDashboard dash = new ArticlesDashboard(this.driver);
+            dash.LogOut.Click();
+
             EditArticle newEditArticle = new EditArticle(this.driver);
-            newEditArticle.FindArticleByTitle("Article Test THREE");
+            newEditArticle.FindArticleByTitle("Edited Article Test THREE");
             newEditArticle.AssertEditButtonDisplayed();
             newEditArticle.ArticleEditButton();
-            LoginPage loginuser = new LoginPage(this.driver);
+            
             loginuser.AssertAccountLogin();
         }
         
@@ -439,23 +448,30 @@ namespace Blog.UI.Tests
 
             CreateArticle newArticle = new CreateArticle(this.driver);
             newArticle.ArticleNavigateTo();
-            newArticle.ArticleCreate("Created Article Test THREE", "Content Nury Test");
+            newArticle.ArticleCreate("Own Deleted Article Test THREE", "Content Nury Test");
 
             DeleteArticle newDeleteArticle = new DeleteArticle(this.driver);          
-            newDeleteArticle.ArticleDeletefromList("Created Article Test THREE");
+            newDeleteArticle.ArticleDeletefromList("Own Deleted Article Test THREE");
             ArticlesDashboard dash = new ArticlesDashboard(this.driver);
-            dash.AssertDeleteArticleDisplayed("Created Article Test THREE");
+            dash.AssertDeleteArticleDisplayed("Own Deleted Article Test THREE");
         }
 
         [Test, Property("Priority", 1)] 
         [Author("Nury")]
 
         public void DeleteArticleFromListWithoutLogin()
-        {           
-            DeleteArticle newDeleteArticle = new DeleteArticle(this.driver);
-            newDeleteArticle.ArticleDeleteButton("Article Test THREE");             
-            Thread.Sleep(10000);
+        {
             LoginPage loginuser = new LoginPage(this.driver);
+            loginuser.LoginUser("londa101@abv.bg", "londa101");
+
+            CreateArticle newArticle = new CreateArticle(this.driver);
+            newArticle.ArticleNavigateTo();
+            newArticle.ArticleCreate("Deleted Article Test THREE", "Content Nury Test");
+            ArticlesDashboard dash = new ArticlesDashboard(this.driver);
+            dash.LogOut.Click();
+
+            DeleteArticle newDeleteArticle = new DeleteArticle(this.driver);
+            newDeleteArticle.ArticleDeleteButton("Deleted Article Test THREE"); 
             loginuser.AssertAccountLogin();
         }
 		
@@ -466,7 +482,7 @@ namespace Blog.UI.Tests
         public void SuccessfulLoginTest()
         {
             var logPage = new LoginPage(this.driver);
-            logPage.NavigateTo();
+            logPage.LoginNavigateTo();
             logPage.LoginButtonClick();
 
             LoginUser logUser = new LoginUser("daniela_popovo@abv.bg", "123456");
@@ -481,7 +497,7 @@ namespace Blog.UI.Tests
         public void LoginWithoutEmail()
         {
             var logPage = new LoginPage(this.driver);
-            logPage.NavigateTo();
+            logPage.LoginNavigateTo();
             logPage.LoginButtonClick();
 
             LoginUser logUser = new LoginUser("", "123456");
@@ -497,7 +513,7 @@ namespace Blog.UI.Tests
         public void LoginWithoutPassword()
         {
             var logPage = new LoginPage(this.driver);
-            logPage.NavigateTo();
+            logPage.LoginNavigateTo();
             logPage.LoginButtonClick();
 
             LoginUser logUser = new LoginUser("daniela_popovo@abv.bg", "");
@@ -513,7 +529,7 @@ namespace Blog.UI.Tests
         public void LoginWithoutEmailAndPassword()
         {
             var logPage = new LoginPage(this.driver);
-            logPage.NavigateTo();
+            logPage.LoginNavigateTo();
             logPage.LoginButtonClick();
 
             LoginUser logUser = new LoginUser("", "");
@@ -530,7 +546,7 @@ namespace Blog.UI.Tests
         public void LoginWithInvalidPassword()
         {
             var logPage = new LoginPage(this.driver);
-            logPage.NavigateTo();
+            logPage.LoginNavigateTo();
             logPage.LoginButtonClick();
 
             LoginUser logUser = new LoginUser("daniela_popovo@abv.bg", "daniela123456");
@@ -546,7 +562,7 @@ namespace Blog.UI.Tests
         public void LoginWithInvalidEmail()
         {
             var logPage = new LoginPage(this.driver);
-            logPage.NavigateTo();
+            logPage.LoginNavigateTo();
             logPage.LoginButtonClick();
 
             LoginUser logUser = new LoginUser("daniela.daniela@google.tc", "123456");

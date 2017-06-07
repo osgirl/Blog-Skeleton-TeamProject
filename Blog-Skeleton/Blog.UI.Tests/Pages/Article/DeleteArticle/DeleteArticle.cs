@@ -6,9 +6,8 @@ using System.Linq;
 namespace Blog.UI.Tests.Pages.Article.DeleteArticle
 {
     public partial class DeleteArticle : BasePage
-    {
-        //private string url = @"http://localhost:60639/Article/List";
-        private string title = "Article Test THREE";
+    {        
+        private string title;
         
         public DeleteArticle(IWebDriver driver) : base(driver)
         {
@@ -21,6 +20,7 @@ namespace Blog.UI.Tests.Pages.Article.DeleteArticle
                 return this.title;
             }
         }
+
         public void ArticleDeletefromList(string title)
         {
             this.title = title;                      

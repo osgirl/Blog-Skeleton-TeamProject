@@ -44,8 +44,7 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
                 throw new AssertionException($"Create button is missing");
             }
         }
-
-
+        
         public static void AssertAvailableCreateButton(this ArticlesDashboard dash)
         {
             try
@@ -92,7 +91,7 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
         {
             try
             {
-               // Assert.AreEqual($"http://localhost:60639/Article/Details/{ArticleId}", dash.Driver.Url);
+                Assert.AreEqual($"http://localhost:60639/Article/Details/{ArticleId}", dash.Driver.Url);
                 Assert.AreEqual(dash.Title.Text, title);
                 Assert.AreEqual(dash.Content.Text, content);
                 Assert.AreEqual(dash.Author.Text, author);
@@ -130,9 +129,14 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
         {
             try
             {
-                IWebElement foundArticleTitle = dash.ContainerDashboardTitle[ArticleId];
-                IWebElement foundArticleContent = dash.ContainerDashboardContent[ArticleId];
-                IWebElement foundArticleAuthorSign = dash.AuthorSign[ArticleId];
+                List<IWebElement> elements = dash.ContainerDashboardTitle;
+                int a = new int();
+                for (int i = 0; i < elements.Count; i++)
+                    if (elements[i].GetAttribute("href").Contains($"{ArticleId}"))
+                        a = i;
+                IWebElement foundArticleTitle = dash.ContainerDashboardTitle[a];
+                IWebElement foundArticleContent = dash.ContainerDashboardContent[a];
+                IWebElement foundArticleAuthorSign = dash.AuthorSign[a];
                 Assert.AreEqual(title, foundArticleTitle.Text);
                 Assert.AreEqual(content, foundArticleContent.Text);
                 Assert.AreEqual(author, foundArticleAuthorSign.Text);

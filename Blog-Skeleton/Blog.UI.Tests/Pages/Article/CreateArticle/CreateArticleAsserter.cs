@@ -30,9 +30,6 @@ namespace Blog.UI.Tests.Pages.Article.CreateArticle
         public static void AssertCancelButtonDesplayed(this CreateArticle page)
         {
             Assert.IsTrue(page.CancelButton.Displayed);
-        }
-       
-
+        }      
     }
-
 }

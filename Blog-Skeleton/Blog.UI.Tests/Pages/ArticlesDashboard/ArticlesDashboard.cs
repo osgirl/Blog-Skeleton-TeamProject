@@ -25,17 +25,17 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
                 foundArticle.Click();
         }
 
-        public int FindArticleIdByTitle(string title)
+        public IWebElement FindArticleIdByTitle(string title)
         {
             var reminder = Wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body-content > div > div")));
             List<IWebElement> list = reminder.FindElements(By.TagName("a")).ToList();
-            int a = new int();
+            IWebElement element = null;
             for (int i = 0; i < list.Count; i++)
                 if (list[i].Text.Equals(title))
-                    a = i;
-            if (a.Equals(null))
+                    element = list[i];
+            if (element.Equals(null))
                 Assert.Fail("Not found Article in Dashboard");
-            return a;
+            return element;
         }
     }
 }

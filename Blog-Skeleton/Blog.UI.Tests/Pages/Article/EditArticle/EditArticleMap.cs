@@ -6,7 +6,6 @@ namespace Blog.UI.Tests.Pages.Article.EditArticle
 {
     public partial class EditArticle : BasePage
     {
-
         public IWebElement Title
         {
             get

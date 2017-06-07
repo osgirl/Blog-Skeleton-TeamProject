@@ -5,7 +5,6 @@ namespace Blog.UI.Tests.Pages.Article.DeleteArticle
 {
     public partial class DeleteArticle : BasePage
     {
-
         public IWebElement Title
         {
             get
@@ -54,10 +53,6 @@ namespace Blog.UI.Tests.Pages.Article.DeleteArticle
                 //return this.Wait.Until(w => w.FindElement(By.LinkText(this.TITLE)));
                 return this.Wait.Until(w => w.FindElement(By.PartialLinkText(this.TITLE)));
             }
-        }
-
-     
-
-
+        }    
     }
 }

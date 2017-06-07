@@ -262,8 +262,10 @@ namespace Blog.UI.Tests
             newArticle.ArticleNavigateTo();
             newArticle.ArticleCreate("qwerty", "browser");
             ArticlesDashboard dash = new ArticlesDashboard(this.driver);
+            string href = dash.FindArticleIdByTitle("qwerty").GetAttribute("href");
+            List<string> articleDetails = href.Split('/').ToList();
 
-            int ArticleId = dash.FindArticleIdByTitle("qwerty");
+            int ArticleId = int.Parse(articleDetails[articleDetails.Count-1]);
             dash.FindArticleByTitle("qwerty");           
 
             dash.AssertArticleDetailsView(ArticleId, "qwerty", "browser", "--author");            
@@ -285,8 +287,12 @@ namespace Blog.UI.Tests
             ArticlesDashboard dash = new ArticlesDashboard(this.driver);
 
             EditArticle editArticle = new EditArticle(this.driver);
-            int ArticleId = editArticle.FindArticleIdByTitle("qwerty");
-            editArticle.FindArticleByTitle("qwerty");
+            IWebElement element = dash.FindArticleIdByTitle("qwerty");
+            string href = element.GetAttribute("href");
+            List<string> articleDetails = href.Split('/').ToList();
+            
+            int ArticleId = int.Parse(articleDetails[articleDetails.Count - 1]);
+            element.Click();
             editArticle.ArticleEdit("qwerty Update", "browser Update");
             dash.AssertArticleDetailsDashboard(ArticleId,"qwerty Update", "browser Update","--author");           
         }

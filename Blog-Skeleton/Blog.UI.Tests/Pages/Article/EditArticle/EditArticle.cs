@@ -6,9 +6,7 @@ using System.Linq;
 namespace Blog.UI.Tests.Pages.Article.EditArticle
 {
     public partial class EditArticle : BasePage
-    {
-      
-   
+    {     
         public EditArticle(IWebDriver driver) : base(driver)
         {
         }

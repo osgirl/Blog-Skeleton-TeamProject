@@ -83,7 +83,7 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
             }
         } 
         
-        public IWebElement EditButton
+        public IWebElement EditButtonArticle
         {
             get
             {
@@ -92,7 +92,7 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
             }
         }
 
-        public IWebElement DeleteButton
+        public IWebElement DeleteButtonArticle
         {
             get
             {
@@ -100,14 +100,14 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
             }
         }
 
-        public IWebElement BackButton
+        public IWebElement BackButtonArticle
         {
             get
             {
                 return this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/article/footer/a[3]")));
             }
         }
-
+        
         public IWebElement Title
         {
             get

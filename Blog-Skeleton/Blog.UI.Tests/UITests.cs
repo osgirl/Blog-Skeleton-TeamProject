@@ -32,7 +32,9 @@ namespace Blog.UI.Tests
         public void Init()
         {
             this.driver = BrowserHost.Instance.Application.Browser;
-            this.wait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(60));   
+            this.wait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(60));
+            this.driver.Manage().Window.Maximize();
+            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
         }
 
         // [TearDown]
@@ -146,11 +148,7 @@ namespace Blog.UI.Tests
 
         public void CheckSiteLoad()
         {
-            this.driver.Manage().Window.Maximize();
-            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
-
             var logo = this.wait.Until(w => w.FindElement(By.XPath("/html/body/div[1]/div/div[1]/a")));
-
             Assert.AreEqual("SOFTUNI BLOG", logo.Text);
         }
 
@@ -159,9 +157,7 @@ namespace Blog.UI.Tests
         [TestOf("Articles' Dashboard")]
 
         public void FindArticleInDashboard()
-        {
-            this.driver.Manage().Window.Maximize();
-            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
+        {            
             LoginPage loginuser = new LoginPage(this.driver);
             loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
             loginuser.AssertLoginUser();
@@ -178,9 +174,7 @@ namespace Blog.UI.Tests
         [TestOf("Articles' Dashboard")]
 
         public void AvailableScrollBarDashboard()
-        {
-            this.driver.Manage().Window.Maximize();
-            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
+        {            
             Thread.Sleep(10000);
             LoginPage loginuser = new LoginPage(this.driver);
             loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
@@ -223,9 +217,7 @@ namespace Blog.UI.Tests
         [TestOf("Articles' Dashboard")]
 
         public void AvailableButtonsInDashboard()
-        {           
-            this.driver.Manage().Window.Maximize();
-            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
+        {                       
             LoginPage loginuser = new LoginPage(this.driver);
             loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
             loginuser.AssertLoginUser();                        
@@ -242,9 +234,7 @@ namespace Blog.UI.Tests
         [TestOf("Articles' Dashboard")]
 
         public void SignAuthorInDashboard()
-        {            
-            this.driver.Manage().Window.Maximize();
-            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
+        {                        
             LoginPage loginuser = new LoginPage(this.driver);
             loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
             loginuser.AssertLoginUser();
@@ -255,15 +245,13 @@ namespace Blog.UI.Tests
             ArticlesDashboard dash = new ArticlesDashboard(this.driver);
             dash.AssertAuthorSign("--author");
         }
-
+        
         [Test]
         [Author("Petya")]
         [TestOf("Articles' Dashboard")]
 
         public void ArticleDetailsDashboard()
-        {
-            this.driver.Manage().Window.Maximize();
-            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
+        {            
             LoginPage loginuser = new LoginPage(this.driver);
             loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
             loginuser.AssertLoginUser();
@@ -284,21 +272,19 @@ namespace Blog.UI.Tests
         [TestOf("Articles' Dashboard")]
 
         public void ArticleViewEditButtonDashboard()
-        {
-            this.driver.Manage().Window.Maximize();
-            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
+        {            
             LoginPage loginuser = new LoginPage(this.driver);
             loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
             loginuser.AssertLoginUser();
 
             CreateArticle newArticle = new CreateArticle(this.driver);
-            newArticle.ArticleNavigateTo();
+            newArticle.ArticleNavigateTo(  );
             newArticle.ArticleCreate("qwerty", "browser");
             ArticlesDashboard dash = new ArticlesDashboard(this.driver);
 
             EditArticle editArticle = new EditArticle(this.driver);
-            editArticle.FindArticleByTitle("qwerty");
             int ArticleId = editArticle.FindArticleIdByTitle("qwerty");
+            editArticle.FindArticleByTitle("qwerty");
             editArticle.ArticleEdit("qwerty Update", "browser Update");
             dash.AssertArticleDetailsDashboard(ArticleId,"qwerty Update", "browser Update","--author");           
         }
@@ -308,9 +294,7 @@ namespace Blog.UI.Tests
         [TestOf("Articles' Dashboard")]
 
         public void ArticleViewDeleteButtonDashboard()
-        {
-            this.driver.Manage().Window.Maximize();
-            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
+        {            
             LoginPage loginuser = new LoginPage(this.driver);
             loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
             loginuser.AssertLoginUser();
@@ -331,9 +315,7 @@ namespace Blog.UI.Tests
         [TestOf("Articles' Dashboard")]
 
         public void ArticleViewBackButtonDashboard()
-        {
-            this.driver.Manage().Window.Maximize();
-            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
+        {            
             LoginPage loginuser = new LoginPage(this.driver);
             loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
             loginuser.AssertLoginUser();
@@ -345,7 +327,7 @@ namespace Blog.UI.Tests
 
             IWebElement foundArticle = list[list.Count - 1];
             foundArticle.Click();
-            dash.BackButton.Click();
+            dash.BackButtonArticle.Click();
             dash.AssertPageUrl();
         }
 
@@ -353,9 +335,6 @@ namespace Blog.UI.Tests
         [Author("Nury")]
         public void CreateArticleWithoutTittle()
         {
-            this.driver.Manage().Window.Maximize();
-            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
-
             LoginPage loginuser = new LoginPage(this.driver);
             loginuser.LoginUser("londa101@abv.bg", "londa101");
 
@@ -369,9 +348,6 @@ namespace Blog.UI.Tests
         [Author("Nury")]
         public void CreateArticleWithLongTittle()
         {
-            this.driver.Manage().Window.Maximize();
-            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
-
             LoginPage loginuser = new LoginPage(this.driver);
             loginuser.LoginUser("londa101@abv.bg", "londa101");
 
@@ -385,9 +361,6 @@ namespace Blog.UI.Tests
         [Author("Nury")]
         public void CreateArticleWithoutContent()
         {
-            this.driver.Manage().Window.Maximize();
-            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
-
             LoginPage loginuser = new LoginPage(this.driver);
             loginuser.LoginUser("londa101@abv.bg", "londa101");
 
@@ -401,9 +374,6 @@ namespace Blog.UI.Tests
         [Author("Nury")]
         public void CreateArticleWithoutSubmit()
         {
-            this.driver.Manage().Window.Maximize();
-            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
-
             LoginPage loginuser = new LoginPage(this.driver);
             loginuser.LoginUser("londa101@abv.bg", "londa101");
 
@@ -414,73 +384,64 @@ namespace Blog.UI.Tests
            
             ArticlesDashboard dash = new ArticlesDashboard(this.driver);
             dash.AssertCancelArticle("Article Test Nury");
-
-
         }
 
         [Test, Property("Priority", 1)] //!!!asserter is not added
         [Author("Nury")]
         public void EditOwnArticleFromList()
         {
-            this.driver.Manage().Window.Maximize();
-            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
-
             LoginPage loginuser = new LoginPage(this.driver);
-            // loginuser.LoginUser("londa101@abv.bg", "londa101");
-            loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
+            loginuser.LoginUser("londa101@abv.bg", "londa101");
 
-            ArticlesDashboard dash = new ArticlesDashboard(this.driver);
+            CreateArticle newArticle = new CreateArticle(this.driver);
+            newArticle.ArticleNavigateTo();
+            newArticle.ArticleCreate("Article Test THREE", "Content Nury Test");
+
             EditArticle newEditArticle = new EditArticle(this.driver);
-            newEditArticle.FindArticleByTitle("qwerty");
-            newEditArticle.EditButton.Click();
-            newEditArticle.ArticleEdit("Article Test Nury3", "Thisi is the text of article Nury3");
+            newEditArticle.FindArticleByTitle("Article Test THREE");           
+            newEditArticle.ArticleEdit("Article Test Nury3", "This is the text of article Nury3");
+            //Assert
         }
 
 
         [Test, Property("Priority", 1)] //!!!!! asserter not added
         [Author("Nury")]
 
-        public void EditArticleFromListWhitoutLogin()
+        public void EditArticleFromListWithoutLogin()
         {
-            this.driver.Manage().Window.Maximize();
-            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
-
             EditArticle newEditArticle = new EditArticle(this.driver);
+            newEditArticle.FindArticleByTitle("Article Test THREE");
             newEditArticle.AssertEditButtonDisplayed();
             newEditArticle.ArticleEditButton();
             LoginPage loginuser = new LoginPage(this.driver);
-            loginuser.AssertPageUrl();
+          //  loginuser.AssertAccountLogin();
         }
-
-
+        
         [Test, Property("Priority", 1)] ////!!!!! asserter not added
         [Author("Nury")]
         public void DeleteOwnArticleFromList()
         {
-            this.driver.Manage().Window.Maximize();
-            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
-
             LoginPage loginuser = new LoginPage(this.driver);
-            //loginuser.LoginUser("londa101@abv.bg", "londa101");
-            loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
+            loginuser.LoginUser("londa101@abv.bg", "londa101");
 
-            DeleteArticle newDeleteArticle = new DeleteArticle(this.driver);
-          //  newDeleteArticle.AssertDeleteButtonDisplayed();
-            newDeleteArticle.ArticleDeletefromList("qwerty");
+            CreateArticle newArticle = new CreateArticle(this.driver);
+            newArticle.ArticleNavigateTo();
+            newArticle.ArticleCreate("Article Test THREE", "Content Nury Test");
+
+            DeleteArticle newDeleteArticle = new DeleteArticle(this.driver);          
+            newDeleteArticle.ArticleDeletefromList("Article Test THREE");
+            //Assert
         }
 
         [Test, Property("Priority", 1)] //asserter added
         [Author("Nury")]
         public void DeleteArticleFromListWithoutLogin()
         {
-            this.driver.Manage().Window.Maximize();
-            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
-
             DeleteArticle newDeleteArticle = new DeleteArticle(this.driver);
-            newDeleteArticle.ArticleDeletefromList("qwerty");             
+            newDeleteArticle.ArticleDeleteButton("Article Test THREE");             
             Thread.Sleep(10000);
             LoginPage loginuser = new LoginPage(this.driver);
-            loginuser.AssertPageUrl();
+           // loginuser.AssertAccountLogin();
         }
 		
 		[Test]

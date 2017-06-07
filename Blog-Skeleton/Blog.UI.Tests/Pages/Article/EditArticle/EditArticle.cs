@@ -14,7 +14,8 @@ namespace Blog.UI.Tests.Pages.Article.EditArticle
         }
                
         public void ArticleEdit(string title, string content)
-        {            
+        {
+            this.EditButton.Click();
             this.Title.Click();
             this.Title.Clear();
             this.Title.SendKeys(title);
@@ -26,7 +27,7 @@ namespace Blog.UI.Tests.Pages.Article.EditArticle
     
         public void ArticleEditButton()
         {
-            this.TitleLinkText.Click();
+            //this.TitleLinkText.Click();
             this.EditButton.Click();
            
         }

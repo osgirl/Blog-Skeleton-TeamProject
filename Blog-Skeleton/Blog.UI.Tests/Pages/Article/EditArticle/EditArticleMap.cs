@@ -27,7 +27,7 @@ namespace Blog.UI.Tests.Pages.Article.EditArticle
         {
             get
             {
-                return this.Driver.FindElement(By.CssSelector("body > div.container.body-content > div > article > footer > a.btn.btn-success.btn-xs"));
+                return this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/article/footer/a[1]")));
             }
         }
        
@@ -52,7 +52,7 @@ namespace Blog.UI.Tests.Pages.Article.EditArticle
         {
             get
             {
-                return this.Driver.FindElement(By.CssSelector("body > div.container.body-content > div > div > form > div:nth-child(7) > div > input"));
+                return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[4]/div/input"));
             }
         }
 

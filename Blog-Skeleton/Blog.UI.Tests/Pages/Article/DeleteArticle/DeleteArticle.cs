@@ -23,8 +23,7 @@ namespace Blog.UI.Tests.Pages.Article.DeleteArticle
         }
         public void ArticleDeletefromList(string title)
         {
-            this.title = title;
-            //this.TitleLinkText.Click();            
+            this.title = title;                      
             FindArticleByTitle(title);
             this.AssertDeleteButtonDisplayed();
             this.DeleteButton.Click();
@@ -35,9 +34,10 @@ namespace Blog.UI.Tests.Pages.Article.DeleteArticle
         public void ArticleDeleteButton(string title)
         {
             this.title = title;
-            this.AssertDeleteInsiteButtonDisplayed();
-            this.DeleteInsiteButton.Click();
-            
+            FindArticleByTitle(title);
+            this.AssertDeleteButtonDisplayed();
+            this.DeleteButton.Click();
+
         }
 
         public void FindArticleByTitle(string title)

@@ -95,12 +95,12 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
                 Assert.AreEqual(dash.Content.Text, content);
                 Assert.AreEqual(dash.Author.Text, author);
 
-                Assert.IsTrue(dash.EditButton.Displayed);
-                Assert.IsTrue(dash.EditButton.Enabled);
-                Assert.IsTrue(dash.DeleteButton.Displayed);
-                Assert.IsTrue(dash.DeleteButton.Enabled);
-                Assert.IsTrue(dash.BackButton.Displayed);
-                Assert.IsTrue(dash.BackButton.Enabled);
+                Assert.IsTrue(dash.EditButtonArticle.Displayed);
+                Assert.IsTrue(dash.EditButtonArticle.Enabled);
+                Assert.IsTrue(dash.DeleteButtonArticle.Displayed);
+                Assert.IsTrue(dash.DeleteButtonArticle.Enabled);
+                Assert.IsTrue(dash.BackButtonArticle.Displayed);
+                Assert.IsTrue(dash.BackButtonArticle.Enabled);
             }
             catch (Exception e)
             {
@@ -128,9 +128,9 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
         {
             try
             {
-                IWebElement foundArticleTitle = dash.ContainerDashboardTitle[ArticleId - 1];
-                IWebElement foundArticleContent = dash.ContainerDashboardContent[ArticleId - 1];
-                IWebElement foundArticleAuthorSign = dash.AuthorSign[ArticleId - 1];
+                IWebElement foundArticleTitle = dash.ContainerDashboardTitle[ArticleId];
+                IWebElement foundArticleContent = dash.ContainerDashboardContent[ArticleId];
+                IWebElement foundArticleAuthorSign = dash.AuthorSign[ArticleId];
                 Assert.AreEqual(title, foundArticleTitle.Text);
                 Assert.AreEqual(content, foundArticleContent.Text);
                 Assert.AreEqual(author, foundArticleAuthorSign.Text);

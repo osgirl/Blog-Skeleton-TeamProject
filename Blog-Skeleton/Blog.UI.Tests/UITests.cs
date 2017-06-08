@@ -464,12 +464,7 @@ namespace Blog.UI.Tests
         [Property("SmokeTests", 1)]
 
         public void DeleteOwnArticleFromList()
-        {
-            // ((IJavaScriptExecutor)this.driver).ExecuteScript("$(document).ready(function(){$('[data-toggle=\"popover\"]').popover(\"close\");});");
-            // ((IJavaScriptExecutor)this.driver).ExecuteScript("$(document).ready(function(){$(\".close\").click(function(){$(\"#myAlert\").alert(\"close\");});$(\"#myAlert\").on('close.bs.alert', function(){alert('The alert message is about to be closed.');});});");
-            //IJavaScriptExecutor js = driver as IJavaScriptExecutor;
-            //js.ExecuteScript("window.onbeforeunload = null;");
-
+        {    
             LoginPage loginuser = new LoginPage(this.driver);
             //loginuser.LoginUser("londa101@abv.bg", "londa101");
             loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
@@ -515,8 +510,7 @@ namespace Blog.UI.Tests
         {
             var logPage = new LoginPage(this.driver);
             logPage.LoginNavigateTo();
-            //logPage.LoginButtonClick();
-
+            
            // LoginUser logUser = new LoginUser("daniela_popovo@abv.bg", "123456");
             LoginUser logUser = new LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
             logPage.FillLoginForm(logUser);
@@ -532,8 +526,7 @@ namespace Blog.UI.Tests
         {
             var logPage = new LoginPage(this.driver);
             logPage.LoginNavigateTo();
-            //logPage.LoginButtonClick();
-
+            
             LoginUser logUser = new LoginUser("", "123456");
             logPage.FillLoginForm(logUser);
 
@@ -548,8 +541,7 @@ namespace Blog.UI.Tests
         {
             var logPage = new LoginPage(this.driver);
             logPage.LoginNavigateTo();
-           // logPage.LoginButtonClick();
-
+           
             LoginUser logUser = new LoginUser("daniela_popovo@abv.bg", "");
             logPage.FillLoginForm(logUser);
 
@@ -564,8 +556,7 @@ namespace Blog.UI.Tests
         {
             var logPage = new LoginPage(this.driver);
             logPage.LoginNavigateTo();
-           // logPage.LoginButtonClick();
-
+          
             LoginUser logUser = new LoginUser("", "");
             logPage.FillLoginForm(logUser);
 
@@ -582,10 +573,7 @@ namespace Blog.UI.Tests
         {
             var logPage = new LoginPage(this.driver);
             logPage.LoginNavigateTo();
-            // logPage.LoginButtonClick();
-            //IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
-           // js.ExecuteScript("document.getElementById('#Email').focus();");
-
+            
             LoginUser logUser = new LoginUser("daniela_popovo@abv.bg", "daniela123456");
             logPage.FillLoginForm(logUser);
 
@@ -600,8 +588,7 @@ namespace Blog.UI.Tests
         {
             var logPage = new LoginPage(this.driver);
             logPage.LoginNavigateTo();
-           // logPage.LoginButtonClick();
-
+           
             LoginUser logUser = new LoginUser("daniela.daniela@google.tc", "123456");
             logPage.FillLoginForm(logUser);
 

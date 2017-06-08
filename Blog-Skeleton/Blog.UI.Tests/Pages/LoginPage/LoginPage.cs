@@ -76,9 +76,10 @@ namespace Blog.UI.Tests.Pages.LoginPage
             this.EmailField.SendKeys(this.EMAIL);
             this.PasswordField.Click();
             this.PasswordField.SendKeys(this.PASSWORD);
-            this.RememberMeCheckbox.Click();
+            this.RememberMeCheckbox.Click();            
             this.LogInSubmit.Click();
             this.AssertLoginUser();
+            int a = 1;
         }
 
         public void LoginButtonClick()
@@ -101,7 +102,6 @@ namespace Blog.UI.Tests.Pages.LoginPage
 
         private void Type(IWebElement element, string text)
         {
-
             element.Click();
 
             if (!text.Equals("Field-Empty"))
@@ -110,8 +110,5 @@ namespace Blog.UI.Tests.Pages.LoginPage
 
             }
         }
-
-
-
     }
 }

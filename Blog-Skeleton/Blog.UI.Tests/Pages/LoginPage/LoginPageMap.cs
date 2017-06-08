@@ -93,7 +93,7 @@ namespace Blog.UI.Tests.Pages.LoginPage
         {
             get
             {
-                return this.Driver.FindElement(By.Id("logoutForm"));
+                return this.Driver.FindElement(By.CssSelector("#logoutForm > ul > li:nth-child(3) > a"));
             }
         }
 

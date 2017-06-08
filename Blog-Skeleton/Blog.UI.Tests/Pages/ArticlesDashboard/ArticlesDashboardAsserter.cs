@@ -191,7 +191,7 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
                 if (foundArticle == null)
                     Assert.Pass("Not found Deleted Article in Dashboard");
                 else
-                    Assert.Fail("Found Deleted Article in Dashboard");            
+                    Assert.Fail("Found Deleted Article in Dashboard");                
         }
 
 

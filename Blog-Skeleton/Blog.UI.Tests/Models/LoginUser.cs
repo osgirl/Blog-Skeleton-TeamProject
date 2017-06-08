@@ -12,10 +12,7 @@ namespace Blog.UI.Tests.Models
         private string password;
 
 
-        public LoginUser(
-                         string email,
-                         string password
-                        )
+        public LoginUser(string email, string password)
         {
             this.email = email;
             this.password = password;

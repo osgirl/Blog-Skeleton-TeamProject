@@ -18,6 +18,7 @@ using Blog.UI.Tests.Pages.Attributes;
 using Blog.UI.Tests.Models;
 using Blog.UI.Tests.Pages.RegisterUser;
 
+
 namespace Blog.UI.Tests
 {
 	[TestFixture]
@@ -118,6 +119,7 @@ namespace Blog.UI.Tests
         [Test, Property("Registration", 1)]
 		[Author("Georgi")]
         [TestOf("Registration")]
+        [Property("SmokeTests", 1)]
 
         public void RegistrationWithoutPassword()
         {
@@ -169,6 +171,7 @@ namespace Blog.UI.Tests
             ArticlesDashboard dash = new ArticlesDashboard(this.driver);
             dash.AssertNewArticle("qwerty", "browser");
             dash.AssertAuthorSign("--author");
+            dash.LogOut.Click();
         }
 
         [Test]
@@ -210,7 +213,8 @@ namespace Blog.UI.Tests
             {
                 dash.log.Info("No scroll bars are shown.");
                 Assert.Fail("No scroll bars are shown.");
-            }            
+            }
+            dash.LogOut.Click();
         }
 
 
@@ -229,6 +233,7 @@ namespace Blog.UI.Tests
             dash.AssertAvailableLogOutButton();
             dash.AssertAvailableManageUserButton();
             dash.AssertFunctionalMenuButtons();
+            dash.LogOut.Click();
         }
 
         [Test]
@@ -246,6 +251,7 @@ namespace Blog.UI.Tests
             newArticle.ArticleCreate("qwerty", "browser");
             ArticlesDashboard dash = new ArticlesDashboard(this.driver);
             dash.AssertAuthorSign("--author");
+            dash.LogOut.Click();
         }
         
         [Test]
@@ -268,12 +274,14 @@ namespace Blog.UI.Tests
             int ArticleId = int.Parse(articleDetails[articleDetails.Count-1]);
             dash.FindArticleByTitle("qwerty");           
 
-            dash.AssertArticleDetailsView(ArticleId, "qwerty", "browser", "--author");            
+            dash.AssertArticleDetailsView(ArticleId, "qwerty", "browser", "--author");
+            dash.LogOut.Click();
         }
         
         [Test]
         [Author("Petya")]
         [TestOf("Articles' Dashboard")]
+        [Property("SmokeTests", 1)]
 
         public void ArticleViewEditButtonDashboard()
         {            
@@ -294,7 +302,8 @@ namespace Blog.UI.Tests
             int ArticleId = int.Parse(articleDetails[articleDetails.Count - 1]);
             element.Click();
             editArticle.ArticleEdit("qwerty Update", "browser Update");
-            dash.AssertArticleDetailsDashboard(ArticleId,"qwerty Update", "browser Update","--author");           
+            dash.AssertArticleDetailsDashboard(ArticleId,"qwerty Update", "browser Update","--author");
+            dash.LogOut.Click();
         }
         
         [Test]
@@ -315,6 +324,7 @@ namespace Blog.UI.Tests
             DeleteArticle deleteArticle = new DeleteArticle(this.driver);
             deleteArticle.ArticleDeletefromList("qwertyPetya");
             dash.AssertCancelArticle("qwertyPetya");
+            dash.LogOut.Click();
         }
         
         [Test]
@@ -336,6 +346,7 @@ namespace Blog.UI.Tests
             foundArticle.Click();
             dash.BackButtonArticle.Click();
             dash.AssertPageUrl();
+            dash.LogOut.Click();
         }
 
         [Test, Property("Priority", 1)] 
@@ -344,12 +355,14 @@ namespace Blog.UI.Tests
         public void CreateArticleWithoutTittle()
         {
             LoginPage loginuser = new LoginPage(this.driver);
-            loginuser.LoginUser("londa101@abv.bg", "londa101");
+            //loginuser.LoginUser("londa101@abv.bg", "londa101");
+            loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
 
             CreateArticle newArticle = new CreateArticle(this.driver);
             newArticle.ArticleNavigateTo();
             newArticle.ArticleCreate("", "This is the text of article THREE");
             newArticle.AssertTitleErrorMessage("The Title field is required.");
+            loginuser.LogOffButton.Click();
         }
 
         [Test, Property("Priority", 1)]  
@@ -358,12 +371,14 @@ namespace Blog.UI.Tests
         public void CreateArticleWithLongTittle()
         {
             LoginPage loginuser = new LoginPage(this.driver);
-            loginuser.LoginUser("londa101@abv.bg", "londa101");
+           // loginuser.LoginUser("londa101@abv.bg", "londa101");
+            loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
 
             CreateArticle newArticle = new CreateArticle(this.driver);
             newArticle.ArticleNavigateTo();
             newArticle.ArticleCreate("Article Test more than 50. Article Test more than 50.", "This is the text of article test");
             newArticle.AssertTitleErrorMessage("The field Title must be a string with a maximum length of 50.");
+            loginuser.LogOffButton.Click();
         }
 
         [Test, Property("Priority", 1)] 
@@ -372,12 +387,14 @@ namespace Blog.UI.Tests
         public void CreateArticleWithoutContent()
         {
             LoginPage loginuser = new LoginPage(this.driver);
-            loginuser.LoginUser("londa101@abv.bg", "londa101");
+           // loginuser.LoginUser("londa101@abv.bg", "londa101");
+            loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
 
             CreateArticle newArticle = new CreateArticle(this.driver);
             newArticle.ArticleNavigateTo();
             newArticle.ArticleCreate("Article Test THREE", "");
             newArticle.AssertContentErrorMessage("The Content field is required.");
+            loginuser.LogOffButton.Click();
         }
 
         [Test, Property("Priority", 1)] 
@@ -386,7 +403,8 @@ namespace Blog.UI.Tests
         public void CreateArticleWithoutSubmit()
         {
             LoginPage loginuser = new LoginPage(this.driver);
-            loginuser.LoginUser("londa101@abv.bg", "londa101");
+            //loginuser.LoginUser("londa101@abv.bg", "londa101");
+            loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
 
             CreateArticle newArticle = new CreateArticle(this.driver);
             newArticle.ArticleNavigateTo();
@@ -395,6 +413,7 @@ namespace Blog.UI.Tests
            
             ArticlesDashboard dash = new ArticlesDashboard(this.driver);
             dash.AssertCancelArticle("Article Test Nury");
+            loginuser.LogOffButton.Click();
         }
 
         [Test, Property("Priority", 1)] 
@@ -403,7 +422,8 @@ namespace Blog.UI.Tests
         public void EditOwnArticleFromList()
         {
             LoginPage loginuser = new LoginPage(this.driver);
-            loginuser.LoginUser("londa101@abv.bg", "londa101");
+            //loginuser.LoginUser("londa101@abv.bg", "londa101");
+            loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
 
             CreateArticle newArticle = new CreateArticle(this.driver);
             newArticle.ArticleNavigateTo();
@@ -414,6 +434,7 @@ namespace Blog.UI.Tests
             newEditArticle.FindArticleByTitle("Article Test THREE");           
             newEditArticle.ArticleEdit("Article Test Nury3", "This is the text of article Nury3");
             dash.AssertFindArticleDashboard("Article Test Nury3");
+            loginuser.LogOffButton.Click();
         }
         
         [Test, Property("Priority", 1)] 
@@ -422,7 +443,8 @@ namespace Blog.UI.Tests
         public void EditArticleFromListWithoutLogin()
         {
             LoginPage loginuser = new LoginPage(this.driver);
-            loginuser.LoginUser("londa101@abv.bg", "londa101");
+           // loginuser.LoginUser("londa101@abv.bg", "londa101");
+            loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
 
             CreateArticle newArticle = new CreateArticle(this.driver);
             newArticle.ArticleNavigateTo();
@@ -435,25 +457,35 @@ namespace Blog.UI.Tests
             newEditArticle.AssertEditButtonDisplayed();
             newEditArticle.ArticleEditButton();
             
-            loginuser.AssertAccountLogin();
+            loginuser.AssertAccountLogin();            
         }
         
         [Test, Property("Priority", 1)] 
         [Author("Nury")]
+        [Property("SmokeTests", 1)]
 
         public void DeleteOwnArticleFromList()
         {
+            // ((IJavaScriptExecutor)this.driver).ExecuteScript("$(document).ready(function(){$('[data-toggle=\"popover\"]').popover(\"close\");});");
+            // ((IJavaScriptExecutor)this.driver).ExecuteScript("$(document).ready(function(){$(\".close\").click(function(){$(\"#myAlert\").alert(\"close\");});$(\"#myAlert\").on('close.bs.alert', function(){alert('The alert message is about to be closed.');});});");
+            //IJavaScriptExecutor js = driver as IJavaScriptExecutor;
+            //js.ExecuteScript("window.onbeforeunload = null;");
+
             LoginPage loginuser = new LoginPage(this.driver);
-            loginuser.LoginUser("londa101@abv.bg", "londa101");
+            //loginuser.LoginUser("londa101@abv.bg", "londa101");
+            loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
 
             CreateArticle newArticle = new CreateArticle(this.driver);
             newArticle.ArticleNavigateTo();
             newArticle.ArticleCreate("Own Deleted Article Test THREE", "Content Nury Test");
-
+           
+          
             DeleteArticle newDeleteArticle = new DeleteArticle(this.driver);          
             newDeleteArticle.ArticleDeletefromList("Own Deleted Article Test THREE");
             ArticlesDashboard dash = new ArticlesDashboard(this.driver);
+            
             dash.AssertDeleteArticleDisplayed("Own Deleted Article Test THREE");
+            dash.LogOut.Click();
         }
 
         [Test, Property("Priority", 1)] 
@@ -462,7 +494,8 @@ namespace Blog.UI.Tests
         public void DeleteArticleFromListWithoutLogin()
         {
             LoginPage loginuser = new LoginPage(this.driver);
-            loginuser.LoginUser("londa101@abv.bg", "londa101");
+            //loginuser.LoginUser("londa101@abv.bg", "londa101");
+            loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
 
             CreateArticle newArticle = new CreateArticle(this.driver);
             newArticle.ArticleNavigateTo();
@@ -472,7 +505,7 @@ namespace Blog.UI.Tests
 
             DeleteArticle newDeleteArticle = new DeleteArticle(this.driver);
             newDeleteArticle.ArticleDeleteButton("Deleted Article Test THREE"); 
-            loginuser.AssertAccountLogin();
+            loginuser.AssertAccountLogin();            
         }
 		
 		[Test]
@@ -483,11 +516,13 @@ namespace Blog.UI.Tests
         {
             var logPage = new LoginPage(this.driver);
             logPage.LoginNavigateTo();
-            logPage.LoginButtonClick();
+            //logPage.LoginButtonClick();
 
-            LoginUser logUser = new LoginUser("daniela_popovo@abv.bg", "123456");
+           // LoginUser logUser = new LoginUser("daniela_popovo@abv.bg", "123456");
+            LoginUser logUser = new LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
             logPage.FillLoginForm(logUser);
             logPage.SuccessfulLogin("Create\r\nHello daniela_popovo@abv.bg!\r\nLog off");
+            logPage.LogOffButton.Click();
         }
 
         [Test]
@@ -498,7 +533,7 @@ namespace Blog.UI.Tests
         {
             var logPage = new LoginPage(this.driver);
             logPage.LoginNavigateTo();
-            logPage.LoginButtonClick();
+            //logPage.LoginButtonClick();
 
             LoginUser logUser = new LoginUser("", "123456");
             logPage.FillLoginForm(logUser);
@@ -514,7 +549,7 @@ namespace Blog.UI.Tests
         {
             var logPage = new LoginPage(this.driver);
             logPage.LoginNavigateTo();
-            logPage.LoginButtonClick();
+           // logPage.LoginButtonClick();
 
             LoginUser logUser = new LoginUser("daniela_popovo@abv.bg", "");
             logPage.FillLoginForm(logUser);
@@ -530,7 +565,7 @@ namespace Blog.UI.Tests
         {
             var logPage = new LoginPage(this.driver);
             logPage.LoginNavigateTo();
-            logPage.LoginButtonClick();
+           // logPage.LoginButtonClick();
 
             LoginUser logUser = new LoginUser("", "");
             logPage.FillLoginForm(logUser);
@@ -542,12 +577,15 @@ namespace Blog.UI.Tests
         [Test]
         [Author("Daniela Stefanova")]
 		[TestOf("Login")]
+        [Property("SmokeTests", 1)]
 
         public void LoginWithInvalidPassword()
         {
             var logPage = new LoginPage(this.driver);
             logPage.LoginNavigateTo();
-            logPage.LoginButtonClick();
+            // logPage.LoginButtonClick();
+            //IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+           // js.ExecuteScript("document.getElementById('#Email').focus();");
 
             LoginUser logUser = new LoginUser("daniela_popovo@abv.bg", "daniela123456");
             logPage.FillLoginForm(logUser);
@@ -563,7 +601,7 @@ namespace Blog.UI.Tests
         {
             var logPage = new LoginPage(this.driver);
             logPage.LoginNavigateTo();
-            logPage.LoginButtonClick();
+           // logPage.LoginButtonClick();
 
             LoginUser logUser = new LoginUser("daniela.daniela@google.tc", "123456");
             logPage.FillLoginForm(logUser);

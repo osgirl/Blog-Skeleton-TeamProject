@@ -520,7 +520,7 @@ namespace Blog.UI.Tests
            // LoginUser logUser = new LoginUser("daniela_popovo@abv.bg", "123456");
             LoginUser logUser = new LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
             logPage.FillLoginForm(logUser);
-            logPage.SuccessfulLogin("Hello daniela_popovo@abv.bg!");
+            logPage.SuccessfulLogin("Hello nikolova.petq@gmail.com!");
             logPage.LogOffButton.Click();
         }
 

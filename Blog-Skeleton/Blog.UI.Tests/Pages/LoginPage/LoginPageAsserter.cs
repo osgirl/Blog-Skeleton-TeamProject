@@ -41,7 +41,7 @@ namespace Blog.UI.Tests.Pages.LoginPage
 
         public static void SuccessfulLogin(this LoginPage page, string text)
         {
-            Assert.AreEqual(text, page.LogOffButton.Text);
+            Assert.AreEqual(text, page.ManageUser.Text);
         }
 
         public static void AssertPageUrl(this LoginPage loginUser)

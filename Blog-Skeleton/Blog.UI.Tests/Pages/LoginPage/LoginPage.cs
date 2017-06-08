@@ -78,8 +78,7 @@ namespace Blog.UI.Tests.Pages.LoginPage
             this.PasswordField.SendKeys(this.PASSWORD);
             this.RememberMeCheckbox.Click();            
             this.LogInSubmit.Click();
-            this.AssertLoginUser();
-            int a = 1;
+            this.AssertLoginUser();            
         }
 
         public void LoginButtonClick()

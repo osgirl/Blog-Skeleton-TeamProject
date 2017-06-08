@@ -232,8 +232,7 @@ namespace Blog.UI.Tests
             dash.AssertAvailableCreateButton();
             dash.AssertAvailableLogOutButton();
             dash.AssertAvailableManageUserButton();
-            dash.AssertFunctionalMenuButtons();
-            dash.LogOut.Click();
+            dash.AssertFunctionalMenuButtons();            
         }
 
         [Test]
@@ -521,7 +520,7 @@ namespace Blog.UI.Tests
            // LoginUser logUser = new LoginUser("daniela_popovo@abv.bg", "123456");
             LoginUser logUser = new LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
             logPage.FillLoginForm(logUser);
-            logPage.SuccessfulLogin("Create\r\nHello daniela_popovo@abv.bg!\r\nLog off");
+            logPage.SuccessfulLogin("Hello daniela_popovo@abv.bg!");
             logPage.LogOffButton.Click();
         }
 

@@ -348,6 +348,28 @@ namespace Blog.UI.Tests
             dash.LogOut.Click();
         }
 
+        [Test, Property("Priority", 1)]
+        [Author("Nury")]
+        [TestOf("Create Article")]
+
+        public void CreateArticle()
+        {
+            this.driver.Manage().Window.Maximize();
+            this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
+
+            LoginPage loginuser = new LoginPage(this.driver);
+            //loginuser.LoginUser("londa101@abv.bg", "londa101");
+            loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
+
+            CreateArticle newArticle = new CreateArticle(this.driver);
+            newArticle.ArticleNavigateTo();
+            newArticle.ArticleCreate("New Article Test One", "Content of article");
+
+            ArticlesDashboard dash = new ArticlesDashboard(this.driver);
+            dash.AssertFindArticleDashboard("New Article Test One");
+            dash.LogOut.Click();
+        }
+
         [Test, Property("Priority", 1)] 
         [Author("Nury")]
 

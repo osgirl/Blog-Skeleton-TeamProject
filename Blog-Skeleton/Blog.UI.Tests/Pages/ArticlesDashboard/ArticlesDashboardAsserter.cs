@@ -188,10 +188,7 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
                 for (int i = 0; i < list.Count; i++)
                     if (list[i].Text.Equals(title))
                         foundArticle = list[i];
-                if (foundArticle == null)
-                    Assert.Pass("Not found Deleted Article in Dashboard");
-                else
-                    Assert.Fail("Found Deleted Article in Dashboard");                
+                Assert.IsTrue(foundArticle == null,"Not found Deleted Article in Dashboard", "Found Deleted Article in Dashboard");                              
         }
 
 
@@ -203,9 +200,7 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
                 for (int i = 0; i < list.Count; i++)
                     if (list[i].Text.Equals(title))
                         foundArticle = list[i];
-                Assert.Pass("Article is displayed in Dashboard");
-                if (foundArticle == null)
-                    Assert.Fail("Not found Article in Dashboard");            
+            Assert.IsTrue(foundArticle != null, "Article is displayed in Dashboard", "Not found Article in Dashboard");               
         }
     }
 }

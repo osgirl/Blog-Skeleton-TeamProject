@@ -131,6 +131,9 @@
     <Compile Include="Pages\LoginPage\LoginPageAsserter.cs" />
     <Compile Include="Pages\LoginPage\LoginPageMap.cs" />
     <Compile Include="Models\LoginUser.cs" />
+    <Compile Include="Pages\ManageUser\ManageUserAsserter.cs" />
+    <Compile Include="Pages\ManageUser\ManageUserMap.cs" />
+    <Compile Include="Pages\ManageUser\ManageUser.cs" />
     <Compile Include="Pages\RegisterUser\RegisterUser.cs" />
     <Compile Include="Pages\RegisterUser\RegisterUserAsserter.cs" />
     <Compile Include="Pages\RegisterUser\RegisterUserMap.cs" />

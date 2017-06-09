@@ -17,7 +17,7 @@ using System.Linq;
 using Blog.UI.Tests.Pages.Attributes;
 using Blog.UI.Tests.Models;
 using Blog.UI.Tests.Pages.RegisterUser;
-
+using Blog.UI.Tests.Pages.ManageUser;
 
 namespace Blog.UI.Tests
 {
@@ -303,6 +303,32 @@ namespace Blog.UI.Tests
             dash.LogOut.Click();
             dash.AssertAvailableLoginButton();
         }
+
+        [Test]
+        [Author("Petya")]
+        [TestOf("Manage User")]
+
+        public void SuccessfulChangePasswordUser()
+        {
+            LoginPage loginuser = new LoginPage(this.driver);
+            loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
+            loginuser.AssertLoginUser();
+
+            ManageUser changePassword = new ManageUser(this.driver);
+            changePassword.PasswordUser = loginuser.PASSWORD;
+            
+            changePassword.ManageNavigateTo();
+            changePassword.AssertManageUserPageURL();
+            changePassword.ChangePasswordLink.Click();
+            changePassword.FillChangePasswordForm("Vel1koLep!e");
+            changePassword.ChangePasswordButton.Click();
+            changePassword.AssertSuccessfulMessageChangePassword();
+
+            ArticlesDashboard dash = new ArticlesDashboard(this.driver);
+            dash.LogOut.Click();
+            dash.AssertAvailableLoginButton();
+        }
+
 
         [Test, Property("Priority", 1)]
         [Author("Nury")]

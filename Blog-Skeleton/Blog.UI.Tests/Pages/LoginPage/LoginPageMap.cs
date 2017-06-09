@@ -63,14 +63,15 @@ namespace Blog.UI.Tests.Pages.LoginPage
                 return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[2]/div/span/span"));
             }
         }
-        public IWebElement InvalidLoginError
+
+        public IWebElement InvalidError
         {
             get
             {
                 return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[1]/ul/li"));
             }
         }
-
+        /*
         public IWebElement InvalidPassword
         {
             get
@@ -87,7 +88,7 @@ namespace Blog.UI.Tests.Pages.LoginPage
                 return this.Driver.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[1]/ul/li"));
 
             }
-        }
+        }*/
 
         public IWebElement LogOffButton
         {

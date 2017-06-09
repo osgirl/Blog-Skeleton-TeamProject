@@ -44,15 +44,6 @@ namespace Blog.UI.Tests.Pages.Article.DeleteArticle
             {
                 return this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/div/form/div[3]/div/input")));
             }
-        }        
-
-        public IWebElement TitleLinkText
-        {
-            get
-            {
-                //return this.Wait.Until(w => w.FindElement(By.LinkText(this.TITLE)));
-                return this.Wait.Until(w => w.FindElement(By.PartialLinkText(this.TITLE)));
-            }
-        }    
+        }      
     }
 }

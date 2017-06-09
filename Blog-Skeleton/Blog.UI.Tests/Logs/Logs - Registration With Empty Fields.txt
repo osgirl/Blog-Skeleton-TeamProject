@@ -1,1 +1,1 @@
-[2017-06-07T20:20:00] [Passed] RegistrationWithEmptyFields
+[2017-06-09T16:32:12] [Passed] RegistrationWithEmptyFields

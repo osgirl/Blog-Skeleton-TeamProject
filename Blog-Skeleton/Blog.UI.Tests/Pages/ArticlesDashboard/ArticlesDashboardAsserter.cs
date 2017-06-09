@@ -14,12 +14,12 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
         {
             try
             {
-                Assert.AreEqual("http://localhost:60639/Article/List", dash.Url);
+                Assert.AreEqual("http://localhost:60639/Article/List", dash.Driver.Url);
             }            
              catch (Exception e)
             {
                 dash.log.Error("EXCEPTION LOGGING", e);
-                throw new AssertionException($"Article is not found");
+                throw new AssertionException($"URL is wrong {dash.Driver.Url}");
             }
         }
 
@@ -34,7 +34,21 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
                 Assert.AreEqual("http://localhost:60639/Manage", dash.Driver.Url);
                 dash.Driver.Navigate().Back();
                 dash.LogOut.Click();
-                Assert.AreEqual("http://localhost:60639/Article/List", dash.Driver.Url);
+                dash.AssertPageUrl();
+                Assert.IsTrue(dash.Login.Displayed);
+                Assert.IsTrue(dash.Login.Enabled);
+            }
+            catch (Exception e)
+            {
+                dash.log.Error("EXCEPTION LOGGING", e);
+                throw new AssertionException($"Menu Buttons are not all");
+            }
+        }
+
+        public static void AssertAvailableLoginButton(this ArticlesDashboard dash)
+        {
+            try
+            {
                 Assert.IsTrue(dash.Login.Displayed);
                 Assert.IsTrue(dash.Login.Enabled);
             }
@@ -44,7 +58,7 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
                 throw new AssertionException($"Create button is missing");
             }
         }
-        
+
         public static void AssertAvailableCreateButton(this ArticlesDashboard dash)
         {
             try
@@ -123,12 +137,15 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
                 throw new AssertionException($"LogOut button is missing");
             }
         }
-
-
-        public static void AssertArticleDetailsDashboard(this ArticlesDashboard dash, int ArticleId, string title, string content, string author)
+        
+        public static void AssertArticleDetailsDashboard(this ArticlesDashboard dash, string title, string content, string author)
         {
             try
             {
+                string href = dash.FindArticleIdByTitle(title).GetAttribute("href");
+                List<string> articleDetails = href.Split('/').ToList();
+                int ArticleId = int.Parse(articleDetails[articleDetails.Count - 1]);
+                
                 List<IWebElement> elements = dash.ContainerDashboardTitle;
                 int a = new int();
                 for (int i = 0; i < elements.Count; i++)
@@ -147,40 +164,8 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
                 throw new AssertionException($"Article is not found");
             }
         }
-
-        public static void AssertNewArticle(this ArticlesDashboard dash, string title, string content)
-        {
-            try
-            {
-                IWebElement foundArticleTitle = dash.ContainerDashboardTitle[dash.ContainerDashboardTitle.Count - 1];
-                IWebElement foundArticleContent = dash.ContainerDashboardContent[dash.ContainerDashboardContent.Count - 1];
-                Assert.AreEqual(title, foundArticleTitle.Text);
-                Assert.AreEqual(content, foundArticleContent.Text);
-            }
-            catch (Exception e)
-            {
-                dash.log.Error("EXCEPTION LOGGING", e);
-                throw new AssertionException($"Article is not found");
-            }
-        }
-
-        public static void AssertCancelArticle(this ArticlesDashboard dash, string title)
-        {
-            try
-            {
-                IWebElement foundArticle = dash.ContainerDashboardTitle[dash.ContainerDashboardTitle.Count - 1];
-
-                Assert.AreNotEqual(title, foundArticle.Text);
-
-            }
-            catch (Exception e)
-            {
-                dash.log.Error("EXCEPTION LOGGING", e);
-                throw new AssertionException($"Article is found");
-            }
-        }
-        
-        public static void AssertDeleteArticleDisplayed(this ArticlesDashboard dash, string title)
+                
+        public static void AssertDeleteArticleDashboard(this ArticlesDashboard dash, string title)
         {            
                 var reminder = dash.Wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body-content > div > div")));
                 List<IWebElement> list = reminder.FindElements(By.TagName("a")).ToList();
@@ -192,15 +177,33 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
         }
 
 
-        public static void AssertFindArticleDashboard(this ArticlesDashboard dash, string title)
-        {            
-                var reminder = dash.Wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body-content > div > div")));
-                List<IWebElement> list = reminder.FindElements(By.TagName("a")).ToList();
-                IWebElement foundArticle = null;
-                for (int i = 0; i < list.Count; i++)
-                    if (list[i].Text.Equals(title))
-                        foundArticle = list[i];
-            Assert.IsTrue(foundArticle != null, "Article is displayed in Dashboard", "Not found Article in Dashboard");               
+        public static void AssertAvailableScrolBarsDashboard(this ArticlesDashboard dash)
+        {
+
+            IJavaScriptExecutor javascript = (IJavaScriptExecutor)dash.Driver;
+            Boolean horzscrollStatus = (Boolean)javascript.ExecuteScript("return document.documentElement.scrollWidth>document.documentElement.clientWidth;");
+            Boolean VertscrollStatus = (Boolean)javascript.ExecuteScript("return document.documentElement.scrollHeight>document.documentElement.clientHeight;");
+
+            if (VertscrollStatus & horzscrollStatus)
+            {
+                dash.log.Info("Both Scroll bars are shown.");
+                Assert.Pass("Both Scroll bars are shown.");
+            }
+            else if (horzscrollStatus)
+            {
+                dash.log.Info("Horizontal Scroll bars are shown.");
+                Assert.Pass("HorizontalScroll bars are shown.");
+            }
+            else if (VertscrollStatus)
+            {
+                dash.log.Info("Vertical scroll bars are shown.");
+                Assert.Fail("Vertical scroll bars are shown.");
+            }
+            else
+            {
+                dash.log.Info("No scroll bars are shown.");
+                Assert.Fail("No scroll bars are shown.");
+            }
         }
     }
 }

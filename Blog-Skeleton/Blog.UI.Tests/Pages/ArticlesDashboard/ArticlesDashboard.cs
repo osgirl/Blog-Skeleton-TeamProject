@@ -11,7 +11,7 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
         {
         }
         
-        public void FindArticleByTitle(string title)
+        public void ViewArticleByTitle(string title)
         {
             var reminder = Wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body-content > div > div")));
             List<IWebElement> list = reminder.FindElements(By.TagName("a")).ToList();
@@ -33,8 +33,7 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
             for (int i = 0; i < list.Count; i++)
                 if (list[i].Text.Equals(title))
                     element = list[i];
-            if (element.Equals(null))
-                Assert.Fail("Not found Article in Dashboard");
+            Assert.IsTrue(element != null, "Article is displayed in Dashboard", "Not found Article in Dashboard");
             return element;
         }
     }

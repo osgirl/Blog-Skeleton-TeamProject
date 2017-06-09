@@ -27,33 +27,6 @@ namespace Blog.UI.Tests.Pages.Article.EditArticle
         {            
             this.EditButton.Click();
            
-        }
-        
-        public void FindArticleByTitle(string title)
-        {
-            var reminder = Wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body-content > div > div")));
-            List<IWebElement> list = reminder.FindElements(By.TagName("a")).ToList();
-            IWebElement foundArticle = null;
-            for (int i = 0; i < list.Count; i++)
-                if (list[i].Text.Equals(title))
-                    foundArticle = list[i];
-            if (foundArticle == null)
-                Assert.Fail("Not found Article in Dashboard");
-            else
-                foundArticle.Click();
-        }
-
-        public int FindArticleIdByTitle(string title)
-        {
-            var reminder = Wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body-content > div > div")));
-            List<IWebElement> list = reminder.FindElements(By.TagName("a")).ToList();
-            int a = new int();
-            for (int i = 0; i < list.Count; i++)
-                if (list[i].Text.Equals(title))
-                    a= i;
-            if (a.Equals(null))
-                Assert.Fail("Not found Article in Dashboard");
-            return a;
-        }
+        }            
     }
 }

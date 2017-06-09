@@ -72,17 +72,7 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
 
             }
         }
-
-        //nury
-        public IWebElement ArticleAuthor
-        {
-            get
-            {
-                //return this.Wait.Until(w => w.FindElement(By.XPath("/html/body/div[2]/div/div/div[1]/article/footer/small")));
-                return this.Wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body - content > div > div > div:nth - child(1) > article > footer > small")));
-            }
-        } 
-        
+               
         public IWebElement EditButtonArticle
         {
             get

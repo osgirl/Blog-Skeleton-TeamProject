@@ -71,15 +71,6 @@ namespace Blog.UI.Tests.Pages.Article.EditArticle
                 return this.Driver.FindElement(By.CssSelector("body > div.container.body-content > div > div > form > div:nth-child(7) > div > a"));
             }
         }
-
-        public IWebElement TitleLinkText
-        {
-            get
-            {
-                return this.Driver.FindElement(By.PartialLinkText("Article Test"));
-            }
-        }
-        
     }
 }
     

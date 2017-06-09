@@ -16,8 +16,7 @@ namespace Blog.UI.Tests.Pages.LoginPage
         private string password;
 
         public LoginPage(IWebDriver driver) : base(driver)
-        {
-            //AccessExcelData.fileName = "LogInData.xlsx";
+        {            
         }
 
         public string EMAIL
@@ -53,15 +52,7 @@ namespace Blog.UI.Tests.Pages.LoginPage
                 return this.urL;
             }
         }
-
-        /*
-        public new void NavigateTo()
-        {
-            this.Driver.Navigate().GoToUrl("http://localhost:60639/Article/List");
-            LoginButton.Click();
-        }
-        */
-
+        
         public void LoginNavigateTo()
         {
             this.Driver.Navigate().GoToUrl(this.URL);
@@ -98,7 +89,7 @@ namespace Blog.UI.Tests.Pages.LoginPage
         {
             this.Driver.FindElement(By.Id("RememberMe")).Click();
         }
-
+        
         private void Type(IWebElement element, string text)
         {
             element.Click();

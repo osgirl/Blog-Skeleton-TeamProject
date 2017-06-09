@@ -23,8 +23,7 @@ namespace Blog.UI.Tests.Pages.Article.DeleteArticle
 
         public void ArticleDeletefromList(string title)
         {
-            this.title = title;                      
-            this.FindArticleByTitle(title);
+            this.title = title;                                  
             this.AssertDeleteButtonDisplayed();
             this.DeleteButton.Click();
             this.AssertDeleteInsiteButtonDisplayed();
@@ -33,25 +32,10 @@ namespace Blog.UI.Tests.Pages.Article.DeleteArticle
 
         public void ArticleDeleteButton(string title)
         {
-            this.title = title;
-            this.FindArticleByTitle(title);
+            this.title = title;            
             this.AssertDeleteButtonDisplayed();
             this.DeleteButton.Click();
 
-        }
-
-        public void FindArticleByTitle(string title)
-        {
-            var reminder = Wait.Until(w => w.FindElement(By.CssSelector("body > div.container.body-content > div > div")));
-            List<IWebElement> list = reminder.FindElements(By.TagName("a")).ToList();
-            IWebElement foundArticle = null;
-            for (int i = 0; i < list.Count; i++)
-                if (list[i].Text.Equals(title))
-                    foundArticle = list[i];
-            if (foundArticle == null)
-                Assert.Fail("Not found Article in Dashboard");
-            else
-                foundArticle.Click();
-        }
+        }        
     }
 }

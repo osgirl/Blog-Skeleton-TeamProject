@@ -119,7 +119,7 @@ namespace Blog.UI.Tests
         [Test, Property("Registration", 1)]
 		[Author("Georgi")]
         [TestOf("Registration")]
-        [Property("SmokeTests", 1)]
+        [Category("SmokeTests")]
 
         public void RegistrationWithoutPassword()
         {
@@ -280,8 +280,7 @@ namespace Blog.UI.Tests
         [Test]
         [Author("Petya")]
         [TestOf("Articles' Dashboard")]
-        [Property("SmokeTests", 1)]
-        [Category("TestA")]
+        [Category("SmokeTests")]
 
         public void ArticleViewEditButtonDashboard()
         {            
@@ -484,7 +483,7 @@ namespace Blog.UI.Tests
         
         [Test, Property("Priority", 1)] 
         [Author("Nury")]
-        [Property("SmokeTests", 1)]
+        [Category("SmokeTests")]
 
         public void DeleteOwnArticleFromList()
         {    
@@ -590,7 +589,7 @@ namespace Blog.UI.Tests
         [Test]
         [Author("Daniela Stefanova")]
 		[TestOf("Login")]
-        [Property("SmokeTests", 1)]
+        [Category("SmokeTests")]
 
         public void LoginWithInvalidPassword()
         {

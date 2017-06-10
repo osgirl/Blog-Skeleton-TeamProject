@@ -303,7 +303,7 @@ namespace Blog.UI.Tests
             dash.LogOut.Click();
             dash.AssertAvailableLoginButton();
         }
-
+        /*
         [Test]
         [Author("Petya")]
         [TestOf("Manage User")]
@@ -335,7 +335,7 @@ namespace Blog.UI.Tests
                        
             dash.LogOut.Click();
             dash.AssertAvailableLoginButton();
-        }
+        }*/
 
 
         [Test, Property("Priority", 1)]

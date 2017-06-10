@@ -34,7 +34,7 @@ namespace Blog.UI.Tests.Pages.ArticlesDashboard
         {
             get
             {
-                return this.Wait.Until(w => w.FindElement(By.XPath("//*[@id=\"logoutForm\"]/ul/li[2]/a")));
+                return this.Wait.Until(w => w.FindElement(By.CssSelector("#logoutForm > ul > li:nth-child(2) > a")));
             }
         }
 

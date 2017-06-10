@@ -312,13 +312,13 @@ namespace Blog.UI.Tests
         {
             RegisterUser newUser1 = new RegisterUser(this.driver);
             newUser1.RegisterUserNavigateTo();
-            newUser1.RegisterationOfUser("Anikolova.petq@gmail.com", "Petya Nikolova", "P@ssw@rd");
-            newUser1.AssertNewUser("Anikolova.petq@gmail.com");
+            newUser1.RegisterationOfUser("A1nikolova.petq@gmail.com", "Petya Nikolova", "P@ssw@rd");
+            newUser1.AssertNewUser("A1nikolova.petq@gmail.com");
             ArticlesDashboard dash = new ArticlesDashboard(this.driver);
             dash.LogOut.Click();
 
             LoginPage loginuser = new LoginPage(this.driver);
-            loginuser.LoginUser("Anikolova.petq@gmail.com", "P@ssw@rd");
+            loginuser.LoginUser("A1nikolova.petq@gmail.com", "P@ssw@rd");
             loginuser.AssertLoginUser();
 
             ManageUser changePassword = new ManageUser(this.driver);

@@ -148,8 +148,9 @@ namespace Blog.UI.Tests
         public void RegistrationWithoutEmail()
         {
             RegistrationWithNegativeData(TestContext.CurrentContext.Test.MethodName, "The Email field is required.");
-        }        
+        }
 
+        [LogResultToFileAttribute]
         [Test]
         [Author("Petya")]
         [TestOf("Navigation")]
@@ -160,6 +161,7 @@ namespace Blog.UI.Tests
             Assert.AreEqual("SOFTUNI BLOG", logo.Text);
         }
 
+        [LogResultToFileAttribute]
         [Test]
         [Author("Petya")]
         [TestOf("Articles' Dashboard")]
@@ -177,6 +179,7 @@ namespace Blog.UI.Tests
             dash.LogOut.Click();
         }
 
+        [LogResultToFileAttribute]
         [Test]
         [Author("Petya")]
         [TestOf("Articles' Dashboard")]
@@ -197,7 +200,7 @@ namespace Blog.UI.Tests
             dash.AssertAvailableLoginButton();
         }
 
-
+        [LogResultToFileAttribute]
         [Test]
         [Author("Petya")]
         [TestOf("Articles' Dashboard")]
@@ -215,6 +218,7 @@ namespace Blog.UI.Tests
             dash.AssertFunctionalMenuButtons();            
         }
 
+        [LogResultToFileAttribute]
         [Test]
         [Author("Petya")]
         [TestOf("Articles' Dashboard")]
@@ -233,7 +237,8 @@ namespace Blog.UI.Tests
             dash.LogOut.Click();
             dash.AssertAvailableLoginButton();
         }
-               
+
+        [LogResultToFileAttribute]
         [Test]
         [Author("Petya")]
         [TestOf("Articles' Dashboard")]
@@ -258,7 +263,8 @@ namespace Blog.UI.Tests
             dash.LogOut.Click();
             dash.AssertAvailableLoginButton();
         }
-        
+
+        [LogResultToFileAttribute]
         [Test]
         [Author("Petya")]
         [TestOf("Articles' Dashboard")]
@@ -281,7 +287,8 @@ namespace Blog.UI.Tests
             dash.LogOut.Click();
             dash.AssertAvailableLoginButton();
         }
-        
+
+        [LogResultToFileAttribute]
         [Test]
         [Author("Petya")]
         [TestOf("Articles' Dashboard")]
@@ -304,6 +311,7 @@ namespace Blog.UI.Tests
             dash.AssertAvailableLoginButton();
         }
         /*
+        [LogResultToFileAttribute]
         [Test]
         [Author("Petya")]
         [TestOf("Manage User")]
@@ -337,7 +345,7 @@ namespace Blog.UI.Tests
             dash.AssertAvailableLoginButton();
         }*/
 
-
+        [LogResultToFileAttribute]
         [Test, Property("Priority", 1)]
         [Author("Nury")]
         [TestOf("Create Article")]
@@ -361,6 +369,7 @@ namespace Blog.UI.Tests
             dash.AssertAvailableLoginButton();
         }
 
+        [LogResultToFileAttribute]
         [Test, Property("Priority", 1)] 
         [Author("Nury")]
 
@@ -377,6 +386,7 @@ namespace Blog.UI.Tests
             loginuser.LogOffButton.Click();
         }
 
+        [LogResultToFileAttribute]
         [Test, Property("Priority", 1)]  
         [Author("Nury")]
 
@@ -393,6 +403,7 @@ namespace Blog.UI.Tests
             loginuser.LogOffButton.Click();
         }
 
+        [LogResultToFileAttribute]
         [Test, Property("Priority", 1)] 
         [Author("Nury")]
 
@@ -409,6 +420,7 @@ namespace Blog.UI.Tests
             loginuser.LogOffButton.Click();
         }
 
+        [LogResultToFileAttribute]
         [Test, Property("Priority", 1)] 
         [Author("Nury")]
 
@@ -428,6 +440,7 @@ namespace Blog.UI.Tests
             loginuser.LogOffButton.Click();
         }
 
+        [LogResultToFileAttribute]
         [Test, Property("Priority", 1)] 
         [Author("Nury")]
 
@@ -448,7 +461,8 @@ namespace Blog.UI.Tests
             dash.AssertArticleDetailsDashboard("Article Test Nury3", "This is the text of article Nury3","--author");
             loginuser.LogOffButton.Click();
         }
-        
+
+        [LogResultToFileAttribute]
         [Test, Property("Priority", 1)] 
         [Author("Nury")]
 
@@ -472,7 +486,8 @@ namespace Blog.UI.Tests
             loginuser.AssertAccountLogin();
             dash.AssertAvailableLoginButton();
         }
-        
+
+        [LogResultToFileAttribute]
         [Test, Property("Priority", 1)] 
         [Author("Nury")]
         [Category("SmokeTests")]
@@ -496,6 +511,7 @@ namespace Blog.UI.Tests
             dash.AssertAvailableLoginButton();
         }
 
+        [LogResultToFileAttribute]
         [Test, Property("Priority", 1)] 
         [Author("Nury")]
 
@@ -517,8 +533,9 @@ namespace Blog.UI.Tests
             loginuser.AssertAccountLogin();
             dash.AssertAvailableLoginButton();
         }
-		
-		[Test]
+
+        [LogResultToFileAttribute]
+        [Test]
         [Author("Daniela Stefanova")]
 		[TestOf("Login")]
 
@@ -534,6 +551,7 @@ namespace Blog.UI.Tests
             logPage.LogOffButton.Click();
         }
 
+        [LogResultToFileAttribute]
         [Test]
         [Author("Daniela Stefanova")]
 		[TestOf("Login")]
@@ -549,6 +567,7 @@ namespace Blog.UI.Tests
             logPage.AssertLoginFormEmailError("The Email field is required.");
         }
 
+        [LogResultToFileAttribute]
         [Test]
         [Author("Daniela Stefanova")]
 		[TestOf("Login")]
@@ -564,6 +583,7 @@ namespace Blog.UI.Tests
             logPage.AssertLoginFormPasswordError("The Password field is required.");
         }
 
+        [LogResultToFileAttribute]
         [Test]
         [Author("Daniela Stefanova")]
 		[TestOf("Login")]
@@ -580,6 +600,7 @@ namespace Blog.UI.Tests
             logPage.AssertLoginFormPasswordError("The Password field is required.");
         }
 
+        [LogResultToFileAttribute]
         [Test]
         [Author("Daniela Stefanova")]
 		[TestOf("Login")]
@@ -596,6 +617,7 @@ namespace Blog.UI.Tests
             logPage.AssertInvalidError("Invalid login attempt.");
         }
 
+        [LogResultToFileAttribute]
         [Test]
         [Author("Daniela Stefanova")]
 		[TestOf("Login")]

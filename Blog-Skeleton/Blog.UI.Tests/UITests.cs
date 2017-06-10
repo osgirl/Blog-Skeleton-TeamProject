@@ -177,6 +177,8 @@ namespace Blog.UI.Tests
             ArticlesDashboard dash = new ArticlesDashboard(this.driver);            
             dash.AssertArticleDetailsDashboard("qwerty", "browser", "--author");
             dash.LogOut.Click();
+            
+
         }
 
         [LogResultToFileAttribute]
@@ -310,7 +312,7 @@ namespace Blog.UI.Tests
             dash.LogOut.Click();
             dash.AssertAvailableLoginButton();
         }
-        /*
+        
         [LogResultToFileAttribute]
         [Test]
         [Author("Petya")]
@@ -343,7 +345,7 @@ namespace Blog.UI.Tests
                        
             dash.LogOut.Click();
             dash.AssertAvailableLoginButton();
-        }*/
+        }
 
         [LogResultToFileAttribute]
         [Test, Property("Priority", 1)]

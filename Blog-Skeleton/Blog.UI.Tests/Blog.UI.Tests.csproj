@@ -159,6 +159,8 @@
     <None Include="Documentation\SoftwareTestPlan%28STP%29\Templates\Example-quality-assurance-checklist.doc" />
     <None Include="Documentation\SoftwareTestPlan%28STP%29\Templates\sample-test-plan-template.rtf" />
     <None Include="Documentation\SoftwareTestPlan%28STP%29\Templates\unit-and-integration-plan-checklist.doc" />
+    <None Include="Documentation\TestDB\EmptyDB\EmptyDB.rar" />
+    <None Include="Documentation\TestDB\UsersDB\UsersDB.rar" />
     <None Include="Documentation\TestReports\Templates\eplc_test_reports_template.doc" />
     <None Include="Documentation\TestReports\TestReport-PetyaNikolova.doc" />
     <None Include="Documentation\TestScenariosAndTestCases\HighLevelDesign%28UseCases%29-PetyaNikolova.doc" />
@@ -178,20 +180,6 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Documentation\TestDB\EmptyDB\aspnet-Blog-20161128123155.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Documentation\TestDB\EmptyDB\aspnet-Blog-20161128123155_log.ldf">
-      <DependentUpon>aspnet-Blog-20161128123155.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Documentation\TestDB\UsersDB\aspnet-Blog-20161128123155.mdf">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Documentation\TestDB\UsersDB\aspnet-Blog-20161128123155_log.ldf">
-      <DependentUpon>aspnet-Blog-20161128123155.mdf</DependentUpon>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="Logs\Logs - Registration With Empty Fields.txt" />
     <Content Include="Logs\Logs - Registration With Invalid Email.txt" />
     <Content Include="Logs\Logs - Registration Without Confirm Password.txt" />

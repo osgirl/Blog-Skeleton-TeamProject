@@ -14,6 +14,11 @@ namespace Blog.UI.Tests.Pages.ManageUser
             Assert.AreEqual("http://localhost:60639/Manage/ChangePassword", changePassword.Driver.Url);
         }
 
+        public static void AssertManageUserURL(this ManageUser changePassword)
+        {
+            Assert.AreEqual("http://localhost:60639/Manage", changePassword.Driver.Url);
+        }
+
         public static void AssertSuccessfulMessageChangePassword(this ManageUser changePassword)
         {
             Assert.AreEqual("Your password has been changed.", changePassword.SuccessfulMessageChangePassword.Text);

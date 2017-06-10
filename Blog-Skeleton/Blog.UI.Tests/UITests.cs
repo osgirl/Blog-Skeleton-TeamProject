@@ -311,17 +311,19 @@ namespace Blog.UI.Tests
         public void SuccessfulChangePasswordUser()
         {
             LoginPage loginuser = new LoginPage(this.driver);
-            loginuser.LoginUser("nikolova.petq@gmail.com", "P@ssw@rd");
+            loginuser.LoginUser("1nikolova.petq@gmail.com", "P@ssw@rd");
             loginuser.AssertLoginUser();
 
             ManageUser changePassword = new ManageUser(this.driver);
             changePassword.PasswordUser = loginuser.PASSWORD;
             
             changePassword.ManageNavigateTo();
-            changePassword.AssertManageUserPageURL();
+            changePassword.AssertManageUserURL();
+                        
             changePassword.ChangePasswordLink.Click();
+            changePassword.AssertManageUserPageURL();
             changePassword.FillChangePasswordForm("Vel1koLep!e");
-            changePassword.ChangePasswordButton.Click();
+            
             changePassword.AssertSuccessfulMessageChangePassword();
 
             ArticlesDashboard dash = new ArticlesDashboard(this.driver);

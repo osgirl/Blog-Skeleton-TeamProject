@@ -33,7 +33,7 @@ namespace Blog.UI.Tests
         public void Init()
         {
             this.driver = BrowserHost.Instance.Application.Browser;
-            this.wait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(60));
+            this.wait = new WebDriverWait(this.driver, TimeSpan.FromSeconds(90));
             this.driver.Manage().Window.Maximize();
             this.driver.Navigate().GoToUrl(BrowserHost.RootUrl);
         }
